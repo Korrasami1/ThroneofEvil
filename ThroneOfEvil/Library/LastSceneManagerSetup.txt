@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/fristblah.unity
+  isLoaded: 1
+  isActive: 1
