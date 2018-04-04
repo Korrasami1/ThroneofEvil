@@ -81,5 +81,6 @@ public class GameController : MonoBehaviour {
     public void Restart()
     {
         restart = true;
+        isSpawnOver = false;
     }
 }
