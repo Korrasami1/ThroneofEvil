@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539559234517020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.942, y: 0.468, z: 0}
-  m_LocalScale: {x: 0.43048212, y: 0.45925045, z: 1}
+  m_LocalPosition: {x: -7.574, y: -0.275, z: 0}
+  m_LocalScale: {x: 0.2646957, y: 0.26829246, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,7 +81,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7495fcec7f254343974f49ad1cf5191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.25
+  speed: 5
+  horizontal: 0
+  vertical: 0
+  laneOne: 5
+  laneTwo: 2.5
+  laneThree: 0
+  laneFour: -2.5
+  laneFive: -5
+  laneDiversity: 0.5
 --- !u!212 &212120002991808398
 SpriteRenderer:
   m_ObjectHideFlags: 1
