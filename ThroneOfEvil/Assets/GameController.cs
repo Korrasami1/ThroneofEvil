@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour {
     private bool restart;
     public bool winner;
     private int counterforSpawning = 0;
-    private bool isSpawnOver = false;
+    //private bool isSpawnOver = false;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
         restartText.text = "";
         gameOverText.text = "";
         counterforSpawning = 0;
-        isSpawnOver = false;
+        //isSpawnOver = false;
         StartCoroutine(SpawnWaves());
     }
 
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour {
     {
         if(counterforSpawning >= 3)
         {
-            isSpawnOver = true;
+			GameOver();
         }
         if (restart)
         {
@@ -61,7 +61,8 @@ public class GameController : MonoBehaviour {
                 counterforSpawning = counterforSpawning + 1;
                 yield return new WaitForSeconds(spawnWait);
             }
-            yield return new WaitUntil(() => isSpawnOver == true);
+            //yield return new WaitUntil(() => isSpawnOver == true);
+			yield return new WaitForSeconds(waveWait);
 
             if (gameOver)
             {
@@ -81,6 +82,5 @@ public class GameController : MonoBehaviour {
     public void Restart()
     {
         restart = true;
-        isSpawnOver = false;
     }
 }
