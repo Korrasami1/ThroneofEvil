@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ENemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour {
 
 	public float speed;                         //The speed of the enemy, around 5 looks nice
 	public float horizontal;                    //This has no function until random movement within the different lanes is implemented
