@@ -22,7 +22,28 @@ public class TrapController : MonoBehaviour {
 		//If Left Button is clicked #was 0 also was trapClone.transform.position
 		if(Input.GetMouseButtonUp(1) && isTrapReady == true)
 		{
-			Instantiate(trapClone,targetPosition, Quaternion.identity);    
+			reCentreTrap();
+			Instantiate(trapClone,targetPosition, Quaternion.identity);
+		}
+	}
+
+	//this function is currently hard coded to centre a trap in the appropriate lanes.
+	void reCentreTrap(){
+		//lane one
+		if (targetPosition.y >= 5f || targetPosition.y >= 3.75f && targetPosition.y <= 5f) {
+			targetPosition = new Vector3(targetPosition.x, 5f, 0f);
+		//lane two
+		} else if (targetPosition.y < 3.75f && targetPosition.y >= 2.5f || targetPosition.y <= 2.5f && targetPosition.y >= 1.25f) {
+			targetPosition = new Vector3(targetPosition.x, 2.5f, 0f);
+		//lane three
+		} else if (targetPosition.y < 1.25f && targetPosition.y >= 0f || targetPosition.y <= 0f && targetPosition.y >= -1.25f) {
+			targetPosition = new Vector3(targetPosition.x, 0f, 0f);
+		//lane four
+		} else if (targetPosition.y > -3.75f && targetPosition.y >= -2.5f || targetPosition.y <= -2.5f && targetPosition.y <= -1.25f) {
+			targetPosition = new Vector3(targetPosition.x, -2.5f, 0f);
+		//lane five
+		} else if (targetPosition.y <= -5f || targetPosition.y >= -5f && targetPosition.y <= -3.75f) {
+			targetPosition = new Vector3(targetPosition.x, -5f, 0f);
 		}
 	}
 	
