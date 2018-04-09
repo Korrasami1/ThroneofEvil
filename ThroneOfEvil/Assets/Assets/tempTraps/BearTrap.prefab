@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212170207015049632}
   - component: {fileID: 54525410354993952}
   - component: {fileID: 65329213336523012}
+  - component: {fileID: 114679671731334822}
   m_Layer: 8
   m_Name: BearTrap
   m_TagString: Trap
@@ -98,6 +99,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.674233, y: 3.1241965, z: 10}
   m_Center: {x: -1.8163956, y: -0.042173114, z: 0}
+--- !u!114 &114679671731334822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270327239824918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390dfdaeef6bbd644993ca60bc8e6f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212170207015049632
 SpriteRenderer:
   m_ObjectHideFlags: 1

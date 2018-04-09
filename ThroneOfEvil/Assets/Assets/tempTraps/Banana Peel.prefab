@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212280054107224536}
   - component: {fileID: 54524830471101958}
   - component: {fileID: 65650362126567298}
+  - component: {fileID: 114424026436751882}
   m_Layer: 8
   m_Name: Banana Peel
   m_TagString: Trap
@@ -98,6 +99,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.78779, y: 4.4164286, z: 10}
   m_Center: {x: -2.3664067, y: -0.0742266, z: 0}
+--- !u!114 &114424026436751882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123016727805114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390dfdaeef6bbd644993ca60bc8e6f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212280054107224536
 SpriteRenderer:
   m_ObjectHideFlags: 1

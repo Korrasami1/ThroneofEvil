@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MagicOrbController : MonoBehaviour {
@@ -20,20 +21,25 @@ public class MagicOrbController : MonoBehaviour {
 		//Convert the mousePosition according to World position
 		targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,distanceZaxis));
 		transform.Rotate ((new Vector3(0.0f, targetPosition.y, 0.0f)/** sphereRotateSpeed*/), Space.Self);
+		changeMenuSelection ();
 
-		if (targetPosition.x <= 2f) {
-			menuOptions.SetActive (true);
-			menuPlay.SetActive (false);
-		} else if(targetPosition.x > 2f){
-			menuOptions.SetActive (false);
-			menuPlay.SetActive (true);
-		}
 	}
 
 	void changeMenuSelection(){
-		//i want to move sphere around on mouse movement
-		if (targetPosition.x == 2f) {
-			Debug.Log ("change sprite on mouse movement");
+		//Options orb select
+		if (targetPosition.x <= 2f) {
+			menuOptions.SetActive (true);
+			menuPlay.SetActive (false);
+			if (Input.GetButton ("Fire1")) {
+				Debug.Log ("Options has been slected");
+			}
+			//Play orb select
+		} else if(targetPosition.x > 2f){
+			menuOptions.SetActive (false);
+			menuPlay.SetActive (true);
+			if (Input.GetButton ("Fire1")) {
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+			}
 		}
 	}
 }

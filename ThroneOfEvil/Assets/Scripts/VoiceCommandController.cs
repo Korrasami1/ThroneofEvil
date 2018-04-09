@@ -14,6 +14,12 @@ public class VoiceCommandController : MonoBehaviour
 	protected PhraseRecognizer recognizer;
 	protected string word = "Voice Commands Active";
 
+	public GameObject minion;
+	public int numOfMinions = 10;
+	private bool isSpawningMinions = false;
+
+	public GameObject fire;
+	private bool isSpawningFire = false;
 	private static bool created = false;
 
 
@@ -46,9 +52,11 @@ public class VoiceCommandController : MonoBehaviour
 		{
 		case "Send in the minions":
 			minionSpeed = 7.5f;
+			spawnMinions ();
 			break;
 		case "Fire":
 			minionSpeed = 7.5f;
+			SpawnFire ();
 			break;
 		case "Burn them alive":
 			minionSpeed = 7.5f;
@@ -64,6 +72,35 @@ public class VoiceCommandController : MonoBehaviour
 		word = args.text;
 		string debugText = "You said: <b>" + word + "</b>";
 		Debug.Log(debugText);
+		//i placed this here so that they wouldnt spam
+		isSpawningMinions = true;
+		isSpawningFire = true;
+	}
+
+	private void spawnMinions(){
+		if (isSpawningMinions == true) {
+			int tempCounter = 0;
+			Vector3 center = transform.position;
+			for (int i = 0; i < numOfMinions; i++) {
+				//Vector3 spawnPosition = new Vector3 (Random.Range (-4f, 9), -6, 0f);
+				int a = 360 / numOfMinions * i;
+				Vector3 spawnPosition = RandomCircle(center, 15.0f ,a);
+				Instantiate (minion, spawnPosition, Quaternion.identity);
+				tempCounter++;
+				Debug.Log ("minion counter: " + tempCounter); //remove after num of minions is set
+			}
+			isSpawningMinions = false;
+		}
+	}
+
+	private void SpawnFire(){
+		if (isSpawningFire == true) {
+			for (int i = 0; i < 1; i++) {
+				//Vector3 spawnPosition = new Vector3 (Random.Range (-4f, 9), -6, 0f);
+				Instantiate (fire, fire.transform.position, Quaternion.identity);
+			}
+			isSpawningFire = false;
+		}
 	}
 
 	private void OnApplicationQuit()
@@ -74,4 +111,17 @@ public class VoiceCommandController : MonoBehaviour
 			recognizer.Stop();
 		}
 	}
+
+	//spawning minions in a circle on the field
+	Vector3 RandomCircle(Vector3 center, float radius,int a)
+	{
+		//Debug.Log(a);
+		float ang = a;
+		Vector3 pos;
+		pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+		pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+		pos.z = center.z;
+		return pos;
+	}
+
 }

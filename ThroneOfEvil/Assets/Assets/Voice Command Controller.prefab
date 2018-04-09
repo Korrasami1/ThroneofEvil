@@ -57,3 +57,6 @@ MonoBehaviour:
   - Burn them alive
   confidence: 2
   minionSpeed: 3
+  minion: {fileID: 1981358933227212, guid: 8f3575fc2f45eeb40acd8cc1fec59f21, type: 2}
+  numOfMinions: 10
+  fire: {fileID: 1039698808575432, guid: bb6f3232c8b369448a635793ea8a1f1e, type: 2}

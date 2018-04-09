@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
     private bool restart;
     public bool winner;
     private int counterforSpawning = 0;
+	public GameObject pauseMenu;
     //private bool isSpawnOver = false;
 
     void Start()
@@ -45,6 +46,10 @@ public class GameController : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Time.timeScale = 0;
+			pauseMenu.SetActive (true);
+		}
     }
 
     IEnumerator SpawnWaves()
