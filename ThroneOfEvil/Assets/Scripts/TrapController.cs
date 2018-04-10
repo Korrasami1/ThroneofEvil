@@ -9,6 +9,7 @@ public class TrapController : MonoBehaviour {
 	private GameObject trapClone;
 	float distance=10f;
 	float laneOne, laneTwo, laneThree, laneFour, laneFive;
+	MouseRenderer mouse;
 
 	void Start(){
 		laneOne = 5f;
@@ -16,6 +17,15 @@ public class TrapController : MonoBehaviour {
 		laneThree = 0f;
 		laneFour = -2.5f;
 		laneFive = -5f;
+		GameObject mouseObject = GameObject.FindWithTag("Mouse");
+		if (mouseObject != null)
+		{
+			mouse = mouseObject.GetComponent<MouseRenderer>();
+		}
+		if (mouse == null)
+		{
+			Debug.Log("Cannot find 'Mouse Renderer' script");
+		}
 	}
 
 	// Update is called once per frame
@@ -69,15 +79,22 @@ public class TrapController : MonoBehaviour {
 		if (trapNum == 1) {
 			isTrapReady = true;	
 			trapClone = trap1;
+			mouse.cursorChangeNum = 1;
 		} else if (trapNum == 2) {
 			isTrapReady = true;
 			trapClone = trap2;
+			mouse.cursorChangeNum = 2;
 		} else if (trapNum == 3) {
 			isTrapReady = true;
 			trapClone = trap3;
+			mouse.cursorChangeNum = 3;
 		} else if (trapNum == 4) {
 			isTrapReady = true;
 			trapClone = trap4;
+			mouse.cursorChangeNum = 4;
+		} else if (trapNum == 5) {
+			//mouse normal
+			mouse.cursorChangeNum = 0;
 		}
 	}		
 }

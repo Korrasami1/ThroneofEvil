@@ -21,7 +21,8 @@ public class EnemyController : MonoBehaviour {
 	//  private Vector3 previousPosition;           //The position position of the enemy on the update before, not currently in use
 	private float targetY;                      //The Y-value of targetPosition
 	private bool objectCollision = false;
-	//  private bool canMove = true;                //This is for the future
+	private bool canMoveUp = true;
+	private bool canMoveDown = true;
 	void Start()
 	{
 		//Start() assigns a random value between 0 and 4 to each enemy spawn, this in turn decides their starting lane
@@ -60,7 +61,9 @@ public class EnemyController : MonoBehaviour {
 		}
 		targetPosition.y = targetY;
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
-		//      previousPosition = currentPosition;     //Not currently in use                                      
+		//previousPosition = currentPosition;     //Not currently in use
+		Debug.Log("canMoveUp = " + canMoveUp);
+		Debug.Log("canMoveDown = " + canMoveDown);
 	}
 	int CheckForLane(float yPosition)
 	{
@@ -84,29 +87,57 @@ public class EnemyController : MonoBehaviour {
 		//Then, depending on lane, MoveTo() is called using the value of the lane that the enemy is supposed to move to
 		//If the enemy can move to two different lanes, the Randomizer() chooses witch lane the enemy will target
 		if (CheckForLane(transform.position.y) == 1) {
-			MoveTo (laneTwo);
-		} else if (CheckForLane(transform.position.y) == 2) {
-			if (Randomizer ()) {
-				MoveTo (laneOne);
-			} else {
-				MoveTo (laneThree);
-			}
-		} else if (CheckForLane(transform.position.y) == 3) {
-			if (Randomizer ()) {
+			if (canMoveDown) {
 				MoveTo (laneTwo);
 			} else {
-				MoveTo (laneFour);
+				return;
 			}
-		} else if (CheckForLane(transform.position.y) == 4) {
-			if (Randomizer ()) {
+		} else if (CheckForLane(transform.position.y) == 2) {
+			if (!canMoveDown && !canMoveUp) {
+				RandomAdjacentLane (laneOne, laneThree);
+			} else if (!canMoveDown) {
+				MoveTo (laneOne);
+			} else if (!canMoveUp) {
 				MoveTo (laneThree);
 			} else {
+				RandomAdjacentLane (laneOne, laneThree);
+			}
+		} else if (CheckForLane(transform.position.y) == 3) {
+			if (!canMoveDown && !canMoveUp) {
+				RandomAdjacentLane (laneTwo, laneFour);
+			} else if (!canMoveDown) {
+				MoveTo (laneTwo);
+			} else if (!canMoveUp) {
+				MoveTo (laneFour);
+			} else {
+				RandomAdjacentLane (laneTwo, laneFour);
+			}
+		} else if (CheckForLane(transform.position.y) == 4) {
+			if (!canMoveDown && !canMoveUp) {
+				RandomAdjacentLane (laneThree, laneFive);
+			} else if (!canMoveDown) {
+				MoveTo (laneThree);
+			} else if (!canMoveUp) {
 				MoveTo (laneFive);
+			} else {
+				RandomAdjacentLane (laneThree, laneFive);
 			}
 		} else if (CheckForLane(transform.position.y) == 5) {
-			MoveTo (laneFour);
+			if (canMoveUp) {
+				MoveTo (laneFour);
+			} else {
+				return;
+			}
 		} else {
 			return;
+		}
+	}
+	void RandomAdjacentLane(float lane1, float lane2)
+	{
+		if (Randomizer ()) {
+			MoveTo (lane1);
+		} else {
+			MoveTo (lane2);
 		}
 	}
 	void AvoidObstacle(float xPosition)
@@ -161,12 +192,28 @@ public class EnemyController : MonoBehaviour {
 		{
 			AvoidObstacle (transform.position.x);
 		}
+		if (collider.tag == "Trap Downwards Detection") 
+		{
+			canMoveDown = false;
+		}
+		if (collider.tag == "Trap Upwards Detection") 
+		{
+			canMoveUp = false;
+		}
 	}
 	void OnTriggerExit(Collider collider)
 	{
 		if (collider.tag == "Wall" && objectCollision == true) 
 		{
 			objectCollision = false;
+		}
+		if (collider.tag == "Trap Downwards Detection") 
+		{
+			canMoveDown = true;
+		}
+		if (collider.tag == "Trap Upwards Detection") 
+		{
+			canMoveUp = true;
 		}
 	}
 	bool Randomizer()

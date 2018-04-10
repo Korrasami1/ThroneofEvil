@@ -14,6 +14,8 @@ TagManager:
   - Wall
   - Trap Detection
   - TrapController
+  - Mouse
+  - Lightning
   layers:
   - Default
   - TransparentFX

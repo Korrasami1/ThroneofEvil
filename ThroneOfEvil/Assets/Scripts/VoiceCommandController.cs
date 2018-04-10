@@ -17,6 +17,8 @@ public class VoiceCommandController : MonoBehaviour
 	private bool isSpawningMinions = false;
 	public GameObject fire;
 	private bool isSpawningFire = false;
+	public GameObject Lightning;
+	private bool isSpawningLightning = false;
 	//private static bool created = false;
 	void Start()
 	{
@@ -41,6 +43,7 @@ public class VoiceCommandController : MonoBehaviour
 			break;
 		case "Burn them alive":
 			minionSpeed = 7.5f;
+			SpawnLightning ();
 			break;
 		case "exit":
 			Application.Quit();
@@ -79,6 +82,15 @@ public class VoiceCommandController : MonoBehaviour
 			}
 			isSpawningFire = false;
 		}
+	}
+	private void SpawnLightning(){
+		/*if (isSpawningLightning == true) {
+			for (int i = 0; i < 1; i++) {
+				//Vector3 spawnPosition = new Vector3 (Random.Range (-4f, 9), -6, 0f);
+				Instantiate (Lightning, Lightning.transform.position, Quaternion.identity);
+			}
+			isSpawningLightning = false;
+		}*/
 	}
 	private void OnDestroy()
 	{

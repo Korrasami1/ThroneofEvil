@@ -5,9 +5,10 @@ using UnityEngine;
 public class MouseRenderer : MonoBehaviour {
 
 	Vector3 mouse;
-	float w = 50f; //was 32, 70
-	float h = 50f;
-	public Texture cursor ;
+	float w = 120f; //was 32, 70
+	float h = 120f;
+	public Texture[] cursor;
+	public int cursorChangeNum = 0;
 
 	void Start()
 	{
@@ -21,6 +22,6 @@ public class MouseRenderer : MonoBehaviour {
 
 	void OnGUI()
 	{
-		GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor);
+		GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor[cursorChangeNum]);
 	}
 }
