@@ -7,7 +7,7 @@ using UnityEngine.Windows.Speech;
 public class VoiceCommandController : MonoBehaviour
 {
 
-	public string[] keywords = new string[] {"Send in the minions", "Fire", "Burn them alive"};
+	public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning"};
 	public ConfidenceLevel confidence = ConfidenceLevel.Low;
 	public float minionSpeed;
 	protected PhraseRecognizer recognizer;
@@ -41,7 +41,7 @@ public class VoiceCommandController : MonoBehaviour
 			minionSpeed = 7.5f;
 			SpawnFire ();
 			break;
-		case "Burn them alive":
+		case "Lightning":
 			minionSpeed = 7.5f;
 			SpawnLightning ();
 			break;
@@ -58,6 +58,7 @@ public class VoiceCommandController : MonoBehaviour
 		//i placed this here so that they wouldnt spam
 		isSpawningMinions = true;
 		isSpawningFire = true;
+		isSpawningLightning = true;
 	}
 	private void spawnMinions(){
 		if (isSpawningMinions == true) {
@@ -84,13 +85,12 @@ public class VoiceCommandController : MonoBehaviour
 		}
 	}
 	private void SpawnLightning(){
-		/*if (isSpawningLightning == true) {
+		if (isSpawningLightning == true) {
 			for (int i = 0; i < 1; i++) {
-				//Vector3 spawnPosition = new Vector3 (Random.Range (-4f, 9), -6, 0f);
 				Instantiate (Lightning, Lightning.transform.position, Quaternion.identity);
 			}
 			isSpawningLightning = false;
-		}*/
+		}
 	}
 	private void OnDestroy()
 	{

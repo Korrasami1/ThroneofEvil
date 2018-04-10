@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
-        if(counterforSpawning >= 3)
+		if(GetComponent<HealthController>().currentHealth <= 0)
         {
 			GameOver();
         }

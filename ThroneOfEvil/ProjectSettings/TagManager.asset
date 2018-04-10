@@ -16,6 +16,7 @@ TagManager:
   - TrapController
   - Mouse
   - Lightning
+  - LevelGoal
   layers:
   - Default
   - TransparentFX

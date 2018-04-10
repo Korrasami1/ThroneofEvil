@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212219897584256566}
   - component: {fileID: 54602534786182710}
   - component: {fileID: 135252200932127014}
-  - component: {fileID: 114680681101298264}
+  - component: {fileID: 114993929338888572}
   m_Layer: 8
   m_Name: Lightning
   m_TagString: Lightning
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1749509020380682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.514, y: -1.945, z: 0}
+  m_LocalPosition: {x: -5.2117777, y: -2.2555485, z: 0}
   m_LocalScale: {x: 0.61267465, y: 0.6454065, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,7 +58,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &114680681101298264
+--- !u!114 &114993929338888572
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -66,10 +66,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1749509020380682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31b2968f4d254d54eaed12ef5acf2f8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b1841247ecdc714a8283a87e339ee0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 10
+  timeDelay: 3
 --- !u!135 &135252200932127014
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -80,8 +81,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7843149
-  m_Center: {x: -0.2837751, y: -1.437468, z: 0}
+  m_Radius: 1.6115911
+  m_Center: {x: -0.28377497, y: -0.1556772, z: 0}
 --- !u!212 &212219897584256566
 SpriteRenderer:
   m_ObjectHideFlags: 1

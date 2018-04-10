@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/fristblah.unity
     guid: d06dfbf2df3a9e14f98b2892d25e1222
+  - enabled: 1
+    path: Assets/Scenes/ExitScene.unity
+    guid: 8b6b4e370448eec4daa1d4c9d26af6d9
