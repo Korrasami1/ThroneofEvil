@@ -12,6 +12,8 @@ TagManager:
   - Fire
   - Wall Detection
   - Wall
+  - Trap Detection
+  - TrapController
   layers:
   - Default
   - TransparentFX

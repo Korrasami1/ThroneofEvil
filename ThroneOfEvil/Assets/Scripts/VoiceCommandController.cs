@@ -10,29 +10,14 @@ public class VoiceCommandController : MonoBehaviour
 	public string[] keywords = new string[] {"Send in the minions", "Fire", "Burn them alive"};
 	public ConfidenceLevel confidence = ConfidenceLevel.Low;
 	public float minionSpeed;
-
 	protected PhraseRecognizer recognizer;
 	protected string word = "Voice Commands Active";
-
 	public GameObject minion;
 	public int numOfMinions = 10;
 	private bool isSpawningMinions = false;
-
 	public GameObject fire;
 	private bool isSpawningFire = false;
-	private static bool created = false;
-
-
-	void Awake()
-	{
-		if (!created) 
-		{
-			DontDestroyOnLoad (this.gameObject);
-			created = true;
-			Debug.Log ("Awake: " + this.gameObject);
-		}
-	}
-
+	//private static bool created = false;
 	void Start()
 	{
 		if (keywords != null)
@@ -42,12 +27,8 @@ public class VoiceCommandController : MonoBehaviour
 			recognizer.Start();
 		}
 	}
-
 	private void Update()
 	{
-//		var x = target.transform.position.x;
-//		var y = target.transform.position.y;
-
 		switch (word)
 		{
 		case "Send in the minions":
@@ -66,7 +47,6 @@ public class VoiceCommandController : MonoBehaviour
 			break;
 		}
 	}
-
 	private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
 	{
 		word = args.text;
@@ -76,7 +56,6 @@ public class VoiceCommandController : MonoBehaviour
 		isSpawningMinions = true;
 		isSpawningFire = true;
 	}
-
 	private void spawnMinions(){
 		if (isSpawningMinions == true) {
 			int tempCounter = 0;
@@ -92,7 +71,6 @@ public class VoiceCommandController : MonoBehaviour
 			isSpawningMinions = false;
 		}
 	}
-
 	private void SpawnFire(){
 		if (isSpawningFire == true) {
 			for (int i = 0; i < 1; i++) {
@@ -102,8 +80,7 @@ public class VoiceCommandController : MonoBehaviour
 			isSpawningFire = false;
 		}
 	}
-
-	private void OnApplicationQuit()
+	private void OnDestroy()
 	{
 		if (recognizer != null && recognizer.IsRunning)
 		{
@@ -111,7 +88,6 @@ public class VoiceCommandController : MonoBehaviour
 			recognizer.Stop();
 		}
 	}
-
 	//spawning minions in a circle on the field
 	Vector3 RandomCircle(Vector3 center, float radius,int a)
 	{

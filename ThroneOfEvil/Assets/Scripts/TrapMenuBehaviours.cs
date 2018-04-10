@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class TrapMenuBehaviours : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 	/*Vector3 mousePosition,targetPosition;
+	private TrapController trapController;
 	public float distance = 10f;
 
 	void Start(){
-		
+		GameObject trapControllerObject = GameObject.FindWithTag("TrapController");
+		if (trapControllerObject != null)
+		{
+			trapController = trapControllerObject.GetComponent<TrapController>();
+		}
+		if (trapController == null)
+		{
+			Debug.Log("Cannot find 'TrapController' script");
+		}
 	}
 
 //might need to just instantiate in trap controller and then have it follow mouse then once changed then it will destroy and instantiate again.
@@ -25,11 +25,18 @@ public class TrapMenuBehaviours : MonoBehaviour {
 		//To get the current mouse position
 		mousePosition = Input.mousePosition;
 
-		//Convert the mousePosition according to World position
-		transform.position = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,distance));
+		if (trapController.tosetTrap == false) {
+			//Convert the mousePosition according to World position
+			transform.position = Camera.main.ScreenToWorldPoint (new Vector3 (mousePosition.x, mousePosition.y, distance));
+		} else {
+			trapController.reCentreTrap ();
+			trapController.tosetTrap = false;
+		}
+		//access to the trap controller script function
+		//trapController.setTrap();
 	}
 
-	void OnTriggerEnter(Collider other)
+	/*void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag ("Enemy")) {
 			Destroy (other.gameObject);
