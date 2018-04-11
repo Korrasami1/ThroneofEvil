@@ -26,7 +26,7 @@ public class Boulder : MonoBehaviour {
 	void Rotate()
 	{
 		tiltAngle += rotationSpeed;
-		float rotation = -tiltAngle;
+		float rotation = tiltAngle;
 		Quaternion target = Quaternion.Euler (0f, 0f, rotation);
 		transform.rotation = Quaternion.Slerp (transform.rotation, target, Time.deltaTime * smooth);
 	}

@@ -61,9 +61,6 @@ public class EnemyController : MonoBehaviour {
 		}
 		targetPosition.y = targetY;
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
-		//previousPosition = currentPosition;     //Not currently in use
-		Debug.Log("canMoveUp = " + canMoveUp);
-		Debug.Log("canMoveDown = " + canMoveDown);
 	}
 	int CheckForLane(float yPosition)
 	{
@@ -174,7 +171,11 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (collider.tag == "Trap") 
 		{
-			Destroy(gameObject);
+			GetComponent<EnemyHealthController>().DealDamage(50);
+			Debug.Log ("current enemies health after Trap " + GetComponent<EnemyHealthController> ().currentHealth);
+			if (GetComponent<EnemyHealthController> ().currentHealth <= 0) {
+				Destroy(gameObject);
+			}
 		}
 		else if (collider.tag == "Trap Detection") 
 		{
