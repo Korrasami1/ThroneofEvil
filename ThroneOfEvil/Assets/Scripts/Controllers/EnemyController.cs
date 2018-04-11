@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 
 	public float speed;                         //The speed of the enemy, around 5 looks nice
+	public float damage = 50;
 	//  public float horizontal;                    //This has no function until random movement within the different lanes is implemented
 	//  public float vertical;                      //This has no function until random movement within the different lanes is implemented
 	public float laneOne = 5f;                  //Representing the Y-value of lane 1
@@ -171,7 +172,7 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (collider.tag == "Trap") 
 		{
-			GetComponent<EnemyHealthController>().DealDamage(50);
+			GetComponent<EnemyHealthController>().DealDamage(damage);
 			Debug.Log ("current enemies health after Trap " + GetComponent<EnemyHealthController> ().currentHealth);
 			if (GetComponent<EnemyHealthController> ().currentHealth <= 0) {
 				Destroy(gameObject);

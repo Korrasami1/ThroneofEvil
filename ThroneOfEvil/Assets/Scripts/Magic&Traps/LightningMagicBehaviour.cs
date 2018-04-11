@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightningMagicBehaviour : MonoBehaviour {
 
 	EnemyHealthController enemyHealth;
+	public float damage = 30;
 	Vector3 mousePosition,targetPosition;
 	public float distance = 10f;
 	public int timeDelay = 3;
@@ -36,17 +37,18 @@ public class LightningMagicBehaviour : MonoBehaviour {
 		}
 		if (enemyHealth == null)
 		{
-			Debug.Log("Cannot find 'EnemyHealthController' script");
+			Debug.Log("Cannot find 'EnemyHealthController' script from Lightning Script");
 		}
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag ("Enemy")) {
-			enemyHealth.DealDamage(30);
-			Debug.Log ("current enemies health after Lightning " + enemyHealth.currentHealth);
 			if (enemyHealth.currentHealth <= 0) {
 				Destroy(other.gameObject);
+			}else {
+				enemyHealth.DealDamage(damage);
+				Debug.Log ("current enemies health after Lightning " + enemyHealth.currentHealth);
 			}
 		} else {
 			Destroy (gameObject, timeDelay);

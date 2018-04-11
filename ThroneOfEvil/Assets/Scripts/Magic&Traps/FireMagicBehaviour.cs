@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireMagicBehaviour : MonoBehaviour {
 	EnemyHealthController enemyHealth;
+	public float damage = 20;
 	Vector3 mousePosition,targetPosition;
 	public float distance = 10f;
 
@@ -34,17 +35,18 @@ public class FireMagicBehaviour : MonoBehaviour {
 		}
 		if (enemyHealth == null)
 		{
-			Debug.Log("Cannot find 'EnemyHealthController' script");
+			Debug.Log("Cannot find 'EnemyHealthController' script from fire Script");
 		}
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag ("Enemy")) {
-			enemyHealth.DealDamage(20);
-			Debug.Log ("current enemies health after Fire " + enemyHealth.currentHealth);
 			if (enemyHealth.currentHealth <= 0) {
-				Destroy(other.gameObject);
+				Destroy (other.gameObject);
+			} else {
+				enemyHealth.DealDamage(damage);
+				Debug.Log ("current enemies health after Fire " + enemyHealth.currentHealth);
 			}
 		} else {
 			Destroy (gameObject, 5);

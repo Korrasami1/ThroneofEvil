@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrackingController : MonoBehaviour {
 
 	EnemyHealthController enemyHealth;
+	public float damage = 10;
 	public float _speed = 5;
 	public Transform target;
 	private float _angleOffset = -90;
@@ -33,17 +34,18 @@ public class TrackingController : MonoBehaviour {
 		}
 		if (enemyHealth == null)
 		{
-			Debug.Log("Cannot find 'EnemyHealthController' script");
+			Debug.Log("Cannot find 'EnemyHealthController' script from MinionTracking Script");
 		}
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag ("Enemy")) {
-			enemyHealth.DealDamage(10);
-			Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
 			if (enemyHealth.currentHealth <= 0) {
-				Destroy(other.gameObject);
+				Destroy (other.gameObject);
+			} else {
+				enemyHealth.DealDamage(damage);
+				Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
 			}
 		}
 		if (other.CompareTag ("MinionTarget")) {
