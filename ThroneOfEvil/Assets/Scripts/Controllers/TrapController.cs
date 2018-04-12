@@ -6,7 +6,9 @@ public class TrapController : MonoBehaviour {
 	public GameObject trap1, trap2, trap3, trap4, trap5;
 	public int BoulderCooldownSpeed = 3;
 	private bool hasBoulderCooledDown = true;
-	private int tempTrapNum = 0; //this is just so that the boulder cooldown doesnt start every time a trap is placed
+	private bool hasTrap1Cooled, hasTrap2Cooled, hasTrap3Cooled, hasTrap4Cooled, hasTrap5Cooled;
+	public int Trap1CoolSpeed, Trap2CoolSpeed, Trap3CoolSpeed, Trap4CoolSpeed, Trap5CoolSpeed;
+	private int tempTrapNum = 0; //this is just so that the cooldown doesnt spam start every time a trap is placed
 	private bool isTrapReady = false;
 	Vector3 mousePosition,targetPosition;
 	private GameObject trapClone;
@@ -23,6 +25,11 @@ public class TrapController : MonoBehaviour {
 		laneFive = -5f;
 		minLane = 1.25f;
 		maxLane = 3.75f;
+		hasTrap1Cooled = true;
+		hasTrap2Cooled = true;
+		hasTrap3Cooled = true;
+		hasTrap4Cooled = true;
+		hasTrap5Cooled = true;
 		GameObject mouseObject = GameObject.FindWithTag("Mouse");
 		if (mouseObject != null)
 		{
@@ -62,8 +69,50 @@ public class TrapController : MonoBehaviour {
 				}
 			//normal functionality
 			} else {
-				reCentreTrap();
-				Instantiate(trapClone,targetPosition, Quaternion.identity);
+				switch (tempTrapNum)
+				{
+				case 1: //Crate
+					if (hasTrap1Cooled == true) {
+						reCentreTrap ();
+						Instantiate (trapClone, targetPosition, Quaternion.identity);
+						hasTrap1Cooled = false;
+						StartCoroutine (TrapCoolDown (1, hasTrap1Cooled));
+					}
+					break;
+				case 2: //Banana Peel
+					if (hasTrap2Cooled == true) {
+						reCentreTrap ();
+						Instantiate (trapClone, targetPosition, Quaternion.identity);
+						hasTrap2Cooled = false;
+						StartCoroutine (TrapCoolDown (2, hasTrap2Cooled));
+					}
+					break;
+				case 3: //Dynamite
+					if (hasTrap3Cooled == true) {
+						reCentreTrap ();
+						Instantiate (trapClone, targetPosition, Quaternion.identity);
+						hasTrap3Cooled = false;
+						StartCoroutine (TrapCoolDown (3, hasTrap3Cooled));
+					}
+					break;
+				case 4: //Bear Trap
+					if (hasTrap4Cooled == true) {
+						reCentreTrap ();
+						Instantiate (trapClone, targetPosition, Quaternion.identity);
+						hasTrap4Cooled = false;
+						StartCoroutine (TrapCoolDown (4, hasTrap4Cooled));
+					}
+					break;
+				case 5:
+					//Other
+					if (hasTrap5Cooled == true) {
+						reCentreTrap ();
+						Instantiate (trapClone, targetPosition, Quaternion.identity);
+						hasTrap5Cooled = false;
+						StartCoroutine (TrapCoolDown (5, hasTrap5Cooled));
+					}
+					break;
+				}
 			}
 		}
 	}
@@ -139,5 +188,44 @@ public class TrapController : MonoBehaviour {
 				tempTrapNum = 6;
 			}
 		}
-	}		
+	}	
+
+	IEnumerator TrapCoolDown(int traptype, bool hasCooled){
+		switch (traptype)
+		{
+		case 1: //Crate
+			if (hasCooled == false) {
+				yield return new WaitForSeconds (Trap1CoolSpeed);
+				hasTrap1Cooled = true;
+			}
+			break;
+		case 2: //Banana Peel
+			if (hasCooled == false) {
+				Debug.Log ("trap 2 cooldown activated");
+				yield return new WaitForSeconds (Trap2CoolSpeed);
+				hasTrap2Cooled = true;
+				Debug.Log ("trap 2 has cooled");
+			}
+			break;
+		case 3: //Dynamite
+			if (hasCooled == false) {
+				yield return new WaitForSeconds (Trap3CoolSpeed);
+				hasTrap3Cooled = true;
+			}
+			break;
+		case 4: //Bear Trap
+			if (hasCooled == false) {
+				yield return new WaitForSeconds (Trap4CoolSpeed);
+				hasTrap4Cooled = true;
+			}
+			break;
+		case 5:
+			//Other
+			if (hasCooled == false) {
+				yield return new WaitForSeconds (Trap5CoolSpeed);
+				hasTrap5Cooled = true;
+			}
+			break;
+		}
+	}
 }

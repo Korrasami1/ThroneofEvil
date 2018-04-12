@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
+	public float damage = 100;
 	public float speed;                         //The speed of the enemy, around 5 looks nice
-	//  public float horizontal;                    //This has no function until random movement within the different lanes is implemented
-	//  public float vertical;                      //This has no function until random movement within the different lanes is implemented
+	public float horizontal;                    //This has no function until random movement within the different lanes is implemented
+	public float vertical;                      //This has no function until random movement within the different lanes is implemented
 	public float laneOne = 5f;                  //Representing the Y-value of lane 1
 	public float laneTwo = 2.5f;                //Representing the Y-value of lane 2
 	public float laneThree = 0f;                //Representing the Y-value of lane 3
 	public float laneFour = -2.5f;              //Representing the Y-value of lane 4
 	public float laneFive = -5f;                //Representing the Y-value of lane 5
 	public float laneDiversity = 0.5f;          //The randomized difference in Y-value for enemies on the same lane
+	public TarPool tarPool;
+	public TrapDoorRelease trapDoor;
 	public float pathReactionTime;
 	public Vector3 destinationOne;
 	public Vector3 destinationTwo;
@@ -21,7 +24,9 @@ public class EnemyController : MonoBehaviour {
 	private Vector3 targetPosition;             //The position the enemy will move to on the next update
 	//  private Vector3 previousPosition;           //The position position of the enemy on the update before, not currently in use
 	private float targetY;                      //The Y-value of targetPosition
+	private float normalSpeed;			//The value of speed stored so if speed is changed during run time it can later be reverted back to it's original value
 	//private bool pathFinding = false;
+	//private bool trapDoorIsOpen = false;
 	private bool foundDestinationOne = false;
 	private bool foundDestinationTwo = false;
 	private bool foundDestinationThree = false;
@@ -52,6 +57,7 @@ public class EnemyController : MonoBehaviour {
 			Debug.Log ("Start randomization failed");
 			break;
 		}
+		normalSpeed = speed;
 	}
 	void FixedUpdate()
 	{
@@ -62,6 +68,11 @@ public class EnemyController : MonoBehaviour {
 		targetPosition.x = currentPosition.x += step*0.8f;
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
 		MoveToDestination ();
+	}
+	void RandomLaneMovement()
+	{
+		horizontal = Random.Range (-horizontal, horizontal);
+		vertical = Random.Range (-vertical, vertical);
 	}
 	int CheckForLane(float yPosition)
 	{
@@ -140,13 +151,25 @@ public class EnemyController : MonoBehaviour {
 	}
 	void MoveToDestination()
 	{
-		if ((FindDestination (destinationOne) && !foundDestinationOne) && (FindDestination (destinationTwo) && !foundDestinationTwo)) {
-			if (CompareDestination (destinationOne.y, destinationTwo.y)) {
-				MoveTo (destinationOne.y);
-				foundDestinationOne = true;
-			} else {
-				MoveTo (destinationTwo.y);
-				foundDestinationTwo = true;
+		//		if (Input.GetKeyDown ("space") && !trapDoorIsOpen) {
+		//			trapDoorIsOpen = true;
+		//		} else {
+		//			//ble
+		//		}
+		trapDoor = (TrapDoorRelease)FindObjectOfType(typeof(TrapDoorRelease));
+		if (trapDoor)
+			Debug.Log("trapDoor object found: " + trapDoor.name);
+		else
+			Debug.Log("No trapDoor object could be found");
+		if (trapDoor.mode == "open") {
+			if ((FindDestination (destinationOne) && !foundDestinationOne) && (FindDestination (destinationTwo) && !foundDestinationTwo)) {
+				if (CompareDestination (destinationOne.y, destinationTwo.y)) {
+					MoveTo (destinationOne.y);
+					foundDestinationOne = true;
+				} else {
+					MoveTo (destinationTwo.y);
+					foundDestinationTwo = true;
+				}
 			}
 		}
 		if (FindDestination (destinationThree) && !foundDestinationThree) {
@@ -156,7 +179,9 @@ public class EnemyController : MonoBehaviour {
 	}
 	bool FindDestination(Vector3 destination)
 	{
-		if (transform.position.x > destination.x - pathReactionTime && transform.position.x < destination.x) {
+		if (destination == new Vector3(0, 0, 0)){
+			return false;
+		} else if (transform.position.x > destination.x - pathReactionTime && transform.position.x < destination.x) {
 			return true;
 		} else {
 			return false;
@@ -220,9 +245,9 @@ public class EnemyController : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.tag == "Trap") 
+		if (collider.tag == "Trap" || collider.tag == "Trap Door") 
 		{
-			GetComponent<EnemyHealthController>().DealDamage(100);
+			GetComponent<EnemyHealthController>().DealDamage(damage);
 			//Debug.Log ("current enemies health after Trap " + GetComponent<EnemyHealthController> ().currentHealth);
 			if (GetComponent<EnemyHealthController> ().currentHealth <= 0) {
 				Destroy(gameObject);
@@ -236,6 +261,9 @@ public class EnemyController : MonoBehaviour {
 		{
 			//StartCoroutine (BounceBack ());
 			objectCollision = true;
+		}
+		if (collider.tag == "TarPool") {
+			StartCoroutine (TarPoolCountdown ());
 		}
 	}
 	void OnTriggerStay(Collider collider)
@@ -267,6 +295,12 @@ public class EnemyController : MonoBehaviour {
 		{
 			canMoveUp = true;
 		}
+	}
+	IEnumerator TarPoolCountdown()
+	{
+		speed = normalSpeed * tarPool.slowdown;
+		yield return new WaitForSeconds (tarPool.slowDurationSeconds);
+		speed = normalSpeed;
 	}
 	bool Randomizer()
 	{

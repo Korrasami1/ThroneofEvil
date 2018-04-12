@@ -164,6 +164,11 @@ MonoBehaviour:
   trap4: {fileID: 1771848988647084, guid: 47b8d84301a83a54e93512cf4995ce33, type: 2}
   trap5: {fileID: 1491690778728630, guid: 94624b3185503584596005bf9888b3ef, type: 2}
   BoulderCooldownSpeed: 3
+  Trap1CoolSpeed: 2
+  Trap2CoolSpeed: 3
+  Trap3CoolSpeed: 4
+  Trap4CoolSpeed: 3
+  Trap5CoolSpeed: 3
 --- !u!1 &124408831
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +498,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &187452325
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4540250485038504, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540250485038504, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540250485038504, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540250485038504, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540250485038504, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540250485038504, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540250485038504, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540250485038504, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &190756190
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +696,7 @@ Transform:
   m_Children:
   - {fileID: 191998110}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &218666203
 MonoBehaviour:
@@ -1357,7 +1404,7 @@ RectTransform:
   - {fileID: 2062970908}
   - {fileID: 1886365616}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1706,7 +1753,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &635502030
 Prefab:
@@ -1745,7 +1792,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4733293454190224, guid: 8443773b5ac05fd4591cd052c518ea8c, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8443773b5ac05fd4591cd052c518ea8c, type: 2}
@@ -2195,7 +2242,7 @@ Transform:
   m_LocalScale: {x: 0.43048212, y: 0.45925045, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &998213391
 BoxCollider:
@@ -2435,7 +2482,7 @@ Transform:
   m_LocalScale: {x: 1.6717873, y: 1.6298201, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1253022757
 GameObject:
@@ -2830,7 +2877,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1520426006
 GameObject:
