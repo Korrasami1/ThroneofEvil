@@ -182,9 +182,10 @@ MonoBehaviour:
   laneFour: -2.5
   laneFive: -5
   laneDiversity: 0.5
-  openingOne: {x: 0, y: 0, z: 0}
-  openingTwo: {x: 0, y: 0, z: 0}
-  openingThree: {x: 0, y: 0, z: 0}
+  pathReactionTime: 4
+  destinationOne: {x: 0, y: 0, z: 0}
+  destinationTwo: {x: 0, y: 0, z: 0}
+  destinationThree: {x: 8, y: 0, z: 0}
 --- !u!114 &114503903842594004
 MonoBehaviour:
   m_ObjectHideFlags: 1

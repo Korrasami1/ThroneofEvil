@@ -12,6 +12,7 @@ public class TrapController : MonoBehaviour {
 	private GameObject trapClone;
 	float distance=10f;
 	float laneOne, laneTwo, laneThree, laneFour, laneFive;
+	private float minLane, maxLane;
 	MouseRenderer mouse;
 
 	void Start(){
@@ -20,6 +21,8 @@ public class TrapController : MonoBehaviour {
 		laneThree = 0f;
 		laneFour = -2.5f;
 		laneFive = -5f;
+		minLane = 1.25f;
+		maxLane = 3.75f;
 		GameObject mouseObject = GameObject.FindWithTag("Mouse");
 		if (mouseObject != null)
 		{
@@ -68,23 +71,23 @@ public class TrapController : MonoBehaviour {
 	//had as public for a different script but its not in use right now
 	public void reCentreTrap(){
 		//lane one
-		if (targetPosition.y >= laneOne || targetPosition.y >= 3.75f && targetPosition.y <= laneOne) {
+		if (targetPosition.y >= laneOne || targetPosition.y >= maxLane && targetPosition.y <= laneOne) {
 			targetPosition = new Vector3 (targetPosition.x, laneOne, 0f);
 			//trapClone.transform.position = targetPosition;
 		//lane two
-		} else if (targetPosition.y < 3.75f && targetPosition.y >= laneTwo || targetPosition.y <= laneTwo && targetPosition.y >= 1.25f) {
+		} else if (targetPosition.y < maxLane && targetPosition.y >= laneTwo || targetPosition.y <= laneTwo && targetPosition.y >= minLane) {
 			targetPosition = new Vector3 (targetPosition.x, laneTwo, 0f);
 			//trapClone.transform.position = targetPosition;
 		//lane three
-		} else if (targetPosition.y < 1.25f && targetPosition.y >= laneThree || targetPosition.y <= laneThree && targetPosition.y >= -1.25f) {
+		} else if (targetPosition.y < minLane && targetPosition.y >= laneThree || targetPosition.y <= laneThree && targetPosition.y >= -minLane) {
 			targetPosition = new Vector3 (targetPosition.x, laneThree, 0f);
 			//trapClone.transform.position = targetPosition;
 		//lane four
-		} else if (targetPosition.y > -3.75f && targetPosition.y <= laneFour || targetPosition.y >= laneFour && targetPosition.y <= -1.25f) {
+		} else if (targetPosition.y > -maxLane && targetPosition.y <= laneFour || targetPosition.y >= laneFour && targetPosition.y <= -minLane) {
 			targetPosition = new Vector3 (targetPosition.x, laneFour, 0f);
 			//trapClone.transform.position = targetPosition;
 		//lane five
-		} else if (targetPosition.y <= laneFive && targetPosition.y <= laneFive || targetPosition.y <= laneFive && targetPosition.y >= -3.75f) {
+		} else if (targetPosition.y <= laneFive && targetPosition.y <= laneFive || targetPosition.y <= laneFive && targetPosition.y >= -maxLane) {
 			targetPosition = new Vector3 (targetPosition.x, laneFive, 0f);
 			//trapClone.transform.position = targetPosition;
 		}

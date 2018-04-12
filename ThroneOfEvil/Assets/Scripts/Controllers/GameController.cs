@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     public GameObject[] hazards;
+	public GameObject VoiceCommands;
     public Vector3 spawnValues;
     public int hazardCount;
     public float spawnWait;
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour {
         restartText.text = "";
         gameOverText.text = "";
         counterforSpawning = 0;
+		Instantiate (VoiceCommands, transform.position, Quaternion.identity);
         //isSpawnOver = false;
         StartCoroutine(SpawnWaves());
     }

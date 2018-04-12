@@ -155,8 +155,8 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 27d0b45190f5833c986545183603a86b Assembly-CSharp.dll:.TrackingController
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TrapMenuBehaviours
-e5a483f885b016307f6dc854ae605376 Assembly-CSharp.dll:.EnemyController
+dd35d6c15feccd0f1636e0c37d902128 Assembly-CSharp.dll:.EnemyController
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DestroyByBoundary
-471a511ec3d5a05910a72a510a4d9471 Assembly-CSharp.dll:.GameController
+ed8762f437e1851ad414050aa000af1b Assembly-CSharp.dll:.GameController
 2b8757dd97d21d3697ac71890f73ed4c Assembly-CSharp.dll:.FireMagicBehaviour
 8a88fd8025800ee932cddb1a5831c9e8 Assembly-CSharp.dll:.Boulder

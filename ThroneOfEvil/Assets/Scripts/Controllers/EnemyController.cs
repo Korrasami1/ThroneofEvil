@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 
 	public float speed;                         //The speed of the enemy, around 5 looks nice
-	public float damage = 50;
 	//  public float horizontal;                    //This has no function until random movement within the different lanes is implemented
 	//  public float vertical;                      //This has no function until random movement within the different lanes is implemented
 	public float laneOne = 5f;                  //Representing the Y-value of lane 1
@@ -14,13 +13,18 @@ public class EnemyController : MonoBehaviour {
 	public float laneFour = -2.5f;              //Representing the Y-value of lane 4
 	public float laneFive = -5f;                //Representing the Y-value of lane 5
 	public float laneDiversity = 0.5f;          //The randomized difference in Y-value for enemies on the same lane
-	public Vector3 openingOne;
-	public Vector3 openingTwo;
-	public Vector3 openingThree;
+	public float pathReactionTime;
+	public Vector3 destinationOne;
+	public Vector3 destinationTwo;
+	public Vector3 destinationThree;
 	private Vector3 currentPosition;            //The current position of the enemy on this update
 	private Vector3 targetPosition;             //The position the enemy will move to on the next update
 	//  private Vector3 previousPosition;           //The position position of the enemy on the update before, not currently in use
 	private float targetY;                      //The Y-value of targetPosition
+	//private bool pathFinding = false;
+	private bool foundDestinationOne = false;
+	private bool foundDestinationTwo = false;
+	private bool foundDestinationThree = false;
 	private bool objectCollision = false;
 	private bool canMoveUp = true;
 	private bool canMoveDown = true;
@@ -30,19 +34,19 @@ public class EnemyController : MonoBehaviour {
 		int random = Random.Range (0, 5);
 		switch (random) {
 		case 0:
-			targetY = laneOne;
+			MoveTo(laneOne);
 			break;
 		case 1:
-			targetY = laneTwo;
+			MoveTo(laneTwo);
 			break;
 		case 2:
-			targetY = laneThree;
+			MoveTo(laneThree);
 			break;
 		case 3:
-			targetY = laneFour;
+			MoveTo(laneFour);
 			break;
 		case 4:
-			targetY = laneFive;
+			MoveTo(laneFive);
 			break;
 		default:
 			Debug.Log ("Start randomization failed");
@@ -55,13 +59,9 @@ public class EnemyController : MonoBehaviour {
 		//which is calculated by adding (speed value multiplied by Time.deltaTime) to the X-value of the enemies current position
 		float step = speed * Time.deltaTime;
 		currentPosition = transform.position;
-		if (objectCollision) {
-			targetPosition = currentPosition += new Vector3(0f, 0f);
-		} else {
-			targetPosition = currentPosition += new Vector3(step*0.8f, 0f);
-		}
-		targetPosition.y = targetY;
+		targetPosition.x = currentPosition.x += step*0.8f;
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
+		MoveToDestination ();
 	}
 	int CheckForLane(float yPosition)
 	{
@@ -138,16 +138,65 @@ public class EnemyController : MonoBehaviour {
 			MoveTo (lane2);
 		}
 	}
-	void AvoidObstacle(float xPosition)
+	void MoveToDestination()
 	{
-		if (xPosition < openingOne.x) {
-			MoveTo (openingOne.y);
-		} else if (xPosition < openingTwo.x) {
-			MoveTo (openingTwo.y);
-		} else if (xPosition < openingThree.x) {
-			MoveTo (openingThree.y);
+		if ((FindDestination (destinationOne) && !foundDestinationOne) && (FindDestination (destinationTwo) && !foundDestinationTwo)) {
+			if (CompareDestination (destinationOne.y, destinationTwo.y)) {
+				MoveTo (destinationOne.y);
+				foundDestinationOne = true;
+			} else {
+				MoveTo (destinationTwo.y);
+				foundDestinationTwo = true;
+			}
+		}
+		if (FindDestination (destinationThree) && !foundDestinationThree) {
+			MoveTo (destinationThree.y);
+			foundDestinationThree = true;
+		}
+	}
+	bool FindDestination(Vector3 destination)
+	{
+		if (transform.position.x > destination.x - pathReactionTime && transform.position.x < destination.x) {
+			return true;
 		} else {
-			return;
+			return false;
+		}
+	}
+	bool CompareDestination(float destination1, float destination2) 
+	{
+		float positionY = transform.position.y;
+		float destinationOneY = destination1;
+		float destinationTwoY = destination2;
+		float deltaOneY = MakePositive(destinationOneY - positionY); 
+		float deltaTwoY = MakePositive(destinationTwoY - positionY);
+		if (deltaOneY == deltaTwoY) {
+			if (Randomizer ()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		else if (deltaOneY < deltaTwoY) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	float MakePositive(float num)
+	{
+		if (num < 0f) {
+			return num * -1;
+		} else {
+			return num;
+		}
+	}
+	void AvoidObstacle(float xPosition, float yPosition)
+	{
+		if (xPosition > destinationOne.x - pathReactionTime && xPosition < destinationOne.x) {
+			MoveTo (destinationOne.y);
+			//pathFinding = true;
+		} else {
+			//pathFinding = false;
 		}
 	}
 	void MoveTo(float lane)
@@ -155,6 +204,7 @@ public class EnemyController : MonoBehaviour {
 		//MoveTo() takes the float value of the lane that is called and randomizes it depending on the value of laneDiversity
 		float randomizer = Random.Range (-laneDiversity, laneDiversity);
 		targetY = lane + randomizer;
+		targetPosition.y = targetY;
 	}
 	IEnumerator BounceBack()
 	{
@@ -172,8 +222,8 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (collider.tag == "Trap") 
 		{
-			GetComponent<EnemyHealthController>().DealDamage(damage);
-			Debug.Log ("current enemies health after Trap " + GetComponent<EnemyHealthController> ().currentHealth);
+			GetComponent<EnemyHealthController>().DealDamage(100);
+			//Debug.Log ("current enemies health after Trap " + GetComponent<EnemyHealthController> ().currentHealth);
 			if (GetComponent<EnemyHealthController> ().currentHealth <= 0) {
 				Destroy(gameObject);
 			}
@@ -192,7 +242,7 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (collider.tag == "Wall Detection") 
 		{
-			AvoidObstacle (transform.position.x);
+			AvoidObstacle (transform.position.x, transform.position.y);
 		}
 		if (collider.tag == "Trap Downwards Detection") 
 		{
