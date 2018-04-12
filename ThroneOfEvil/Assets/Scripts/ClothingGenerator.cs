@@ -11,48 +11,49 @@ public class ClothingGenerator : MonoBehaviour {
 	public Sprite[] childShirts, manShirts, womanShirts;
 	public Sprite[] childHair, manHair, womanHair;
 	public Sprite[] skins;
+	public string villagerOrientation = "left";
 	private Sprite pant, shirt, hair, skin;
 	private int vType; //villager Type
 	private float pRed, pGreen, pBlue, sRed, sBlue, sGreen; // s stands for shirt, p stands for pants
 	private float haRed, haGreen, haBlue, hRed, hBlue, hGreen; // ha stands for hat, h stands for hair
 	Color pantsColour, shirtColour, HairColour, HatColour, SkinColour;
 	private Vector3 Rshirt, Rpants, Rhair, Rskin; //placments of the body parts per villager type
-	Color[] listofSkinRGB = {new Color(244,242,245), 
-		new Color(236,235,233), 
-		new Color(250,249,247), 
-		new Color(253,251,230), 
-		new Color(253,246,230), 
-		new Color(254,247,229), 
-		new Color(250,240,239), 
-		new Color(243,234,229), 
-		new Color(244,241,234), 
-		new Color(251,252,244), 
-		new Color(252,248,237), 
-		new Color(254,246,225), 
-		new Color(255,249,225), 
-		new Color(255,249,225), 
-		new Color(241,231,195), 
-		new Color(239,226,173), 
-		new Color(224,210,147), 
-		new Color(242,226,151), 
-		new Color(235,214,159), 
-		new Color(235,217,133), 
-		new Color(227,196,103), 
-		new Color(225,193,106), 
-		new Color(223,193,123), 
-		new Color(222,184,119), 
-		new Color(199,164,100), 
-		new Color(188,151,098), 
-		new Color(156,107,067), 
-		new Color(142,088,062), 
-		new Color(121,077,048), 
-		new Color(100,049,022), 
-		new Color(101,048,032), 
-		new Color(096,049,033), 
-		new Color(087,050,041), 
-		new Color(064,032,021), 
-		new Color(049,037,041), 
-		new Color(027,028,046)};
+	Color[] listofSkinRGB = {new Color(244/255.0F,242/255.0F,245/255.0F), 
+		new Color(236/255.0F,235/255.0F,233/255.0F), 
+		new Color(250/255.0F,249/255.0F,247/255.0F), 
+		new Color(253/255.0F,251/255.0F,230/255.0F), 
+		new Color(253/255.0F,246/255.0F,230/255.0F), 
+		new Color(254/255.0F,247/255.0F,229/255.0F), 
+		new Color(250/255.0F,240/255.0F,239/255.0F), 
+		new Color(243/255.0F,234/255.0F,229/255.0F), 
+		new Color(244/255.0F,241/255.0F,234/255.0F), 
+		new Color(251/255.0F,252/255.0F,244/255.0F), 
+		new Color(252/255.0F,248/255.0F,237/255.0F), 
+		new Color(254/255.0F,246/255.0F,225/255.0F), 
+		new Color(255/255.0F,249/255.0F,225/255.0F), 
+		new Color(255/255.0F,249/255.0F,225/255.0F), 
+		new Color(241/255.0F,231/255.0F,195/255.0F), 
+		new Color(239/255.0F,226/255.0F,173/255.0F), 
+		new Color(224/255.0F,210/255.0F,147/255.0F), 
+		new Color(242/255.0F,226/255.0F,151/255.0F), 
+		new Color(235/255.0F,214/255.0F,159/255.0F), 
+		new Color(235/255.0F,217/255.0F,133/255.0F), 
+		new Color(227/255.0F,196/255.0F,103/255.0F), 
+		new Color(225/255.0F,193/255.0F,106/255.0F), 
+		new Color(223/255.0F,193/255.0F,123/255.0F), 
+		new Color(222/255.0F,184/255.0F,119/255.0F), 
+		new Color(199/255.0F,164/255.0F,100/255.0F), 
+		new Color(188/255.0F,151/255.0F,098/255.0F), 
+		new Color(156/255.0F,107/255.0F,067/255.0F), 
+		new Color(142/255.0F,088/255.0F,062/255.0F), 
+		new Color(121/255.0F,077/255.0F,048/255.0F), 
+		new Color(100/255.0F,049/255.0F,022/255.0F), 
+		new Color(101/255.0F,048/255.0F,032/255.0F), 
+		new Color(096/255.0F,049/255.0F,033/255.0F), 
+		new Color(087/255.0F,050/255.0F,041/255.0F), 
+		new Color(064/255.0F,032/255.0F,021/255.0F), 
+		new Color(049/255.0F,037/255.0F,041/255.0F), 
+		new Color(027/255.0F,028/255.0F,046/255.0F)};
 
 	// Use this for initialization
 	void Start () {
@@ -64,10 +65,18 @@ public class ClothingGenerator : MonoBehaviour {
 		RandomiseHat ();
 	}
 
+	void FixedUpdate(){
+		//used for the orientation change in villagers
+		//villagersOrientation(villagerOrientation);
+	}
+
+	void villagersOrientation(string orientation){
+		
+	}
+
 	void RandomisePantsClothing(){
 		pRed = Random.Range (0f, 1f);
 		pBlue = Random.Range (0f, 1f);
-		Debug.Log (pBlue);
 		pGreen = Random.Range (0f, 1f);
 		pantsColour = new Color(pRed, pGreen, pBlue);
 		GetComponent<SpriteRenderer>().color = pantsColour;
@@ -175,7 +184,7 @@ public class ClothingGenerator : MonoBehaviour {
 	}
 
 	void RandomiseSkins(){
-		SkinColour = (listofSkinRGB [/*Random.Range (0, */listofSkinRGB.Length-1/*)*/]);
+		SkinColour = (listofSkinRGB [Random.Range (0, listofSkinRGB.Length)]);
 		Skin.GetComponent<SpriteRenderer> ().color = SkinColour;
 		switch (vType)
 		{

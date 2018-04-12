@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrackingController : MonoBehaviour {
 
 	EnemyHealthController enemyHealth;
+	GameObject healthObject;
 	public float damage = 10;
 	public float _speed = 5;
 	public Transform target;
@@ -27,7 +28,7 @@ public class TrackingController : MonoBehaviour {
 	}
 
 	void getEnemyHealthController(){
-		GameObject healthObject = GameObject.FindWithTag("Enemy");
+		healthObject = GameObject.FindWithTag("Enemy");
 		if (healthObject != null)
 		{
 			enemyHealth = healthObject.GetComponent<EnemyHealthController>();
@@ -40,12 +41,14 @@ public class TrackingController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag ("Enemy")) {
-			if (enemyHealth.currentHealth <= 0) {
-				Destroy (other.gameObject);
-			} else {
-				enemyHealth.DealDamage(damage);
-				Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
+		if (healthObject != null) {
+			if (other.CompareTag ("Enemy")) {
+				if (enemyHealth.currentHealth <= 0) {
+					Destroy (other.gameObject);
+				} else {
+					enemyHealth.DealDamage (damage);
+					Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
+				}
 			}
 		}
 		if (other.CompareTag ("MinionTarget")) {
