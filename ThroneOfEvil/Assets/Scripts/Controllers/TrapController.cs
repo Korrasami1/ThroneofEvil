@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapController : MonoBehaviour {
-	public GameObject trap1, trap2, trap3, trap4, trap5;
+	public GameObject trap1, trap2, trap3, trap4, trap5, trap6;
 	public int BoulderCooldownSpeed = 3;
 	private bool hasBoulderCooledDown = true;
 	private bool hasTrap1Cooled, hasTrap2Cooled, hasTrap3Cooled, hasTrap4Cooled, hasTrap5Cooled;
@@ -104,7 +104,7 @@ public class TrapController : MonoBehaviour {
 					}
 					break;
 				case 5:
-					//Other
+					//Tar trap
 					if (hasTrap5Cooled == true) {
 						reCentreTrap ();
 						Instantiate (trapClone, targetPosition, Quaternion.identity);
@@ -187,6 +187,12 @@ public class TrapController : MonoBehaviour {
 				mouse.cursorChangeNum = 5;
 				tempTrapNum = 6;
 			}
+		}else if (trapNum == 7) {
+			//Tar trap
+				isTrapReady = true;
+				trapClone = trap6;
+				mouse.cursorChangeNum = 6;
+				tempTrapNum = 5;
 		}
 	}	
 
@@ -220,7 +226,7 @@ public class TrapController : MonoBehaviour {
 			}
 			break;
 		case 5:
-			//Other
+			//Tar trap
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (Trap5CoolSpeed);
 				hasTrap5Cooled = true;

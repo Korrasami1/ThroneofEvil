@@ -10,8 +10,7 @@ public class ClothingGenerator : MonoBehaviour {
 	public Sprite[] childPants, manPants, womanPants;
 	public Sprite[] childShirts, manShirts, womanShirts;
 	public Sprite[] childHair, manHair, womanHair;
-	public Sprite[] skins;
-	public string villagerOrientation = "left";
+	public Sprite[] skins; //male or female or child versions
 	private Sprite pant, shirt, hair, skin;
 	private int vType; //villager Type
 	private float pRed, pGreen, pBlue, sRed, sBlue, sGreen; // s stands for shirt, p stands for pants
@@ -66,14 +65,17 @@ public class ClothingGenerator : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		//used for the orientation change in villagers
-		//villagersOrientation(villagerOrientation);
 	}
 
-	void villagersOrientation(string orientation){
+	//reset clothing so that we can have back/front/left/right
+	public bool Restart(bool isRestarting){
+		if (isRestarting == true) {
+			Start ();
+			isRestarting = false;
+		}
+		return isRestarting;
+	}
 		
-	}
-
 	void RandomisePantsClothing(){
 		pRed = Random.Range (0f, 1f);
 		pBlue = Random.Range (0f, 1f);
