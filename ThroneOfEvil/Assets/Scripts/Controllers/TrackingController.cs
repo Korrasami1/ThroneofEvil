@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrackingController : MonoBehaviour {
 
 	EnemyHealthController enemyHealth;
+	ScoreManager Scoreboard;
 	GameObject healthObject;
 	public float damage = 10;
 	public float _speed = 5;
@@ -15,6 +16,7 @@ public class TrackingController : MonoBehaviour {
 	{
 		//getting the enemy health controller from the Enemy prefab
 		getEnemyHealthController();
+		getScoreManager ();
 	}
 
 	// Update is called once per frame
@@ -39,16 +41,25 @@ public class TrackingController : MonoBehaviour {
 		}
 	}
 
+	private void getScoreManager(){
+		GameObject points = GameObject.FindWithTag("Scoreboard");
+		if (points != null)
+		{
+			Scoreboard = points.GetComponent<ScoreManager>();
+		}
+		if (Scoreboard == null)
+		{
+			Debug.Log("Cannot find 'ScoreboardManager' script");
+		}
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
-				if (enemyHealth.currentHealth <= 0) {
-					Destroy (other.gameObject);
-				} else {
-					enemyHealth.DealDamage (damage);
-					Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
-				}
+				Scoreboard.killType = "Minion";
+				enemyHealth.DealDamage (damage);
+				Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
 			}
 		}
 		if (other.CompareTag ("MinionTarget")) {

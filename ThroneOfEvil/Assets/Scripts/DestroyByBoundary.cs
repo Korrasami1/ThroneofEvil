@@ -6,7 +6,7 @@ public class DestroyByBoundary : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-		if (other.tag == "Trap" || other.tag == "Enemy")
+		if (other.tag == "Boulder" || other.tag == "Trap" || other.tag == "Enemy")
         {
             Destroy(other.gameObject);
         }

@@ -144,9 +144,7 @@ public class TrapController : MonoBehaviour {
 
 	IEnumerator BoulderCooldown(bool hasbeenCooled){
 		if (hasbeenCooled == false) {
-			Debug.Log ("bouldercooldown has been activated");
 			yield return new WaitForSeconds (BoulderCooldownSpeed);
-			Debug.Log ("bouldercooldown has completed");
 			hasBoulderCooledDown = true;
 		}
 	}
@@ -207,10 +205,8 @@ public class TrapController : MonoBehaviour {
 			break;
 		case 2: //Banana Peel
 			if (hasCooled == false) {
-				Debug.Log ("trap 2 cooldown activated");
 				yield return new WaitForSeconds (Trap2CoolSpeed);
 				hasTrap2Cooled = true;
-				Debug.Log ("trap 2 has cooled");
 			}
 			break;
 		case 3: //Dynamite

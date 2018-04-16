@@ -21,6 +21,11 @@ public class GameController : MonoBehaviour {
     private int counterforSpawning = 0;
 	public GameObject pauseMenu;
     //private bool isSpawnOver = false;
+	public int WinnerCondition = 3;
+	private int killCounter = 0;
+	public int villagerDeathCount(){
+		return killCounter = killCounter + 1;
+	}
 
     void Start()
     {
@@ -48,6 +53,9 @@ public class GameController : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+		if (killCounter >= WinnerCondition) {
+			Winner ();
+		}
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Time.timeScale = 0;
 			pauseMenu.SetActive (true);
@@ -78,7 +86,12 @@ public class GameController : MonoBehaviour {
                 Restart();
                 break;
             }
-
+			if (winner) {
+				gameOverText.text = "WINNER!";
+				restartText.text = "Press 'R' to Restart";
+				Restart();
+				break;
+			}
         }
 
     }
@@ -90,4 +103,8 @@ public class GameController : MonoBehaviour {
     {
         restart = true;
     }
+	public void Winner()
+	{
+		winner = true;
+	}
 }

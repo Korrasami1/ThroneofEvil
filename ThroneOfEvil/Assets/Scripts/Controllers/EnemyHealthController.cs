@@ -6,7 +6,10 @@ public class EnemyHealthController : MonoBehaviour {
 
 	public float currentHealth { get; set; }
 	public float MaxHealth { get; set; }
-
+	GameController gameController;
+	GameObject gameKillcounter;
+	ScoreManager Scoreboard;
+	GameObject points;
 	//float healthbar;
 
 	// Use this for initialization
@@ -15,11 +18,37 @@ public class EnemyHealthController : MonoBehaviour {
 		//resetting health after every completed level
 		currentHealth = MaxHealth;
 		//healthbar = calculateHealth();
+		getGameController();
+		getScoreManager ();
 	}
 
 	void Update()
 	{
 
+	}
+
+	private void getGameController(){
+		gameKillcounter = GameObject.FindWithTag("GameController");
+		if (gameKillcounter != null)
+		{
+			gameController = gameKillcounter.GetComponent<GameController>();
+		}
+		if (gameController == null)
+		{
+			Debug.Log("Cannot find 'GameController' script");
+		}
+	}
+
+	private void getScoreManager(){
+		points = GameObject.FindWithTag("Scoreboard");
+		if (points != null)
+		{
+			Scoreboard = points.GetComponent<ScoreManager>();
+		}
+		if (Scoreboard == null)
+		{
+			Debug.Log("Cannot find 'ScoreboardManager' script");
+		}
 	}
 
 	public void DealDamage(float damageValue)
@@ -45,8 +74,11 @@ public class EnemyHealthController : MonoBehaviour {
 	void Die()
 	{
 		currentHealth = 0;
-		Debug.Log("You Died!");
-
+		gameController.villagerDeathCount ();
+		Scoreboard.DealPoints ();
+		Debug.Log("Villager Killed!");
+		Destroy(gameObject);
+	
 	}
 		
 }

@@ -22,6 +22,7 @@ public class GoalScript : MonoBehaviour {
 		if (other.tag == "Enemy")
 		{
 			health.DealDamage (25);
+			other.GetComponent<EnemyController>().speed = 0;
 		}
 
 	}

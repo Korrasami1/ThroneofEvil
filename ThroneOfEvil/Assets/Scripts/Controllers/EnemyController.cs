@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-	public float damage = 100;
 	public float speed;                         //The speed of the enemy, around 5 looks nice
 	public float horizontal;                    //This has no function until random movement within the different lanes is implemented
 	public float vertical;                      //This has no function until random movement within the different lanes is implemented
@@ -245,15 +244,7 @@ public class EnemyController : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.tag == "Trap" || collider.tag == "Trap Door") 
-		{
-			GetComponent<EnemyHealthController>().DealDamage(damage);
-			//Debug.Log ("current enemies health after Trap " + GetComponent<EnemyHealthController> ().currentHealth);
-			if (GetComponent<EnemyHealthController> ().currentHealth <= 0) {
-				Destroy(gameObject);
-			}
-		}
-		else if (collider.tag == "Trap Detection") 
+		if (collider.tag == "Trap Detection") 
 		{
 			SwitchLanes ();
 		}

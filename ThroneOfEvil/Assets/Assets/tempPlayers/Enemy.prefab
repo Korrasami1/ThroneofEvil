@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 212120002991808398}
   - component: {fileID: 54481230610870936}
   - component: {fileID: 65566447115496226}
+  - component: {fileID: 114895572877123468}
   - component: {fileID: 114190138845577412}
   - component: {fileID: 114561437081888758}
   m_Layer: 8
@@ -437,7 +438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7495fcec7f254343974f49ad1cf5191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
   speed: 5
   horizontal: 0
   vertical: 0
@@ -554,6 +554,19 @@ MonoBehaviour:
   - {fileID: 21300004, guid: e9db2a075db3e3a48a45021f79c966f8, type: 3}
   - {fileID: 21300004, guid: c9e49fd486506aa42b477f192dabcf29, type: 3}
   - {fileID: 21300002, guid: e94c772b9562c994793c75f1d297db3a, type: 3}
+--- !u!114 &114895572877123468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539559234517020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33df01cec2e499f459d7c92e1619aa41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTraps: 100
+  damageDoor: 100
 --- !u!114 &114940696917969630
 MonoBehaviour:
   m_ObjectHideFlags: 1

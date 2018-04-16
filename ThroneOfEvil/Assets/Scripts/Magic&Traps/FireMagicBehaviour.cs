@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class FireMagicBehaviour : MonoBehaviour {
 	EnemyHealthController enemyHealth;
+	ScoreManager Scoreboard;
 	GameObject healthObject;
 	public float damage = 20;
 	Vector3 mousePosition,targetPosition;
 	public float distance = 10f;
+	public float timetoDestroy = 1f;
 
 	void Start(){
 		//To get the current mouse position
@@ -18,6 +20,7 @@ public class FireMagicBehaviour : MonoBehaviour {
 
 		//getting the enemy health controller from the Enemy prefab
 		getEnemyHealthController();
+		getScoreManager ();
 	}
 
 	void Update () {
@@ -40,18 +43,27 @@ public class FireMagicBehaviour : MonoBehaviour {
 		}
 	}
 
+	private void getScoreManager(){
+		GameObject points = GameObject.FindWithTag("Scoreboard");
+		if (points != null)
+		{
+			Scoreboard = points.GetComponent<ScoreManager>();
+		}
+		if (Scoreboard == null)
+		{
+			Debug.Log("Cannot find 'ScoreboardManager' script");
+		}
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
-				if (enemyHealth.currentHealth <= 0) {
-					Destroy (other.gameObject);
-				} else {
-					enemyHealth.DealDamage (damage);
-					Debug.Log ("current enemies health after Fire " + enemyHealth.currentHealth);
-				}
+				Scoreboard.killType = "Fire";
+				enemyHealth.DealDamage (damage);
+				Debug.Log ("current enemies health after Fire " + enemyHealth.currentHealth);
 			}
 		}
-		Destroy (gameObject, 5);
+		Destroy (gameObject, timetoDestroy);
 	}
 }

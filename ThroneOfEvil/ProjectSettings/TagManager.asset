@@ -17,6 +17,19 @@ TagManager:
   - Mouse
   - Lightning
   - LevelGoal
+  - TarPool
+  - Trap Downwards Detection
+  - Trap Upwards Detection
+  - Scoreboard
+  - TrapDoor
+  - Boulder
+  - TarredEnemy
+  - FrozenEnemy
+  - FearedEnemy
+  - BurningEnemy
+  - TarredBoulder
+  - FreezeTrapExplosion
+  - Explosion
   layers:
   - Default
   - TransparentFX

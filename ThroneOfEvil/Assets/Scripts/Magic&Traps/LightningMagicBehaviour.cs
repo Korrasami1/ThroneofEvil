@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightningMagicBehaviour : MonoBehaviour {
 
 	EnemyHealthController enemyHealth;
+	ScoreManager Scoreboard;
 	GameObject healthObject;
 	public float damage = 30;
 	Vector3 mousePosition,targetPosition;
@@ -20,6 +21,7 @@ public class LightningMagicBehaviour : MonoBehaviour {
 
 		//getting the enemy health controller from the Enemy prefab
 		getEnemyHealthController();
+		getScoreManager ();
 	}
 
 	void Update () {
@@ -42,16 +44,26 @@ public class LightningMagicBehaviour : MonoBehaviour {
 		}
 	}
 
+	private void getScoreManager(){
+		GameObject points = GameObject.FindWithTag("Scoreboard");
+		if (points != null)
+		{
+			Scoreboard = points.GetComponent<ScoreManager>();
+		}
+		if (Scoreboard == null)
+		{
+			Debug.Log("Cannot find 'ScoreboardManager' script");
+		}
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
-				if (enemyHealth.currentHealth <= 0) {
-					Destroy (other.gameObject);
-				} else {
-					enemyHealth.DealDamage (damage);
-					Debug.Log ("current enemies health after Lightning " + enemyHealth.currentHealth);
-				}
+				Scoreboard.killType = "Lightning";
+				enemyHealth.DealDamage (damage);
+				Debug.Log ("current enemies health after Lightning " + enemyHealth.currentHealth);
+
 			}
 		}
 		Destroy (gameObject, timeDelay);
