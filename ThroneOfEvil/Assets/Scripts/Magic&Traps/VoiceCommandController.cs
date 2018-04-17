@@ -19,8 +19,10 @@ public class VoiceCommandController : MonoBehaviour
 	private bool isSpawningFire = false;
 	public GameObject Lightning;
 	private bool isSpawningLightning = false;
-	private bool hasFireCooleddown, hasLightningCooleddown, hasMinionsCooleddown;
-	public float MinionCooldown, fireCooldown, lightningCooldown;
+	public GameObject Fear;
+	private bool isSpawningFear = false;
+	private bool hasFireCooleddown, hasLightningCooleddown, hasMinionsCooleddown, hasFearCooledDown;
+	public float MinionCooldown, fireCooldown, lightningCooldown, fearCooldown;
 	//private static bool created = false;
 	void Start()
 	{
@@ -34,6 +36,7 @@ public class VoiceCommandController : MonoBehaviour
 		hasFireCooleddown = true;
 		hasMinionsCooleddown = true;
 		hasLightningCooleddown = true;
+		hasFearCooledDown = true;
 	}
 	private void FixedUpdate()
 	{
@@ -63,6 +66,14 @@ public class VoiceCommandController : MonoBehaviour
 				StartCoroutine (MagicCoolDown (3, hasLightningCooleddown));
 			}
 			break;
+		case "Fear":
+			if (hasFearCooledDown == true) {
+				minionSpeed = 7.5f;
+				SpawnFear ();
+				hasFearCooledDown = false;
+				StartCoroutine (MagicCoolDown (4, hasFearCooledDown));
+			}
+			break;
 		case "exit":
 			Application.Quit();
 			break;
@@ -77,6 +88,7 @@ public class VoiceCommandController : MonoBehaviour
 		isSpawningMinions = true;
 		isSpawningFire = true;
 		isSpawningLightning = true;
+		isSpawningFear = true;
 	}
 	IEnumerator MagicCoolDown(int magictype/*string magictype*/, bool hasCooled){
 		switch (magictype)
@@ -89,7 +101,6 @@ public class VoiceCommandController : MonoBehaviour
 			break;
 		case 2/*"Fire"*/:
 			if (hasCooled == false) {
-				Debug.Log ("fire cooldown activated");
 				yield return new WaitForSeconds (fireCooldown);
 				hasFireCooleddown = true;
 				Debug.Log ("fire has cooled");
@@ -99,6 +110,12 @@ public class VoiceCommandController : MonoBehaviour
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (lightningCooldown);
 				hasLightningCooleddown = true;
+			}
+			break;
+		case 4/*"Fear"*/:
+			if (hasCooled == false) {
+				yield return new WaitForSeconds (fearCooldown);
+				hasFearCooledDown = true;
 			}
 			break;
 		}
@@ -131,6 +148,14 @@ public class VoiceCommandController : MonoBehaviour
 				Instantiate (Lightning, Lightning.transform.position, Quaternion.identity);
 			}
 			isSpawningLightning = false;
+		}
+	}
+	private void SpawnFear(){
+		if (isSpawningFear == true) {
+			for (int i = 0; i < 1; i++) {
+				Instantiate (Fear, Fear.transform.position, Quaternion.identity);
+			}
+			isSpawningFear = false;
 		}
 	}
 	private void OnDestroy()

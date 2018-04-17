@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClothingController : MonoBehaviour {
 	public GameObject clothingRightView, clothingFrontView, clothingBackView;
-	public GameObject Villager; //orientation purposes for left/right
+	public GameObject[] Villager; //orientation purposes for left/right
 	public string villagerOrientation;
 	private string currentOrientation = "";
 	private string previousOrientation = "";
@@ -19,7 +19,11 @@ public class ClothingController : MonoBehaviour {
 		currentOrientation = villagerOrientation;
 		if (villagerOrientation == "right") {
 			if (previousOrientation == "left") {
-				Villager.GetComponent<SpriteRenderer> ().flipX = false;
+				Villager[0].GetComponent<SpriteRenderer> ().flipX = false;
+				Villager[1].GetComponent<SpriteRenderer> ().flipX = false;
+				Villager[2].GetComponent<SpriteRenderer> ().flipX = false;
+				Villager[3].GetComponent<SpriteRenderer> ().flipX = false;
+				Villager[4].GetComponent<SpriteRenderer> ().flipX = false;
 			}
 			clothingRightView.SetActive(true);
 			clothingFrontView.SetActive(false);
@@ -27,7 +31,11 @@ public class ClothingController : MonoBehaviour {
 			//clothingRightView.GetComponent<ClothingGenerator> ().Restart(true);
 			previousOrientation = currentOrientation;
 		} else if (villagerOrientation == "left") {
-			Villager.GetComponent<SpriteRenderer> ().flipX = true;
+			Villager[0].GetComponent<SpriteRenderer> ().flipX = true;
+			Villager[1].GetComponent<SpriteRenderer> ().flipX = true;
+			Villager[2].GetComponent<SpriteRenderer> ().flipX = true;
+			Villager[3].GetComponent<SpriteRenderer> ().flipX = true;
+			Villager[4].GetComponent<SpriteRenderer> ().flipX = true;
 			clothingRightView.SetActive(true);
 			clothingFrontView.SetActive(false);
 			clothingBackView.SetActive(false);

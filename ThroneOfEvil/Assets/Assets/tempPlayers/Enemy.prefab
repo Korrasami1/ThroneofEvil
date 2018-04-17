@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 114895572877123468}
   - component: {fileID: 114190138845577412}
   - component: {fileID: 114561437081888758}
+  - component: {fileID: 114237529140303238}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -118,7 +119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1713061083621386
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539559234517020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.440096, y: -2.9184532, z: 0}
+  m_LocalPosition: {x: -13.195072, y: -3.1138246, z: 0}
   m_LocalScale: {x: 0.2646957, y: 0.26829246, z: 1}
   m_Children:
   - {fileID: 4106593883947980}
@@ -449,10 +450,32 @@ MonoBehaviour:
   laneDiversity: 0.5
   tarPool: {fileID: 114678727523451236, guid: e168a6f00044bee42a3d79ae4aadecc6, type: 2}
   trapDoor: {fileID: 0}
+  freezeTrap: {fileID: 0}
   pathReactionTime: 4
   destinationOne: {x: 4, y: 5, z: 0}
   destinationTwo: {x: 4, y: -5, z: 0}
   destinationThree: {x: 8, y: 0, z: 0}
+--- !u!114 &114237529140303238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539559234517020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c529cc7ed59aa489ff9deea4d5c02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clothingRightView: {fileID: 1278202136207554}
+  clothingFrontView: {fileID: 1247065186229896}
+  clothingBackView: {fileID: 1247418821553226}
+  Villager:
+  - {fileID: 1278202136207554}
+  - {fileID: 1794886630908308}
+  - {fileID: 1713061083621386}
+  - {fileID: 1940574119323084}
+  - {fileID: 1263163866378088}
+  villagerOrientation: right
 --- !u!114 &114364190404941118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,7 +490,12 @@ MonoBehaviour:
   clothingRightView: {fileID: 1278202136207554}
   clothingFrontView: {fileID: 1247065186229896}
   clothingBackView: {fileID: 1247418821553226}
-  Villager: {fileID: 1539559234517020}
+  Villager:
+  - {fileID: 1278202136207554}
+  - {fileID: 1794886630908308}
+  - {fileID: 1713061083621386}
+  - {fileID: 1940574119323084}
+  - {fileID: 1263163866378088}
   villagerOrientation: right
 --- !u!114 &114503903842594004
 MonoBehaviour:

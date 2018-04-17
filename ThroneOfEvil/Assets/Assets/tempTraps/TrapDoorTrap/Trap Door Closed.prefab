@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   releaseButton: space
   mode: closed
+  cooldown: 1e+10
   trapDoor: {fileID: 1822839089202670, guid: cf36ae78493680e46b4a5c83a7db150a, type: 2}
 --- !u!212 &212402198878925794
 SpriteRenderer:

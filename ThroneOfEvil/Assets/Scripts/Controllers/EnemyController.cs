@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour {
 	public float laneDiversity = 0.5f;          //The randomized difference in Y-value for enemies on the same lane
 	public TarPool tarPool;
 	public TrapDoorRelease trapDoor;
+	public FreezeTrapExplosion freezeTrap;
 	public float pathReactionTime;
 	public Vector3 destinationOne;
 	public Vector3 destinationTwo;
@@ -242,19 +243,45 @@ public class EnemyController : MonoBehaviour {
 		speed *= -1f;
 		objectCollision = false;
 	}
+	IEnumerator TarCountdown()
+	{
+		gameObject.tag = "TarredEnemy";
+		speed = normalSpeed * tarPool.slowdown;
+		yield return new WaitForSeconds (tarPool.slowDurationSeconds);
+		speed = normalSpeed;
+		gameObject.tag = "Enemy";
+	}
+	IEnumerator FreezeCountdown()
+	{
+		gameObject.tag = "FrozenEnemy";
+		speed = normalSpeed * 0;
+		yield return new WaitForSeconds (freezeTrap.freezeDurationSeconds);
+		speed = normalSpeed;
+	}
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.tag == "Trap Detection") 
+		if (collider.tag == "Trap" || collider.tag == "TrapDoor") 
+		{
+			Destroy(gameObject);
+		}
+		else if (collider.tag == "Trap Detection") 
 		{
 			SwitchLanes ();
+		}
+		if (collider.CompareTag("Fear")) {
+			gameObject.GetComponent<ClothingController>().villagerOrientation = "right";
+			speed = 5;
 		}
 		if (collider.tag == "Wall" && objectCollision == false) 
 		{
 			//StartCoroutine (BounceBack ());
 			objectCollision = true;
 		}
-		if (collider.tag == "TarPool") {
-			StartCoroutine (TarPoolCountdown ());
+		if (collider.tag == "TarPool" || collider.tag == "TarredBoulder") {
+			StartCoroutine (TarCountdown ());
+		}
+		if (collider.tag == "FreezeTrapExplosion") {
+			StartCoroutine (FreezeCountdown ());
 		}
 	}
 	void OnTriggerStay(Collider collider)

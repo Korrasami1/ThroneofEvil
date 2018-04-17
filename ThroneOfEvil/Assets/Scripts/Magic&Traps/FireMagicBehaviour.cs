@@ -9,7 +9,7 @@ public class FireMagicBehaviour : MonoBehaviour {
 	public float damage = 20;
 	Vector3 mousePosition,targetPosition;
 	public float distance = 10f;
-	public float timetoDestroy = 1f;
+	public float timetoDestroy = 5f;
 
 	void Start(){
 		//To get the current mouse position
@@ -62,6 +62,9 @@ public class FireMagicBehaviour : MonoBehaviour {
 				Scoreboard.killType = "Fire";
 				enemyHealth.DealDamage (damage);
 				Debug.Log ("current enemies health after Fire " + enemyHealth.currentHealth);
+			}
+			if (other.CompareTag ("FreezeTrapExplosion") || other.CompareTag("TarPool")) {
+				Destroy (gameObject);
 			}
 		}
 		Destroy (gameObject, timetoDestroy);
