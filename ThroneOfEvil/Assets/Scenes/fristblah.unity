@@ -1654,7 +1654,7 @@ GameObject:
   - component: {fileID: 479126099}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3850,6 +3850,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreTXT: {fileID: 37629039}
+  screenPoints: {fileID: 114759417686973176, guid: 5dcb23497db50b34da230a56b228a107,
+    type: 2}
   TrapDoorKill: 100
   TarKill: 10
   BoulderKill: 50
@@ -4430,7 +4432,7 @@ Prefab:
     - target: {fileID: 224157175800668914, guid: d5d39e435213b6747b6089f5ed1c2052,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224157175800668914, guid: d5d39e435213b6747b6089f5ed1c2052,
         type: 2}

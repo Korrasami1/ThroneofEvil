@@ -214,7 +214,7 @@ public class ClothingGenerator : MonoBehaviour {
 
 	int RandomiseVillagerType(){
 		vType = Random.Range (1, 4);
-		Debug.Log ("villager type = "+vType);
+		//Debug.Log ("villager type = "+vType);
 		return vType;
 	}
 

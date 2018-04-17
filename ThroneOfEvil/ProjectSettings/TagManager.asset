@@ -31,6 +31,7 @@ TagManager:
   - FreezeTrapExplosion
   - Explosion
   - Fear
+  - Canvas
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class EnemyHealthController : MonoBehaviour {
 	GameObject gameKillcounter;
 	ScoreManager Scoreboard;
 	GameObject points;
+	Transform pointsPlacement;
 	//float healthbar;
 
 	// Use this for initialization
@@ -24,7 +25,7 @@ public class EnemyHealthController : MonoBehaviour {
 
 	void Update()
 	{
-
+		pointsPlacement = gameObject.transform;
 	}
 
 	private void getGameController(){
@@ -75,7 +76,7 @@ public class EnemyHealthController : MonoBehaviour {
 	{
 		currentHealth = 0;
 		gameController.villagerDeathCount ();
-		Scoreboard.DealPoints ();
+		Scoreboard.DealPoints (pointsPlacement);
 		Debug.Log("Villager Killed!");
 		Destroy(gameObject);
 	

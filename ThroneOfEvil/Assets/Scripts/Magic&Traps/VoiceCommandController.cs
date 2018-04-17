@@ -7,7 +7,7 @@ using UnityEngine.Windows.Speech;
 public class VoiceCommandController : MonoBehaviour
 {
 
-	public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning"};
+	public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning", "Fear"};
 	public ConfidenceLevel confidence = ConfidenceLevel.Low;
 	public float minionSpeed;
 	protected PhraseRecognizer recognizer;
@@ -17,12 +17,12 @@ public class VoiceCommandController : MonoBehaviour
 	private bool isSpawningMinions = false;
 	public GameObject fire;
 	private bool isSpawningFire = false;
-	public GameObject Lightning;
+	public GameObject lightning;
 	private bool isSpawningLightning = false;
-	public GameObject Fear;
+	public GameObject fear;
 	private bool isSpawningFear = false;
-	private bool hasFireCooleddown, hasLightningCooleddown, hasMinionsCooleddown, hasFearCooledDown;
-	public float MinionCooldown, fireCooldown, lightningCooldown, fearCooldown;
+	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown, hasFearCooledDown;
+	public float minionCooldown, fireCooldown, lightningCooldown, fearCooldown;
 	//private static bool created = false;
 	void Start()
 	{
@@ -33,9 +33,9 @@ public class VoiceCommandController : MonoBehaviour
 			recognizer.Start();
 		}
 		//for cooldown so that on start you can command a magic spell without waiting on that cooldown
-		hasFireCooleddown = true;
+		hasFireCooledDown = true;
 		hasMinionsCooleddown = true;
-		hasLightningCooleddown = true;
+		hasLightningCooledDown = true;
 		hasFearCooledDown = true;
 	}
 	private void FixedUpdate()
@@ -43,36 +43,24 @@ public class VoiceCommandController : MonoBehaviour
 		switch (word)
 		{
 		case "Send in the minions":
-			if (hasMinionsCooleddown == true) {
-				minionSpeed = 7.5f;
-				spawnMinions ();
-				hasMinionsCooleddown = false;
-				StartCoroutine (MagicCoolDown (1, hasMinionsCooleddown));
-			}
+			spawnMinions ();
+			hasMinionsCooleddown = false;
+			StartCoroutine (MagicCoolDown (1, hasMinionsCooleddown));
 			break;
 		case "Fire":
-			if (hasFireCooleddown == true) {
-				minionSpeed = 7.5f;
-				SpawnFire ();
-				hasFireCooleddown = false;
-				StartCoroutine (MagicCoolDown (2, hasFireCooleddown));
-			}
+			SpawnFire ();
+			hasFireCooledDown = false;
+			StartCoroutine (MagicCoolDown (2, hasFireCooledDown));
 			break;
 		case "Lightning":
-			if (hasLightningCooleddown == true) {
-				minionSpeed = 7.5f;
-				SpawnLightning ();
-				hasLightningCooleddown = false;
-				StartCoroutine (MagicCoolDown (3, hasLightningCooleddown));
-			}
+			SpawnLightning ();
+			hasLightningCooledDown = false;
+			StartCoroutine (MagicCoolDown (3, hasLightningCooledDown));
 			break;
 		case "Fear":
-			if (hasFearCooledDown == true) {
-				minionSpeed = 7.5f;
-				SpawnFear ();
-				hasFearCooledDown = false;
-				StartCoroutine (MagicCoolDown (4, hasFearCooledDown));
-			}
+			SpawnFear ();
+			hasFearCooledDown = false;
+			StartCoroutine (MagicCoolDown (4, hasFearCooledDown));
 			break;
 		case "exit":
 			Application.Quit();
@@ -82,6 +70,18 @@ public class VoiceCommandController : MonoBehaviour
 	private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
 	{
 		word = args.text;
+		if (word == "Fire" && !hasFireCooledDown) {
+			word = "Cooldown in effect!";
+		}
+		if (word == "Lightning" && !hasLightningCooledDown) {
+			word = "Cooldown in effect!";
+		}
+		if (word == "Send in the minions" && !hasMinionsCooleddown) {
+			word = "Cooldown in effect!";
+		}
+		if (word == "Fear" && !hasFearCooledDown) {
+			word = "Cooldown in effect!";
+		}
 		string debugText = "You said: <b>" + word + "</b>";
 		Debug.Log(debugText);
 		//i placed this here so that they wouldnt spam
@@ -95,21 +95,21 @@ public class VoiceCommandController : MonoBehaviour
 		{
 		case 1/*"Send in the minions"*/:
 			if (hasCooled == false) {
-				yield return new WaitForSeconds (MinionCooldown);
+				yield return new WaitForSeconds (minionCooldown);
 				hasMinionsCooleddown = true;
 			}
 			break;
 		case 2/*"Fire"*/:
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (fireCooldown);
-				hasFireCooleddown = true;
+				hasFireCooledDown = true;
 				Debug.Log ("fire has cooled");
 			}
 			break;
 		case 3/*"Lightning"*/:
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (lightningCooldown);
-				hasLightningCooleddown = true;
+				hasLightningCooledDown = true;
 			}
 			break;
 		case 4/*"Fear"*/:
@@ -145,7 +145,7 @@ public class VoiceCommandController : MonoBehaviour
 	private void SpawnLightning(){
 		if (isSpawningLightning == true) {
 			for (int i = 0; i < 1; i++) {
-				Instantiate (Lightning, Lightning.transform.position, Quaternion.identity);
+				Instantiate (lightning, lightning.transform.position, Quaternion.identity);
 			}
 			isSpawningLightning = false;
 		}
@@ -153,7 +153,7 @@ public class VoiceCommandController : MonoBehaviour
 	private void SpawnFear(){
 		if (isSpawningFear == true) {
 			for (int i = 0; i < 1; i++) {
-				Instantiate (Fear, Fear.transform.position, Quaternion.identity);
+				Instantiate (fear, fear.transform.position, Quaternion.identity);
 			}
 			isSpawningFear = false;
 		}

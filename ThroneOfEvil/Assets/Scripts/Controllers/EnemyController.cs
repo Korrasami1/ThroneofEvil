@@ -33,6 +33,7 @@ public class EnemyController : MonoBehaviour {
 	private bool objectCollision = false;
 	private bool canMoveUp = true;
 	private bool canMoveDown = true;
+	private bool isMovementPaused = false;
 	void Start()
 	{
 		//Start() assigns a random value between 0 and 4 to each enemy spawn, this in turn decides their starting lane
@@ -68,6 +69,9 @@ public class EnemyController : MonoBehaviour {
 		targetPosition.x = currentPosition.x += step*0.8f;
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
 		MoveToDestination ();
+		if (isMovementPaused == true) {
+			//StartCoroutine ();
+		}
 	}
 	void RandomLaneMovement()
 	{
@@ -230,6 +234,11 @@ public class EnemyController : MonoBehaviour {
 		float randomizer = Random.Range (-laneDiversity, laneDiversity);
 		targetY = lane + randomizer;
 		targetPosition.y = targetY;
+	}
+	public IEnumerator pauseMovement(bool isPausing){
+		speed = 0;
+		yield return new WaitUntil(() => isPausing == false);
+		speed = 5;
 	}
 	IEnumerator BounceBack()
 	{

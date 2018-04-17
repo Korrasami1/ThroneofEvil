@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 	public Text ScoreTXT;
+	public Text screenPoints;
 	public int TrapDoorKill, TarKill, BoulderKill, FireKill, LightningKill, MinionKill, ShatterKill, IncinerationKill, Fearkill, otherKill;
 	public int currentScore { get; set; }
 	public int TotalScores { get; set; }
@@ -17,7 +18,7 @@ public class ScoreManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 	}
 
 	private int TrapDoorKillPoints(){
@@ -56,7 +57,8 @@ public class ScoreManager : MonoBehaviour {
 		return otherKill;
 	}
 
-	public void DealPoints(){
+	public void DealPoints(Transform other){
+		screenScoreText (currentKillType(), other);
 		currentScore = currentScore + currentKillType();
 		TotalScores = CalculateTotalScore ();
 		ScoreTXT.text = currentScore.ToString ();
@@ -99,6 +101,16 @@ public class ScoreManager : MonoBehaviour {
 			break;
 		}
 		return points;
+	}
+
+	private void screenScoreText(int currentKill, Transform others){
+		screenPoints.GetComponent<Text> ().text = currentKill.ToString ();
+		Vector3 toCamera = Camera.main.WorldToScreenPoint(others.position);
+		screenPoints.transform.position = toCamera;
+		Text clonePoints = screenPoints;
+		Text game = Instantiate(clonePoints, toCamera, Quaternion.identity);
+		game.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+		game.transform.position = toCamera;
 	}
 
 	public int getCurrentScore(){

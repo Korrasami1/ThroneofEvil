@@ -48,7 +48,6 @@ public class HealthController : MonoBehaviour {
 	{
 		currentHealth = 0;
 		Debug.Log("You Died!");
-
 	}
 
 	//for use with a healing ability
