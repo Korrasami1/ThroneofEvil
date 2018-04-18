@@ -56,6 +56,7 @@ MonoBehaviour:
   - Fire
   - Lightning
   - Fear
+  - Mind Control
   confidence: 2
   minionSpeed: 3
   minion: {fileID: 1981358933227212, guid: 8f3575fc2f45eeb40acd8cc1fec59f21, type: 2}
@@ -63,7 +64,10 @@ MonoBehaviour:
   fire: {fileID: 1039698808575432, guid: bb6f3232c8b369448a635793ea8a1f1e, type: 2}
   lightning: {fileID: 1749509020380682, guid: e0d38630d6a7290448215d3789f5d9a0, type: 2}
   fear: {fileID: 1652137723988522, guid: 9ca3cc026187f9541b5521a3bb13f4c7, type: 2}
+  MindControl: {fileID: 1867152972554878, guid: a22d8f9ead57e9b448a9f8ab11a0beb4,
+    type: 2}
   minionCooldown: 0
   fireCooldown: 10
   lightningCooldown: 10
   fearCooldown: 20
+  MindControlCooldown: 10

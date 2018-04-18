@@ -5,6 +5,7 @@ using UnityEngine;
 public class VillagerDamageController : MonoBehaviour {
 	public float damageTraps = 100;
 	public float damageDoor = 100;
+	public float damageMindControlAttack = 30;
 	ScoreManager Scoreboard;
 
 	void Start(){
@@ -27,16 +28,20 @@ public class VillagerDamageController : MonoBehaviour {
 	{
 		if (other.CompareTag ("Trap")) {
 			Scoreboard.killType = "Other";
-			GetComponent<EnemyHealthController> ().DealDamage (damageTraps);
+			gameObject.GetComponent<EnemyHealthController> ().DealDamage (damageTraps);
 
 		}
 		if (other.CompareTag ("TrapDoor")) {
 			Scoreboard.killType = "Trap Door";
-			GetComponent<EnemyHealthController> ().DealDamage (damageDoor);
+			gameObject.GetComponent<EnemyHealthController> ().DealDamage (damageDoor);
 		}
 		if (other.CompareTag ("Boulder")) {
 			Scoreboard.killType = "Boulder";
-			GetComponent<EnemyHealthController> ().DealDamage (damageDoor);
+			gameObject.GetComponent<EnemyHealthController> ().DealDamage (damageDoor);
+		}
+		if (other.CompareTag ("MindControlAttack")) {
+			Scoreboard.killType = "MindControl";
+			gameObject.GetComponent<EnemyHealthController> ().DealDamage (damageMindControlAttack);
 		}
 	}
 }

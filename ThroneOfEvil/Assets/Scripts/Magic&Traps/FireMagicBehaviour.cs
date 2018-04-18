@@ -60,7 +60,7 @@ public class FireMagicBehaviour : MonoBehaviour {
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
 				Scoreboard.killType = "Fire";
-				enemyHealth.DealDamage (damage);
+				other.GetComponent<EnemyHealthController>().DealDamage (damage);
 				Debug.Log ("current enemies health after Fire " + enemyHealth.currentHealth);
 			}
 			if (other.CompareTag ("FreezeTrapExplosion") || other.CompareTag("TarPool")) {

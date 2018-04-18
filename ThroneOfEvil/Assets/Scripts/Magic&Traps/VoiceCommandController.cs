@@ -7,7 +7,7 @@ using UnityEngine.Windows.Speech;
 public class VoiceCommandController : MonoBehaviour
 {
 
-	public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning", "Fear"};
+	public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning", "Fear", "Mind Control"};
 	public ConfidenceLevel confidence = ConfidenceLevel.Low;
 	public float minionSpeed;
 	protected PhraseRecognizer recognizer;
@@ -21,8 +21,10 @@ public class VoiceCommandController : MonoBehaviour
 	private bool isSpawningLightning = false;
 	public GameObject fear;
 	private bool isSpawningFear = false;
-	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown, hasFearCooledDown;
-	public float minionCooldown, fireCooldown, lightningCooldown, fearCooldown;
+	public GameObject MindControl;
+	private bool isSpawningMindControl = false;
+	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown, hasFearCooledDown, hasMindControlCooledDown;
+	public float minionCooldown, fireCooldown, lightningCooldown, fearCooldown, MindControlCooldown;
 	//private static bool created = false;
 	void Start()
 	{
@@ -37,6 +39,7 @@ public class VoiceCommandController : MonoBehaviour
 		hasMinionsCooleddown = true;
 		hasLightningCooledDown = true;
 		hasFearCooledDown = true;
+		hasMindControlCooledDown = true;
 	}
 	private void FixedUpdate()
 	{
@@ -62,6 +65,11 @@ public class VoiceCommandController : MonoBehaviour
 			hasFearCooledDown = false;
 			StartCoroutine (MagicCoolDown (4, hasFearCooledDown));
 			break;
+		case "Mind Control":
+			SpawnMindControl ();
+			hasMindControlCooledDown = false;
+			StartCoroutine (MagicCoolDown (5, hasMindControlCooledDown));
+			break;
 		case "exit":
 			Application.Quit();
 			break;
@@ -82,6 +90,9 @@ public class VoiceCommandController : MonoBehaviour
 		if (word == "Fear" && !hasFearCooledDown) {
 			word = "Cooldown in effect!";
 		}
+		if (word == "Mind Control" && !hasMindControlCooledDown) {
+			word = "Cooldown in effect!";
+		}
 		string debugText = "You said: <b>" + word + "</b>";
 		Debug.Log(debugText);
 		//i placed this here so that they wouldnt spam
@@ -89,6 +100,7 @@ public class VoiceCommandController : MonoBehaviour
 		isSpawningFire = true;
 		isSpawningLightning = true;
 		isSpawningFear = true;
+		isSpawningMindControl = true;
 	}
 	IEnumerator MagicCoolDown(int magictype/*string magictype*/, bool hasCooled){
 		switch (magictype)
@@ -116,6 +128,12 @@ public class VoiceCommandController : MonoBehaviour
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (fearCooldown);
 				hasFearCooledDown = true;
+			}
+			break;
+		case 5/*"Mind Control"*/:
+			if (hasCooled == false) {
+				yield return new WaitForSeconds (MindControlCooldown);
+				hasMindControlCooledDown = true;
 			}
 			break;
 		}
@@ -156,6 +174,14 @@ public class VoiceCommandController : MonoBehaviour
 				Instantiate (fear, fear.transform.position, Quaternion.identity);
 			}
 			isSpawningFear = false;
+		}
+	}
+	private void SpawnMindControl(){
+		if (isSpawningMindControl == true) {
+			for (int i = 0; i < 1; i++) {
+				Instantiate (MindControl, MindControl.transform.position, Quaternion.identity);
+			}
+			isSpawningMindControl = false;
 		}
 	}
 	private void OnDestroy()

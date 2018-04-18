@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour {
 	public Text ScoreTXT;
 	public Text screenPoints;
-	public int TrapDoorKill, TarKill, BoulderKill, FireKill, LightningKill, MinionKill, ShatterKill, IncinerationKill, Fearkill, otherKill;
+	public int TrapDoorKill, TarKill, BoulderKill, FireKill, LightningKill, MinionKill, ShatterKill, IncinerationKill, Fearkill, MindControlKill, otherKill;
 	public int currentScore { get; set; }
 	public int TotalScores { get; set; }
 	public string killType;
@@ -50,8 +50,11 @@ public class ScoreManager : MonoBehaviour {
 	private int IncinerationKillPoints(){  //oil pool + fireball
 		return IncinerationKill;
 	}
-	private int FearKillPoints(){  //oil pool + fireball
+	private int FearKillPoints(){
 		return Fearkill;
+	}
+	private int MindControlKillPoints(){
+		return MindControlKill;
 	}
 	private int otherKillPoints(){
 		return otherKill;
@@ -93,8 +96,11 @@ public class ScoreManager : MonoBehaviour {
 		case "Incineration": //oil pool + fireball
 			points =  IncinerationKillPoints ();
 			break;
-		case "Fear": //oil pool + fireball
+		case "Fear":
 			points =  FearKillPoints ();
+			break;
+		case "MindControl":
+			points =  MindControlKillPoints ();
 			break;
 		case "Other": 
 			points =  otherKillPoints ();

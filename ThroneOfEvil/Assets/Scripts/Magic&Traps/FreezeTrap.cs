@@ -11,9 +11,9 @@ public class FreezeTrap : MonoBehaviour {
 	void Start(){
 		//explosionPosition = transform.position + new Vector3 (0f, 0f, zValue);
 	}
-	void OnTriggerEnter(Collider collider)
+	void OnTriggerEnter(Collider other)
 	{
-		if (collider.tag == "Enemy" || collider.tag == "Boulder" || collider.tag == "Fire" || collider.tag == "Lightning") {
+		if (other.CompareTag("Enemy") || other.CompareTag("Boulder") || other.CompareTag("Fire") || other.CompareTag("Lightning")) {
 			Instantiate (freezeExplosion, transform.position, transform.rotation);
 			Destroy(gameObject);
 		}

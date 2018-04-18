@@ -26,17 +26,17 @@ public class Boulder : MonoBehaviour {
 		Quaternion target = Quaternion.Euler (0f, 0f, rotation);
 		transform.rotation = Quaternion.Slerp (transform.rotation, target, Time.deltaTime * smooth);
 	}
-	void OnTriggerEnter(Collider collider)
+	void OnTriggerEnter(Collider other)
 	{
-		if (collider.tag == "TrapDoor") {
+		if (other.CompareTag("TrapDoor")) {
 			Destroy (gameObject);
 		}
-		if (collider.tag == "TarPool") {
+		if (other.CompareTag("TarPool")) {
 			gameObject.tag = "TarredBoulder";
 			speed = speed / 2;
 		}
-		if (collider.tag == "FrozenEnemy") {
-			Destroy (collider.gameObject);
+		if (other.CompareTag("FrozenEnemy")) {
+			Destroy (other.gameObject);
 		}
 	}
 }

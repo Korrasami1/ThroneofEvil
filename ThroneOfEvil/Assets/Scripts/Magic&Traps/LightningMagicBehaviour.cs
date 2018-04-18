@@ -61,7 +61,7 @@ public class LightningMagicBehaviour : MonoBehaviour {
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
 				Scoreboard.killType = "Lightning";
-				enemyHealth.DealDamage (damage);
+				other.GetComponent<EnemyHealthController>().DealDamage (damage);
 				Debug.Log ("current enemies health after Lightning " + enemyHealth.currentHealth);
 
 			}

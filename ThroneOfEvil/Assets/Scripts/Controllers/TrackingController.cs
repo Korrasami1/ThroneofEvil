@@ -58,7 +58,7 @@ public class TrackingController : MonoBehaviour {
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
 				Scoreboard.killType = "Minion";
-				enemyHealth.DealDamage (damage);
+				other.GetComponent<EnemyHealthController>().DealDamage (damage);
 				Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
 			}
 		}

@@ -12,11 +12,12 @@ public class SoundsSceneManager : MonoBehaviour {
 		//public int SoundCountTextBox;//was input field
 		//int count = 0;
 		public Toggle PersistToggle;
-
 		public AudioSource[] SoundAudioSources;
 		public AudioSource[] MusicAudioSources;
+		public int playSound;
+		public int playMusic;
 
-		private void PlaySound(int index)
+		public void PlaySound(int index)
 		{
 			SoundAudioSources[index].PlayOneShotSoundManaged(SoundAudioSources[index].clip);
 			/*int count;
@@ -42,39 +43,39 @@ public class SoundsSceneManager : MonoBehaviour {
 				return;
 			}*/
 
-			if (Input.GetKeyDown(KeyCode.Alpha1))
+			if (Input.GetKeyDown(KeyCode.Alpha1) || playSound == 1)
 			{
 				PlaySound(0);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha2))
+			if (Input.GetKeyDown(KeyCode.Alpha2)|| playSound == 2)
 			{
 				PlaySound(1);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha3))
+			if (Input.GetKeyDown(KeyCode.Alpha3)|| playSound == 3)
 			{
 				PlaySound(2);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha4))
+			if (Input.GetKeyDown(KeyCode.Alpha4)|| playSound == 4)
 			{
 				PlaySound(3);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha5))
+			if (Input.GetKeyDown(KeyCode.Alpha5)|| playSound == 5)
 			{
 				PlaySound(4);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha6))
+			if (Input.GetKeyDown(KeyCode.Alpha6)|| playSound == 6)
 			{
 				PlaySound(5);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha7))
+			/*if (Input.GetKeyDown(KeyCode.Alpha7))
 			{
 				PlaySound(6);
-			}
-			if (Input.GetKeyDown(KeyCode.Alpha8))
+			}*/
+			if (Input.GetKeyDown(KeyCode.Alpha8)|| playMusic== 1)
 			{
 				PlayMusic(0);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha9))
+			/*if (Input.GetKeyDown(KeyCode.Alpha9))
 			{
 				PlayMusic(1);
 			}
@@ -85,8 +86,8 @@ public class SoundsSceneManager : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.A))
 			{
 				PlayMusic(3);
-			}
-			/*if (Input.GetKeyDown(KeyCode.R))
+			}*/
+			if (Input.GetKeyDown(KeyCode.R))
 			{
 				Debug.LogWarning("Reloading level");
 
@@ -94,9 +95,8 @@ public class SoundsSceneManager : MonoBehaviour {
 				{
 					SoundManager.StopAll();
 				}
-
-				UnityEngine.SceneManagement.SceneManager.LoadScene(0, UnityEngine.SceneManagement.LoadSceneMode.Single);
-			}*/
+				//UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, UnityEngine.SceneManagement.LoadSceneMode.Single);
+			}
 		}
 
 		private void Start()

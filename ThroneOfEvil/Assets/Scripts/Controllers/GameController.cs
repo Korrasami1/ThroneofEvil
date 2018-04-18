@@ -18,9 +18,11 @@ public class GameController : MonoBehaviour {
     public bool gameOver;
     private bool restart;
     public bool winner;
+	public bool winner2;
     private int counterforSpawning = 0;
 	public GameObject pauseMenu;
     //private bool isSpawnOver = false;
+	public float leveltimedelay = 20f;
 	public int WinnerCondition = 3;
 	private int killCounter = 0;
 	public int villagerDeathCount(){
@@ -32,15 +34,17 @@ public class GameController : MonoBehaviour {
         gameOver = false;
         restart = false;
         winner = false;
+		winner2 = false;
         restartText.text = "";
         gameOverText.text = "";
         counterforSpawning = 0;
+		leveltimedelay = Time.time + 20f;
 		Instantiate (VoiceCommands, transform.position, Quaternion.identity);
         //isSpawnOver = false;
         StartCoroutine(SpawnWaves());
     }
 
-    void Update()
+    void FixedUpdate()
     {
 		if(GetComponent<HealthController>().currentHealth <= 0)
         {
@@ -54,7 +58,10 @@ public class GameController : MonoBehaviour {
             }
         }
 		if (killCounter >= WinnerCondition) {
-			Winner ();
+			Winner (1);
+		}else if(Time.time > leveltimedelay){
+			leveltimedelay = Time.time + 20f;
+			Winner (2);	
 		}
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Time.timeScale = 0;
@@ -92,19 +99,29 @@ public class GameController : MonoBehaviour {
 				Restart();
 				break;
 			}
+			if (winner2) {
+				SceneManager.LoadScene("ExitScene");
+				break;
+			}
         }
 
     }
     public void GameOver()
     {
         gameOver = true;
+		leveltimedelay = Time.time + 20f;
     }
     public void Restart()
     {
         restart = true;
+		leveltimedelay = Time.time + 20f;
     }
-	public void Winner()
+	public void Winner(int type)
 	{
-		winner = true;
+		if (type == 1) {
+			winner = true;
+		} else if (type == 2) {
+			winner2 = true;
+		}
 	}
 }

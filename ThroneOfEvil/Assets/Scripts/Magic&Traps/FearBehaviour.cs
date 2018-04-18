@@ -47,7 +47,7 @@ public class FearBehaviour : MonoBehaviour {
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
 				Scoreboard.killType = "Fear";
-				enemyHealth.DealDamage (damage);
+				other.GetComponent<EnemyHealthController>().DealDamage (damage);
 				other.GetComponent<EnemyController> ().speed *= -1;
 				other.GetComponent<ClothingController>().villagerOrientation = "left";
 			}
