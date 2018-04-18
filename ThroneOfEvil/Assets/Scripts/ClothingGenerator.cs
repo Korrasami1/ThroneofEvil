@@ -13,6 +13,7 @@ public class ClothingGenerator : MonoBehaviour {
 	public Sprite[] skins; //male or female or child versions
 	private Sprite pant, shirt, hair, skin;
 	private int vType; //villager Type
+	public int villagerType; //this is for the traps clothing in the clothing controller
 	private float pRed, pGreen, pBlue, sRed, sBlue, sGreen; // s stands for shirt, p stands for pants
 	private float haRed, haGreen, haBlue, hRed, hBlue, hGreen; // ha stands for hat, h stands for hair
 	Color pantsColour, shirtColour, HairColour, HatColour, SkinColour;
@@ -214,7 +215,7 @@ public class ClothingGenerator : MonoBehaviour {
 
 	int RandomiseVillagerType(){
 		vType = Random.Range (1, 4);
-		//Debug.Log ("villager type = "+vType);
+		villagerType = vType;
 		return vType;
 	}
 

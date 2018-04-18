@@ -24,16 +24,15 @@ public class EnemyController : MonoBehaviour {
 	private Vector3 targetPosition;             //The position the enemy will move to on the next update
 	//  private Vector3 previousPosition;           //The position position of the enemy on the update before, not currently in use
 	private float targetY;                      //The Y-value of targetPosition
-	private float normalSpeed;			//The value of speed stored so if speed is changed during run time it can later be reverted back to it's original value
-	//private bool pathFinding = false;
-	//private bool trapDoorIsOpen = false;
+	private float normalSpeed;          //The value of speed stored so if speed is changed during run time it can later be reverted back to it's original value
 	private bool foundDestinationOne = false;
 	private bool foundDestinationTwo = false;
 	private bool foundDestinationThree = false;
 	private bool objectCollision = false;
 	private bool canMoveUp = true;
 	private bool canMoveDown = true;
-	private bool isMovementPaused = false;
+	public bool isMovementPaused = false;
+	public bool isPaused1 = false;
 	void Start()
 	{
 		//Start() assigns a random value between 0 and 4 to each enemy spawn, this in turn decides their starting lane
@@ -70,11 +69,12 @@ public class EnemyController : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
 		MoveToDestination ();
 		if (isMovementPaused == true) {
-			//StartCoroutine ();
+			StartCoroutine (pauseMovement(isPaused1));
 		}
 	}
 	void RandomLaneMovement()
 	{
+		//RandomLaneMovement() is currently not in use
 		horizontal = Random.Range (-horizontal, horizontal);
 		vertical = Random.Range (-vertical, vertical);
 	}
@@ -155,16 +155,7 @@ public class EnemyController : MonoBehaviour {
 	}
 	void MoveToDestination()
 	{
-		//		if (Input.GetKeyDown ("space") && !trapDoorIsOpen) {
-		//			trapDoorIsOpen = true;
-		//		} else {
-		//			//ble
-		//		}
 		trapDoor = (TrapDoorRelease)FindObjectOfType(typeof(TrapDoorRelease));
-		if (trapDoor)
-			Debug.Log("trapDoor object found: " + trapDoor.name);
-		else
-			Debug.Log("No trapDoor object could be found");
 		if (trapDoor.mode == "open") {
 			if ((FindDestination (destinationOne) && !foundDestinationOne) && (FindDestination (destinationTwo) && !foundDestinationTwo)) {
 				if (CompareDestination (destinationOne.y, destinationTwo.y)) {
@@ -223,9 +214,8 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (xPosition > destinationOne.x - pathReactionTime && xPosition < destinationOne.x) {
 			MoveTo (destinationOne.y);
-			//pathFinding = true;
 		} else {
-			//pathFinding = false;
+			return;
 		}
 	}
 	void MoveTo(float lane)
@@ -235,10 +225,11 @@ public class EnemyController : MonoBehaviour {
 		targetY = lane + randomizer;
 		targetPosition.y = targetY;
 	}
-	public IEnumerator pauseMovement(bool isPausing){
+	public IEnumerator pauseMovement(bool isPaused){
 		speed = 0;
-		yield return new WaitUntil(() => isPausing == false);
+		yield return new WaitUntil(() => isPaused == false);
 		speed = 5;
+		isMovementPaused = false;
 	}
 	IEnumerator BounceBack()
 	{
@@ -266,6 +257,7 @@ public class EnemyController : MonoBehaviour {
 		speed = normalSpeed * 0;
 		yield return new WaitForSeconds (freezeTrap.freezeDurationSeconds);
 		speed = normalSpeed;
+		gameObject.tag = "Enemy";
 	}
 	void OnTriggerEnter(Collider collider)
 	{
@@ -322,12 +314,6 @@ public class EnemyController : MonoBehaviour {
 		{
 			canMoveUp = true;
 		}
-	}
-	IEnumerator TarPoolCountdown()
-	{
-		speed = normalSpeed * tarPool.slowdown;
-		yield return new WaitForSeconds (tarPool.slowDurationSeconds);
-		speed = normalSpeed;
 	}
 	bool Randomizer()
 	{

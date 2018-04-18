@@ -450,11 +450,14 @@ MonoBehaviour:
   laneDiversity: 0.5
   tarPool: {fileID: 114678727523451236, guid: e168a6f00044bee42a3d79ae4aadecc6, type: 2}
   trapDoor: {fileID: 0}
-  freezeTrap: {fileID: 0}
+  freezeTrap: {fileID: 114862277587920106, guid: 2f2228215a3d8334aa9444042239223e,
+    type: 2}
   pathReactionTime: 4
   destinationOne: {x: 4, y: 5, z: 0}
   destinationTwo: {x: 4, y: -5, z: 0}
   destinationThree: {x: 8, y: 0, z: 0}
+  isMovementPaused: 0
+  isPaused1: 0
 --- !u!114 &114237529140303238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -475,6 +478,34 @@ MonoBehaviour:
   - {fileID: 1713061083621386}
   - {fileID: 1940574119323084}
   - {fileID: 1263163866378088}
+  trapClothingLeft:
+  - {fileID: 21300002, guid: bc89207d8f0eea243a1e1988d3d2c012, type: 3}
+  - {fileID: 21300000, guid: 6a0dc8c17352179439ccd9b522466a6b, type: 3}
+  - {fileID: 21300006, guid: d695d7ad9f61d2d45b0bed6e05c4efb4, type: 3}
+  - {fileID: 21300002, guid: 86de5df0ede87c34095198aeb2a77188, type: 3}
+  - {fileID: 21300000, guid: a05ce036100294a45b98145e85d9b42e, type: 3}
+  - {fileID: 21300006, guid: be45745e1bd3d2746a012b8b332de151, type: 3}
+  trapClothingRight:
+  - {fileID: 21300006, guid: bc89207d8f0eea243a1e1988d3d2c012, type: 3}
+  - {fileID: 21300004, guid: 6a0dc8c17352179439ccd9b522466a6b, type: 3}
+  - {fileID: 21300002, guid: d695d7ad9f61d2d45b0bed6e05c4efb4, type: 3}
+  - {fileID: 21300006, guid: 86de5df0ede87c34095198aeb2a77188, type: 3}
+  - {fileID: 21300004, guid: a05ce036100294a45b98145e85d9b42e, type: 3}
+  - {fileID: 21300002, guid: be45745e1bd3d2746a012b8b332de151, type: 3}
+  trapClothingFront:
+  - {fileID: 21300004, guid: bc89207d8f0eea243a1e1988d3d2c012, type: 3}
+  - {fileID: 21300002, guid: 6a0dc8c17352179439ccd9b522466a6b, type: 3}
+  - {fileID: 21300000, guid: d695d7ad9f61d2d45b0bed6e05c4efb4, type: 3}
+  - {fileID: 21300004, guid: 86de5df0ede87c34095198aeb2a77188, type: 3}
+  - {fileID: 21300002, guid: a05ce036100294a45b98145e85d9b42e, type: 3}
+  - {fileID: 21300000, guid: be45745e1bd3d2746a012b8b332de151, type: 3}
+  trapClothingBack:
+  - {fileID: 21300000, guid: bc89207d8f0eea243a1e1988d3d2c012, type: 3}
+  - {fileID: 21300006, guid: 6a0dc8c17352179439ccd9b522466a6b, type: 3}
+  - {fileID: 21300004, guid: d695d7ad9f61d2d45b0bed6e05c4efb4, type: 3}
+  - {fileID: 21300000, guid: 86de5df0ede87c34095198aeb2a77188, type: 3}
+  - {fileID: 21300006, guid: a05ce036100294a45b98145e85d9b42e, type: 3}
+  - {fileID: 21300004, guid: be45745e1bd3d2746a012b8b332de151, type: 3}
   villagerOrientation: right
 --- !u!114 &114364190404941118
 MonoBehaviour:
@@ -496,6 +527,10 @@ MonoBehaviour:
   - {fileID: 1713061083621386}
   - {fileID: 1940574119323084}
   - {fileID: 1263163866378088}
+  trapClothingLeft: []
+  trapClothingRight: []
+  trapClothingFront: []
+  trapClothingBack: []
   villagerOrientation: right
 --- !u!114 &114503903842594004
 MonoBehaviour:
@@ -534,6 +569,7 @@ MonoBehaviour:
   - {fileID: 21300006, guid: 3d97b68630f64b84abc5f2bd0f1c55e1, type: 3}
   - {fileID: 21300012, guid: 264f7122b65dac94b9de781dc6ffc621, type: 3}
   - {fileID: 21300006, guid: 22aff351cbb91a746ab844030efd0b85, type: 3}
+  villagerType: 0
 --- !u!114 &114561437081888758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -582,6 +618,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: e9db2a075db3e3a48a45021f79c966f8, type: 3}
   - {fileID: 21300004, guid: c9e49fd486506aa42b477f192dabcf29, type: 3}
   - {fileID: 21300002, guid: e94c772b9562c994793c75f1d297db3a, type: 3}
+  villagerType: 0
 --- !u!114 &114895572877123468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -632,6 +669,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 903b2f8cd29bc8c468afa78a9ef99287, type: 3}
   - {fileID: 21300002, guid: b754371c69b2cdd4bab15c227b437615, type: 3}
   - {fileID: 21300002, guid: f03c65a2aca8de749aea5e560e420d40, type: 3}
+  villagerType: 0
 --- !u!212 &212120002991808398
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -665,7 +703,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1608736809
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
