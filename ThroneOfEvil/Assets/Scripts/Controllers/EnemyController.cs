@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-	public float speed;                         //The speed of the enemy, around 5 looks nice
+	public float speed = 2;              //The speed of the enemy
 	public float horizontal;                    //This has no function until random movement within the different lanes is implemented
 	public float vertical;                      //This has no function until random movement within the different lanes is implemented
 	public float laneOne = 5f;                  //Representing the Y-value of lane 1
@@ -13,18 +13,16 @@ public class EnemyController : MonoBehaviour {
 	public float laneFour = -2.5f;              //Representing the Y-value of lane 4
 	public float laneFive = -5f;                //Representing the Y-value of lane 5
 	public float laneDiversity = 0.5f;          //The randomized difference in Y-value for enemies on the same lane
-	public TarPool tarPool;
 	public TrapDoorRelease trapDoor;
-	public FreezeTrapExplosion freezeTrap;
 	public float pathReactionTime;
 	public Vector3 destinationOne;
 	public Vector3 destinationTwo;
 	public Vector3 destinationThree;
 	private Vector3 currentPosition;            //The current position of the enemy on this update
 	private Vector3 targetPosition;             //The position the enemy will move to on the next update
-	//  private Vector3 previousPosition;           //The position position of the enemy on the update before, not currently in use
+	//private Vector3 previousPosition;         //The position position of the enemy on the update before, not currently in use
 	private float targetY;                      //The Y-value of targetPosition
-	private float normalSpeed;          //The value of speed stored so if speed is changed during run time it can later be reverted back to it's original value
+	private float normalSpeed;                  //The value of speed stored so if speed is changed during run time it can later be reverted back to it's original value
 	private bool foundDestinationOne = false;
 	private bool foundDestinationTwo = false;
 	private bool foundDestinationThree = false;
@@ -32,7 +30,7 @@ public class EnemyController : MonoBehaviour {
 	private bool canMoveUp = true;
 	private bool canMoveDown = true;
 	public bool isMovementPaused = false;
-	public bool isPaused1 = false;
+	public bool isPaused = false;
 	void Start()
 	{
 		//Start() assigns a random value between 0 and 4 to each enemy spawn, this in turn decides their starting lane
@@ -63,13 +61,31 @@ public class EnemyController : MonoBehaviour {
 	{
 		//Every FixedUpdate() the enemy moves towards the target position, 
 		//which is calculated by adding (speed value multiplied by Time.deltaTime) to the X-value of the enemies current position
-		float step = speed * Time.deltaTime;
+		CheckForTag();
+		if (isPaused) {
+			speed = normalSpeed * 0;
+		}
+		float step = speed * Time.fixedDeltaTime;
 		currentPosition = transform.position;
 		targetPosition.x = currentPosition.x += step*0.8f;
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
 		MoveToDestination ();
-		if (isMovementPaused == true) {
-			StartCoroutine (pauseMovement(isPaused1));
+	}
+	void CheckForTag(){
+		if (gameObject.tag == "Enemy") {
+			speed = normalSpeed;
+		} else if (gameObject.tag == "FrozenEnemy") {
+			speed = normalSpeed * 0;
+			//Debug.Log("Enemy is frozen!");
+		} else if (gameObject.tag == "TarredEnemy") {
+			speed = normalSpeed / 2;
+			//Debug.Log("Enemy is tarred!");
+		} else if (gameObject.tag == "BurningEnemy") {
+			speed = normalSpeed;
+			Debug.Log("Enemy is burning!");
+		} else {
+			Debug.Log ("Enemy CheckForTag() failed!");
+			return;
 		}
 	}
 	void RandomLaneMovement()
@@ -225,12 +241,6 @@ public class EnemyController : MonoBehaviour {
 		targetY = lane + randomizer;
 		targetPosition.y = targetY;
 	}
-	public IEnumerator pauseMovement(bool isPaused){
-		speed = 0;
-		yield return new WaitUntil(() => isPaused == false);
-		speed = 5;
-		isMovementPaused = false;
-	}
 	IEnumerator BounceBack()
 	{
 		//This script is a kind of work in progress since I don't think it looks super nice. But right now it gets the job done and I'm focusing on more urgent stuff.
@@ -243,29 +253,9 @@ public class EnemyController : MonoBehaviour {
 		speed *= -1f;
 		objectCollision = false;
 	}
-	IEnumerator TarCountdown()
-	{
-		gameObject.tag = "TarredEnemy";
-		speed = normalSpeed * tarPool.slowdown;
-		yield return new WaitForSeconds (tarPool.slowDurationSeconds);
-		speed = normalSpeed;
-		gameObject.tag = "Enemy";
-	}
-	IEnumerator FreezeCountdown()
-	{
-		gameObject.tag = "FrozenEnemy";
-		speed = normalSpeed * 0;
-		yield return new WaitForSeconds (freezeTrap.freezeDurationSeconds);
-		speed = normalSpeed;
-		gameObject.tag = "Enemy";
-	}
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.tag == "Trap" || collider.tag == "TrapDoor") 
-		{
-			Destroy(gameObject);
-		}
-		else if (collider.tag == "Trap Detection") 
+		if (collider.tag == "Trap Detection") 
 		{
 			SwitchLanes ();
 		}
@@ -277,12 +267,6 @@ public class EnemyController : MonoBehaviour {
 		{
 			//StartCoroutine (BounceBack ());
 			objectCollision = true;
-		}
-		if (collider.tag == "TarPool" || collider.tag == "TarredBoulder") {
-			StartCoroutine (TarCountdown ());
-		}
-		if (collider.tag == "FreezeTrapExplosion") {
-			StartCoroutine (FreezeCountdown ());
 		}
 	}
 	void OnTriggerStay(Collider collider)

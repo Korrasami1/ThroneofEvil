@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour {
         restartText.text = "";
         gameOverText.text = "";
         counterforSpawning = 0;
-		leveltimedelay = Time.time + 20f;
+		leveltimedelay = Time.time + leveltimedelay;
 		Instantiate (VoiceCommands, transform.position, Quaternion.identity);
         //isSpawnOver = false;
         StartCoroutine(SpawnWaves());
@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour {
 		if (killCounter >= WinnerCondition) {
 			Winner (1);
 		}else if(Time.time > leveltimedelay){
-			leveltimedelay = Time.time + 20f;
+			leveltimedelay = Time.time + leveltimedelay;
 			Winner (2);	
 		}
 		if (Input.GetKeyDown (KeyCode.Escape)) {
@@ -109,12 +109,11 @@ public class GameController : MonoBehaviour {
     public void GameOver()
     {
         gameOver = true;
-		leveltimedelay = Time.time + 20f;
     }
     public void Restart()
     {
         restart = true;
-		leveltimedelay = Time.time + 20f;
+		leveltimedelay = Time.time + leveltimedelay;
     }
 	public void Winner(int type)
 	{

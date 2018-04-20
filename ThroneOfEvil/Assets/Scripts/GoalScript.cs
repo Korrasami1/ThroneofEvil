@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GoalScript : MonoBehaviour {
+	public float damageToGate = 20;
 	HealthController health;
 	GameObject[] gameObjects;
 	//GameObject[] villagers;
-
 	void Start(){
 		GameObject healthObject = GameObject.FindWithTag("GameController");
 		if (healthObject != null)
@@ -18,33 +18,29 @@ public class GoalScript : MonoBehaviour {
 			Debug.Log("Cannot find 'HealthController' script");
 		}
 	}
-
 	void FixedUpdate(){
-		
-	}
 
+	}
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Enemy")
+		if (other.CompareTag("Enemy") || other.CompareTag("TarredEnemy") || other.CompareTag("FrozenEnemy") || other.CompareTag("BurningEnemy"))
 		{
-			health.DealDamage (25);
-			other.GetComponent<EnemyController> ().isMovementPaused = true;
-			other.GetComponent<EnemyController> ().isPaused1 = true;
+			health.DealDamage (damageToGate);
+			//other.GetComponent<EnemyController> ().isMovementPaused = true;
+			other.GetComponent<EnemyController> ().isPaused = true;
 			if (health.currentHealth <= 0) {
-				other.GetComponent<EnemyController>().speed = 5;
-				other.GetComponent<EnemyController> ().isPaused1 = false;
+				other.tag = "Enemy";
+				other.GetComponent<EnemyController> ().isPaused = false;
 				collectCurrentEnemies ();
 				Destroy (gameObject);
 			}
 		}
-
 	}
-
 	void collectCurrentEnemies(){
 		gameObjects =  GameObject.FindGameObjectsWithTag ("Enemy");
 		//villagers =  GameObject.FindGameObjectsWithTag ("Enemy"); //this is for next level copy and paste
 		for (var i = 0; i < gameObjects.Length; i++) {
-			gameObjects [i].GetComponent<EnemyController> ().isPaused1 = false;
+			gameObjects [i].GetComponent<EnemyController> ().isPaused = false;
 		}
 	}
 }

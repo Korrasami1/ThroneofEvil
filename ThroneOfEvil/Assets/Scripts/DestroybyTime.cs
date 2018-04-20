@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroybyTime : MonoBehaviour {
-
+	public int time = 3;
 	void Start(){
-		Destroy (gameObject, 3);
+		Destroy (gameObject, time);
 	}
 }

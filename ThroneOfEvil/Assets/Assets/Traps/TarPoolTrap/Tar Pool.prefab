@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uses: 3
   slowDurationSeconds: 3
-  slowdown: 0.5
+  explosion: {fileID: 1679949121091116, guid: 7aace8cd9738ddb408428e811800fb0e, type: 2}
 --- !u!135 &135694371225777642
 SphereCollider:
   m_ObjectHideFlags: 1

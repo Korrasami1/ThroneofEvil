@@ -52,7 +52,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 19.2, y: 10.8, z: 0.2}
+  m_Size: {x: 19.2, y: 10.8, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114862277587920106
 MonoBehaviour:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1900c30081ec56a4aa0d8800f24c0147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeExplosionDurationSeconds: 0.5
+  deletionTimer: 1
   freezeDurationSeconds: 3
 --- !u!212 &212510420758463776
 SpriteRenderer:

@@ -18,17 +18,14 @@ public class TrackingController : MonoBehaviour {
 		getEnemyHealthController();
 		getScoreManager ();
 	}
-
 	// Update is called once per frame
 	void Update()
 	{
 		Vector3 dir = target.position - transform.position; //was target.transform.position
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.AngleAxis(angle + _angleOffset, Vector3.forward);
-
 		transform.position += transform.up * _speed * Time.deltaTime;
 	}
-
 	void getEnemyHealthController(){
 		healthObject = GameObject.FindWithTag("Enemy");
 		if (healthObject != null)
@@ -40,7 +37,6 @@ public class TrackingController : MonoBehaviour {
 			Debug.Log("Cannot find 'EnemyHealthController' script from MinionTracking Script");
 		}
 	}
-
 	private void getScoreManager(){
 		GameObject points = GameObject.FindWithTag("Scoreboard");
 		if (points != null)
@@ -52,16 +48,15 @@ public class TrackingController : MonoBehaviour {
 			Debug.Log("Cannot find 'ScoreboardManager' script");
 		}
 	}
-
 	void OnTriggerEnter(Collider other)
 	{
-		if (healthObject != null) {
-			if (other.CompareTag ("Enemy")) {
-				Scoreboard.killType = "Minion";
-				other.GetComponent<EnemyHealthController>().DealDamage (damage);
-				Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
-			}
-		}
+		//      if (healthObject != null) {
+		//          if (other.CompareTag ("Enemy")) {
+		//              Scoreboard.killType = "Minion";
+		//              other.GetComponent<EnemyHealthController>().DealDamage (damage);
+		//              Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
+		//          }
+		//      }
 		if (other.CompareTag ("MinionTarget")) {
 			Destroy (gameObject);
 		}

@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class FreezeTrapExplosion : MonoBehaviour {
 
-	public float freezeExplosionDurationSeconds;
-	public float freezeDurationSeconds;
-
-	void Awake () {
-		StartCoroutine (FreezeExplosion ());
+	public float deletionTimer = 1f;
+	public float freezeDurationSeconds = 3f;
+	ScoreManager scoreboard;
+	void Start () {
+		Destroy (gameObject, deletionTimer);
 	}
-
-	private IEnumerator FreezeExplosion()
+	IEnumerator FreezeCountdown(Collider other)
 	{
-		yield return new WaitForSeconds (freezeExplosionDurationSeconds);
-		Destroy (gameObject);
+		other.tag = "FrozenEnemy";
+		yield return new WaitForSeconds (freezeDurationSeconds);
+		other.tag = "Enemy";
+	}
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag ("Enemy") || other.CompareTag ("TarredEnemy") || other.CompareTag("BurningEnemy")) {
+			StartCoroutine(FreezeCountdown (other));
+		}
 	}
 }

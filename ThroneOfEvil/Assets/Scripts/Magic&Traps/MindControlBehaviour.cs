@@ -13,6 +13,7 @@ public class MindControlBehaviour : MonoBehaviour {
 	public float damage = 0;
 
 	void Start(){
+		mindcontrolattack.SetActive (false);
 		//To get the current mouse position
 		mousePosition = Input.mousePosition;
 

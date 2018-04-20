@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 1822839089202670}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 3, z: 1}
   m_Children:
   - {fileID: 4747757091489260}
   - {fileID: 4497517771790364}
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02462185a31faae49b2a6b06baf8eb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  releaseButton: space
+  releaseButton: p
   mode: open
   cooldown: 5
   trapDoor: {fileID: 1991564518388706, guid: 100ccf22e08ed27468df73e4e9cff9cb, type: 2}

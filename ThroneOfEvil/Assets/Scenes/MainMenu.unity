@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor:
-  - {fileID: 2800000, guid: 0881065c79e718f4386b20d23003867f, type: 3}
+  - {fileID: 2800000, guid: 791aa1659c680f540a6b31ea9015db9b, type: 3}
   cursorChangeNum: 0
 --- !u!1 &505493173
 GameObject:

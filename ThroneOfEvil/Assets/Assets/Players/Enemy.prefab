@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1713061083621386
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7495fcec7f254343974f49ad1cf5191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
   horizontal: 0
   vertical: 0
   laneOne: 5
@@ -490,16 +490,13 @@ MonoBehaviour:
   laneFour: -2.5
   laneFive: -5
   laneDiversity: 0.5
-  tarPool: {fileID: 114678727523451236, guid: e168a6f00044bee42a3d79ae4aadecc6, type: 2}
   trapDoor: {fileID: 0}
-  freezeTrap: {fileID: 114862277587920106, guid: 2f2228215a3d8334aa9444042239223e,
-    type: 2}
   pathReactionTime: 4
-  destinationOne: {x: 4, y: 5, z: 0}
-  destinationTwo: {x: 4, y: -5, z: 0}
-  destinationThree: {x: 8, y: 0, z: 0}
+  destinationOne: {x: 3, y: 5, z: 0}
+  destinationTwo: {x: 3, y: -5, z: 0}
+  destinationThree: {x: 12, y: 0, z: 0}
   isMovementPaused: 0
-  isPaused1: 0
+  isPaused: 0
 --- !u!114 &114237529140303238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -672,9 +669,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33df01cec2e499f459d7c92e1619aa41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageTraps: 100
-  damageDoor: 100
-  damageMindControlAttack: 30
+  trapDoorDamage: 100
+  boulderDamage: 50
+  boulderFrozenDamage: 100
+  fireDamage: 25
+  fireFrozenDamage: 0
+  explosionDamage: 75
+  explosionFrozenDamage: 100
+  burningDamageOverTime: 5
+  lightningDamage: 50
+  lightningFrozenDamage: 100
+  minionDamage: 50
+  mindControlAttackDamage: 25
 --- !u!114 &114940696917969630
 MonoBehaviour:
   m_ObjectHideFlags: 1
