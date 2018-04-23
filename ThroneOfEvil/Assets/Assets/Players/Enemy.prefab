@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4017627133533600}
   - component: {fileID: 54078151883625510}
   - component: {fileID: 212780846402385204}
+  - component: {fileID: 95406890716787590}
   m_Layer: 8
   m_Name: Skin
   m_TagString: Untagged
@@ -124,6 +125,7 @@ GameObject:
   - component: {fileID: 54018932734331208}
   - component: {fileID: 212994641912652892}
   - component: {fileID: 114574666383999470}
+  - component: {fileID: 95920545649134258}
   m_Layer: 8
   m_Name: ClothingGeneratorRightView
   m_TagString: Untagged
@@ -245,6 +247,7 @@ GameObject:
   - component: {fileID: 4658407506932116}
   - component: {fileID: 54950372540587928}
   - component: {fileID: 212230254598760178}
+  - component: {fileID: 95068980094971276}
   m_Layer: 8
   m_Name: Hair
   m_TagString: Untagged
@@ -262,6 +265,7 @@ GameObject:
   - component: {fileID: 4099279944487836}
   - component: {fileID: 54425585396761110}
   - component: {fileID: 212661846916137448}
+  - component: {fileID: 95300863379377936}
   m_Layer: 8
   m_Name: Cshirts
   m_TagString: Untagged
@@ -371,7 +375,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539559234517020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.45513, y: 0.72472197, z: 0}
+  m_LocalPosition: {x: -8.740348, y: -3.0457253, z: 0}
   m_LocalScale: {x: 0.2646957, y: 0.26829246, z: 1}
   m_Children:
   - {fileID: 224760932204103536}
@@ -544,6 +548,74 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.6402185, y: 6.015623, z: 0.2}
   m_Center: {x: -0.05351404, y: -0.12540416, z: 0}
+--- !u!95 &95068980094971276
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713061083621386}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 59ff54c6d97e90a4ea746c4b76c7b1ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95300863379377936
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794886630908308}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 821f3e2c297ef084e8c5ce622f854645, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95406890716787590
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263163866378088}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fac79bb6b71a554487b8d0110c55411, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95920545649134258
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1278202136207554}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cc5c7c75886a1f4dbbd30c5f5e36296, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114190138845577412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -709,6 +781,10 @@ MonoBehaviour:
   - {fileID: 21300006, guid: 3d97b68630f64b84abc5f2bd0f1c55e1, type: 3}
   - {fileID: 21300012, guid: 264f7122b65dac94b9de781dc6ffc621, type: 3}
   - {fileID: 21300006, guid: 22aff351cbb91a746ab844030efd0b85, type: 3}
+  AnimationHair: []
+  AnimationPants: []
+  AnimationSkin: []
+  AnimationShirt: []
   villagerType: 0
 --- !u!114 &114561437081888758
 MonoBehaviour:
@@ -759,6 +835,22 @@ MonoBehaviour:
   - {fileID: 21300004, guid: e9db2a075db3e3a48a45021f79c966f8, type: 3}
   - {fileID: 21300004, guid: c9e49fd486506aa42b477f192dabcf29, type: 3}
   - {fileID: 21300002, guid: e94c772b9562c994793c75f1d297db3a, type: 3}
+  AnimationHair:
+  - {fileID: 9100000, guid: 59ff54c6d97e90a4ea746c4b76c7b1ff, type: 2}
+  - {fileID: 9100000, guid: 2685e1ad54a3cdc46923a27df256fbc3, type: 2}
+  - {fileID: 9100000, guid: 156a64fb6ddc33d47bed6a25e7ce7b2f, type: 2}
+  AnimationPants:
+  - {fileID: 9100000, guid: 4cc5c7c75886a1f4dbbd30c5f5e36296, type: 2}
+  - {fileID: 9100000, guid: 2e60130bce910974c8d6cad6a5743a81, type: 2}
+  - {fileID: 9100000, guid: 7cc8ce9cede8e8d4882e943df9c6d2b3, type: 2}
+  AnimationSkin:
+  - {fileID: 9100000, guid: 5fac79bb6b71a554487b8d0110c55411, type: 2}
+  - {fileID: 9100000, guid: d8a888205c7fbe64abc19f33ef447842, type: 2}
+  - {fileID: 9100000, guid: da84c96262adcfd4d9d5ba12010ddf7f, type: 2}
+  AnimationShirt:
+  - {fileID: 9100000, guid: 821f3e2c297ef084e8c5ce622f854645, type: 2}
+  - {fileID: 9100000, guid: 24e442640e7e7ba448f8cde56797f423, type: 2}
+  - {fileID: 9100000, guid: 6a8fc62d7b80929409a2b7185fb6d1fb, type: 2}
   villagerType: 0
 --- !u!114 &114583684375257704
 MonoBehaviour:
@@ -928,6 +1020,10 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 903b2f8cd29bc8c468afa78a9ef99287, type: 3}
   - {fileID: 21300002, guid: b754371c69b2cdd4bab15c227b437615, type: 3}
   - {fileID: 21300002, guid: f03c65a2aca8de749aea5e560e420d40, type: 3}
+  AnimationHair: []
+  AnimationPants: []
+  AnimationSkin: []
+  AnimationShirt: []
   villagerType: 0
 --- !u!114 &114949757182273954
 MonoBehaviour:

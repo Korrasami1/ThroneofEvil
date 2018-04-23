@@ -30,6 +30,7 @@ public class GoalScript : MonoBehaviour {
 			other.GetComponent<EnemyController> ().isPaused = true;
 			if (health.currentHealth <= 0) {
 				other.tag = "Enemy";
+				other.GetComponent<EnemyController>().CheckForTag();
 				other.GetComponent<EnemyController> ().isPaused = false;
 				collectCurrentEnemies ();
 				Destroy (gameObject);
@@ -41,6 +42,7 @@ public class GoalScript : MonoBehaviour {
 		//villagers =  GameObject.FindGameObjectsWithTag ("Enemy"); //this is for next level copy and paste
 		for (var i = 0; i < gameObjects.Length; i++) {
 			gameObjects [i].GetComponent<EnemyController> ().isPaused = false;
+			gameObjects [i].GetComponent<EnemyController>().CheckForTag();
 		}
 	}
 }

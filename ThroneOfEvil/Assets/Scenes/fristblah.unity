@@ -237,7 +237,7 @@ Prefab:
     - target: {fileID: 224926950820415848, guid: c441c17543b612c4c897112fc6887214,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224926950820415848, guid: c441c17543b612c4c897112fc6887214,
         type: 2}
@@ -1890,8 +1890,8 @@ RectTransform:
   - {fileID: 2062970908}
   - {fileID: 1132425530}
   - {fileID: 1500052980}
-  - {fileID: 1886365616}
   - {fileID: 1472058801}
+  - {fileID: 1886365616}
   - {fileID: 1940877763}
   - {fileID: 65108281}
   m_Father: {fileID: 0}
@@ -3083,8 +3083,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 85.69307, y: 45.309708, z: 1}
-  m_Center: {x: 3.8801467, y: -0.7672331, z: 0}
+  m_Size: {x: 106.73418, y: 61.918533, z: 1}
+  m_Center: {x: 14.400703, y: 2.0009074, z: 0}
 --- !u!114 &998213392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,7 +4082,7 @@ RectTransform:
   - {fileID: 1644786147}
   - {fileID: 1111048361}
   m_Father: {fileID: 479126102}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5211,7 +5211,7 @@ Prefab:
     - target: {fileID: 224280373194690306, guid: f0e683869ac6b9f428ba81023ae1e0c0,
         type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224280373194690306, guid: f0e683869ac6b9f428ba81023ae1e0c0,
         type: 2}

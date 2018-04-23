@@ -7,13 +7,11 @@ public class MindControlBehaviour : MonoBehaviour {
 	EnemyHealthController enemyHealth;
 	ScoreManager Scoreboard;
 	GameObject healthObject;
-	public GameObject mindcontrolattack;
 	Vector3 mousePosition,targetPosition;
 	public float distance = 10f;
 	public float damage = 0;
 
 	void Start(){
-		mindcontrolattack.SetActive (false);
 		//To get the current mouse position
 		mousePosition = Input.mousePosition;
 

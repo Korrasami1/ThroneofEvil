@@ -11,6 +11,7 @@ public class ClothingGenerator : MonoBehaviour {
 	public Sprite[] childShirts, manShirts, womanShirts;
 	public Sprite[] childHair, manHair, womanHair;
 	public Sprite[] skins; //male or female or child versions
+	public RuntimeAnimatorController[] AnimationHair, AnimationPants, AnimationSkin, AnimationShirt;
 	private Sprite pant, shirt, hair, skin;
 	private int vType; //villager Type
 	public int villagerType; //this is for the traps clothing in the clothing controller
@@ -90,19 +91,21 @@ public class ClothingGenerator : MonoBehaviour {
 			transform.localPosition = Rpants;
 			pant = childPants[Random.Range(0, childPants.Length)];
 			GetComponent<SpriteRenderer> ().sprite = pant;
-
+			GetComponent<Animator> ().runtimeAnimatorController = AnimationPants[0] as RuntimeAnimatorController;
 			break;
 		case 2: //man
 			Rpants = new Vector3 (0.19f, -2.01f, 0f);
 			transform.localPosition = Rpants;
 			pant = manPants[Random.Range(0, manPants.Length)];
 			GetComponent<SpriteRenderer> ().sprite = pant;
+			GetComponent<Animator> ().runtimeAnimatorController = AnimationPants[1] as RuntimeAnimatorController;
 			break;
 		case 3: //woman
 			Rpants = new Vector3 (-0.07f, -1.47f, 0f);
 			transform.localPosition = Rpants;
 			pant = womanPants[Random.Range(0, womanPants.Length)];
 			GetComponent<SpriteRenderer> ().sprite = pant;
+			GetComponent<Animator> ().runtimeAnimatorController = AnimationPants[2] as RuntimeAnimatorController;
 			break;
 		}
 	}
@@ -120,18 +123,21 @@ public class ClothingGenerator : MonoBehaviour {
 			Shirt.GetComponent<SpriteRenderer> ().sprite = shirt;
 			Rshirt = new Vector3 (-0.11f, 0.87f, 0f);
 			Shirt.transform.localPosition = Rshirt;
+			Shirt.GetComponent<Animator> ().runtimeAnimatorController = AnimationShirt[0] as RuntimeAnimatorController;
 			break;
 		case 2: //man
 			shirt = manShirts[Random.Range(0, manShirts.Length)];
 			Shirt.GetComponent<SpriteRenderer> ().sprite = shirt;
 			Rshirt = new Vector3 (-0.11f, 0.87f, 0f);
 			Shirt.transform.localPosition = Rshirt;
+			Shirt.GetComponent<Animator> ().runtimeAnimatorController = AnimationShirt[1] as RuntimeAnimatorController;
 			break;
 		case 3: //woman
 			shirt = womanShirts[Random.Range(0, womanShirts.Length)];
 			Shirt.GetComponent<SpriteRenderer> ().sprite = shirt;
 			Rshirt = new Vector3 (-0.11f, 2.15f, 0f);
 			Shirt.transform.localPosition = Rshirt;
+			Shirt.GetComponent<Animator> ().runtimeAnimatorController = AnimationShirt[2] as RuntimeAnimatorController;
 			break;
 		}
 	}
@@ -149,18 +155,21 @@ public class ClothingGenerator : MonoBehaviour {
 			Hair.GetComponent<SpriteRenderer> ().sprite = hair;
 			Rhair = new Vector3 (-0.13f, 1.61f, 0f);
 			Hair.transform.localPosition = Rhair;
+			Hair.GetComponent<Animator> ().runtimeAnimatorController = AnimationHair[0] as RuntimeAnimatorController;
 			break;
 		case 2: //man
 			hair = manHair[Random.Range(0, manHair.Length)];
 			Hair.GetComponent<SpriteRenderer> ().sprite = hair;
 			Rhair = new Vector3 (-0.2f, 2.86f, 0f);
 			Hair.transform.localPosition = Rhair;
+			Hair.GetComponent<Animator> ().runtimeAnimatorController = AnimationHair[1] as RuntimeAnimatorController;
 			break;
 		case 3: //woman
 			hair = womanHair[Random.Range(0, womanHair.Length)];
 			Hair.GetComponent<SpriteRenderer> ().sprite = hair;
 			Rhair = new Vector3 (-0.13f, 2.38f, 0f);
 			Hair.transform.localPosition = Rhair;
+			Hair.GetComponent<Animator> ().runtimeAnimatorController = AnimationHair[2] as RuntimeAnimatorController;
 			break;
 		}
 	}
@@ -196,18 +205,21 @@ public class ClothingGenerator : MonoBehaviour {
 			Skin.GetComponent<SpriteRenderer> ().sprite = skin;
 			Rskin = new Vector3 (0.12f, 0.61f, 0f);
 			Skin.transform.localPosition = Rskin;
+			Skin.GetComponent<Animator> ().runtimeAnimatorController = AnimationSkin[0];
 			break;
 		case 2: //man
 			skin = skins[1];
 			Skin.GetComponent<SpriteRenderer> ().sprite = skin;
 			Rskin = new Vector3 (-0.03f, 1.67f, 0f);
 			Skin.transform.localPosition = Rskin;
+			Skin.GetComponent<Animator> ().runtimeAnimatorController = AnimationSkin[1];
 			break;
 		case 3: //woman
 			skin = skins[2];
 			Skin.GetComponent<SpriteRenderer> ().sprite = skin;
 			Rskin = new Vector3 (0.23f, 1.75f, 0f);
 			Skin.transform.localPosition = Rskin;
+			Skin.GetComponent<Animator> ().runtimeAnimatorController = AnimationSkin[2];
 			break;
 		}
 
