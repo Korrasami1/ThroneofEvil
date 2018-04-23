@@ -6,7 +6,7 @@ public class DestroyByBoundary : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-		if (other.tag == "Boulder" || other.tag == "Trap" || other.tag == "Enemy")
+		if (other.CompareTag("Boulder") || other.CompareTag("Trap") || other.CompareTag("Enemy") || other.CompareTag("BurningBoulder") || other.CompareTag("TarredBoulder"))
         {
             Destroy(other.gameObject);
         }

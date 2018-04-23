@@ -36,7 +36,9 @@ public class TarPool : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag ("Enemy") || other.CompareTag ("TarredEnemy")) {
+			other.GetComponent<EnemyController>().CheckForTag();
 			StartCoroutine(TarCountdown (other));
+			other.GetComponent<EnemyController>().CheckForTag();
 			uses -= 1;
 		}
 		if (other.CompareTag ("Boulder") || other.CompareTag("TarredBoulder")){

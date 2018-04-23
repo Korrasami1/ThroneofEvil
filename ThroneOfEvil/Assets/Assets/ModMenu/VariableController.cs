@@ -92,7 +92,7 @@ public class VariableController : MonoBehaviour {
 	}
 
 	public void takeScreenShot(){
-		ScreenCapture.CaptureScreenshot ("ScreenShot.PNG");
+		ScreenCapture.CaptureScreenshot ("ScreenShot.png"); //was screencapture
 	}
 
 	//Make the ModeMenu draggable on the screen.

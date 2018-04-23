@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour {
 	{
 		//Every FixedUpdate() the enemy moves towards the target position, 
 		//which is calculated by adding (speed value multiplied by Time.deltaTime) to the X-value of the enemies current position
-		CheckForTag();
+		//CheckForTag(); //this should not be in update for the enemy!!
 		if (isPaused) {
 			speed = normalSpeed * 0;
 		}
@@ -71,16 +71,16 @@ public class EnemyController : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
 		MoveToDestination ();
 	}
-	void CheckForTag(){
-		if (gameObject.tag == "Enemy") {
+	public void CheckForTag(){
+		if (gameObject.CompareTag("Enemy")) {
 			speed = normalSpeed;
-		} else if (gameObject.tag == "FrozenEnemy") {
+		} else if (gameObject.CompareTag("FrozenEnemy")) {
 			speed = normalSpeed * 0;
 			//Debug.Log("Enemy is frozen!");
-		} else if (gameObject.tag == "TarredEnemy") {
+		} else if (gameObject.CompareTag("TarredEnemy")) {
 			speed = normalSpeed / 2;
 			//Debug.Log("Enemy is tarred!");
-		} else if (gameObject.tag == "BurningEnemy") {
+		} else if (gameObject.CompareTag("BurningEnemy")) {
 			speed = normalSpeed;
 			Debug.Log("Enemy is burning!");
 		} else {
@@ -255,13 +255,13 @@ public class EnemyController : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.tag == "Trap Detection") 
+		if (collider.CompareTag ("Trap Detection")) 
 		{
 			SwitchLanes ();
 		}
 		if (collider.CompareTag("Fear")) {
 			gameObject.GetComponent<ClothingController>().villagerOrientation = "right";
-			speed = 5;
+			speed = 2;
 		}
 		if (collider.tag == "Wall" && objectCollision == false) 
 		{
@@ -271,30 +271,30 @@ public class EnemyController : MonoBehaviour {
 	}
 	void OnTriggerStay(Collider collider)
 	{
-		if (collider.tag == "Wall Detection") 
+		if (collider.CompareTag ("Wall Detection"))
 		{
 			AvoidObstacle (transform.position.x, transform.position.y);
 		}
-		if (collider.tag == "Trap Downwards Detection") 
+			if (collider.CompareTag ("Trap Downwards Detection"))
 		{
 			canMoveDown = false;
 		}
-		if (collider.tag == "Trap Upwards Detection") 
+				if (collider.CompareTag ("Trap Upwards Detection"))
 		{
 			canMoveUp = false;
 		}
 	}
 	void OnTriggerExit(Collider collider)
 	{
-		if (collider.tag == "Wall" && objectCollision == true) 
+		if (collider.CompareTag ("Wall") && objectCollision == true) 
 		{
 			objectCollision = false;
 		}
-		if (collider.tag == "Trap Downwards Detection") 
+		if (collider.CompareTag ("Trap Downwards Detection")) 
 		{
 			canMoveDown = true;
 		}
-		if (collider.tag == "Trap Upwards Detection") 
+		if (collider.CompareTag("Trap Upwards Detection")) 
 		{
 			canMoveUp = true;
 		}

@@ -95,11 +95,13 @@ public class VillagerDamageController : MonoBehaviour {
 			DebugHealth (damagerDebug);
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				gameObject.tag = "Enemy";
+				gameObject.GetComponent<EnemyController>().CheckForTag();
 				scoreboard.killType = "Shatter";
 				enemyHealth.DealDamage (fireFrozenDamage);
 				DebugDamage (fireFrozenDamage, damagerDebug);
 			} else if (gameObject.CompareTag ("TarredEnemy")) {
 				gameObject.tag = "BurningEnemy";
+				gameObject.GetComponent<EnemyController>().CheckForTag();
 				enemyHealth.DealDamage (fireDamage);
 				DebugDamage (fireDamage, damagerDebug);
 			}else {
@@ -112,11 +114,13 @@ public class VillagerDamageController : MonoBehaviour {
 			DebugHealth (damagerDebug);
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				gameObject.tag = "Enemy";
+				gameObject.GetComponent<EnemyController>().CheckForTag();
 				scoreboard.killType = "Shatter";
 				enemyHealth.DealDamage (explosionFrozenDamage);
 				DebugDamage (explosionFrozenDamage, damagerDebug);
 			} else if (gameObject.CompareTag ("TarredEnemy")) {
 				gameObject.tag = "BurningEnemy";
+				gameObject.GetComponent<EnemyController>().CheckForTag();
 				enemyHealth.DealDamage (explosionDamage);
 				DebugDamage (explosionDamage, damagerDebug);
 			}else {

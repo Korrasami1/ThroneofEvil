@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealthController : MonoBehaviour {
 
@@ -11,14 +12,14 @@ public class EnemyHealthController : MonoBehaviour {
 	ScoreManager Scoreboard;
 	GameObject points;
 	Transform pointsPlacement;
-	//float healthbar;
+	public Slider healthbar;
 
 	// Use this for initialization
 	void Start () {
 		MaxHealth = 100f;
 		//resetting health after every completed level
 		currentHealth = MaxHealth;
-		//healthbar = calculateHealth();
+		healthbar.value = calculateHealth();
 		getGameController();
 		getScoreManager ();
 	}
@@ -26,6 +27,13 @@ public class EnemyHealthController : MonoBehaviour {
 	void Update()
 	{
 		pointsPlacement = gameObject.transform;
+		healthBarPlacement ();
+	}
+	void healthBarPlacement(){
+		Vector3 toCamera = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+		healthbar.transform.position = toCamera;
+		healthbar.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+		//healthbar.transform.position = toCamera;
 	}
 
 	private void getGameController(){
@@ -55,7 +63,7 @@ public class EnemyHealthController : MonoBehaviour {
 	public void DealDamage(float damageValue)
 	{
 		currentHealth -= damageValue;
-		//healthbar = calculateHealth();
+		healthbar.value = calculateHealth();
 		if(currentHealth <= 0)
 		{
 			Die();
@@ -79,7 +87,7 @@ public class EnemyHealthController : MonoBehaviour {
 		Scoreboard.DealPoints (pointsPlacement);
 		Debug.Log("Villager Killed!");
 		Destroy(gameObject);
-	
+		Destroy(healthbar.gameObject);
 	}
 		
 }

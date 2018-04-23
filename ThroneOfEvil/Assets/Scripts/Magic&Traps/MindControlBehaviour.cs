@@ -60,11 +60,14 @@ public class MindControlBehaviour : MonoBehaviour {
 	{
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
-				Scoreboard.killType = "Fear";
-				other.GetComponent<EnemyHealthController>().DealDamage (damage);
+				//Scoreboard.killType = "Fear";
+				//other.GetComponent<EnemyHealthController>().DealDamage (damage);
 				other.GetComponent<EnemyController> ().speed = 0;
 				other.GetComponent<ClothingController>().villagerOrientation = "left";
-				mindcontrolattack.SetActive (true);
+				other.tag = "MindControlAttack";
+				other.GetComponent<SphereCollider> ().enabled = true;
+				other.GetComponent<BoxCollider> ().enabled = false;
+				//other.mindcontrolattack.SetActive (true);
 			}
 		}
 		Destroy (gameObject, 2);

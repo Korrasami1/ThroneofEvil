@@ -19,7 +19,9 @@ public class FreezeTrapExplosion : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag ("Enemy") || other.CompareTag ("TarredEnemy") || other.CompareTag("BurningEnemy")) {
+			other.GetComponent<EnemyController>().CheckForTag();
 			StartCoroutine(FreezeCountdown (other));
+			other.GetComponent<EnemyController>().CheckForTag();
 		}
 	}
 }
