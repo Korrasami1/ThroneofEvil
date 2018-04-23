@@ -135,6 +135,16 @@ public class VillagerDamageController : MonoBehaviour {
 			enemyHealth.DealDamage (minionDamage);
 			DebugDamage (minionDamage, damagerDebug);
 		}
+		/*if (other.CompareTag ("MindControlAttack")) {
+			DebugHealth (damagerDebug);
+			scoreboard.killType = "MindControl";
+			enemyHealth.DealDamage (mindControlAttackDamage);
+			DebugDamage (mindControlAttackDamage, damagerDebug);
+		}*/
+	}
+
+	void OnTriggerStay(Collider other){
+		string damagerDebug = other.tag;
 		if (other.CompareTag ("MindControlAttack")) {
 			DebugHealth (damagerDebug);
 			scoreboard.killType = "MindControl";

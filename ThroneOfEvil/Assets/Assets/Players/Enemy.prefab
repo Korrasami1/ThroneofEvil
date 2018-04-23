@@ -375,7 +375,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539559234517020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.740348, y: -3.0457253, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2646957, y: 0.26829246, z: 1}
   m_Children:
   - {fileID: 224760932204103536}
@@ -841,7 +841,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 156a64fb6ddc33d47bed6a25e7ce7b2f, type: 2}
   AnimationPants:
   - {fileID: 9100000, guid: 4cc5c7c75886a1f4dbbd30c5f5e36296, type: 2}
-  - {fileID: 9100000, guid: 2e60130bce910974c8d6cad6a5743a81, type: 2}
+  - {fileID: 9100000, guid: ed57d98ac5fdf9943818245cb92e7eb3, type: 2}
   - {fileID: 9100000, guid: 7cc8ce9cede8e8d4882e943df9c6d2b3, type: 2}
   AnimationSkin:
   - {fileID: 9100000, guid: 5fac79bb6b71a554487b8d0110c55411, type: 2}
@@ -982,7 +982,7 @@ MonoBehaviour:
   lightningDamage: 50
   lightningFrozenDamage: 100
   minionDamage: 50
-  mindControlAttackDamage: 25
+  mindControlAttackDamage: 0.2
 --- !u!114 &114940696917969630
 MonoBehaviour:
   m_ObjectHideFlags: 1
