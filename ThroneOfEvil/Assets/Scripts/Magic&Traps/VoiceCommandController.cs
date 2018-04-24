@@ -13,7 +13,7 @@ public class VoiceCommandController : MonoBehaviour
 	protected PhraseRecognizer recognizer;
 	protected string word = "Voice Commands Active";
 	public GameObject minion;
-	public int numOfMinions = 10;
+	public int numOfMinions = 20;
 	private bool isSpawningMinions = false;
 	public GameObject fire;
 	private bool isSpawningFire = false;
@@ -141,10 +141,10 @@ public class VoiceCommandController : MonoBehaviour
 	private void spawnMinions(){
 		if (isSpawningMinions == true) {
 			int tempCounter = 0;
-			Vector3 center = transform.position;
+			//Vector3 center = transform.position;
 			for (int i = 0; i < numOfMinions; i++) {
-				int a = 360 / numOfMinions * i;
-				Vector3 spawnPosition = RandomCircle(center, 15.0f ,a);
+				float a = -15f + i*1.5f;
+				Vector3 spawnPosition = new Vector3(a, 16f, 0f);
 				Instantiate (minion, spawnPosition, Quaternion.identity);
 				tempCounter++;
 				Debug.Log ("minion counter: " + tempCounter); //remove after num of minions is set
@@ -203,5 +203,4 @@ public class VoiceCommandController : MonoBehaviour
 		pos.z = center.z;
 		return pos;
 	}
-
 }

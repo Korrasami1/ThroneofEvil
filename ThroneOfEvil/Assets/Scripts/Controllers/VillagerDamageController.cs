@@ -13,7 +13,7 @@ public class VillagerDamageController : MonoBehaviour {
 	public float burningDamageOverTime = 5;
 	public float lightningDamage = 50;
 	public float lightningFrozenDamage = 100;
-	public float minionDamage = 50;
+	public float minionDamage = 100;
 	public float mindControlAttackDamage = 25;
 	EnemyHealthController enemyHealth;
 	ScoreManager scoreboard;

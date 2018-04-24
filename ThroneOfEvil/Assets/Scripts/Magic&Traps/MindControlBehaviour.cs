@@ -60,7 +60,7 @@ public class MindControlBehaviour : MonoBehaviour {
 			if (other.CompareTag ("Enemy")) {
 				//Scoreboard.killType = "Fear";
 				//other.GetComponent<EnemyHealthController>().DealDamage (damage);
-				other.GetComponent<EnemyController> ().speed = 0;
+				other.GetComponent<EnemyController> ().MultiplySpeed(0f, 0f);
 				other.GetComponent<ClothingController>().villagerOrientation = "left";
 				other.tag = "MindControlAttack";
 				other.GetComponent<SphereCollider> ().enabled = true;

@@ -64,7 +64,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dafd70f867c0f14bb3051d19f473ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fearStopRadius: {fileID: 0}
   damage: 0
-  timetoDestroy: 10
-  FearDuration: 3
+  timetoDestroy: 1

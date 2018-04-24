@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour {
 	private Vector3 targetPosition;             //The position the enemy will move to on the next update
 	//private Vector3 previousPosition;         //The position position of the enemy on the update before, not currently in use
 	private float targetY;                      //The Y-value of targetPosition
-	private float normalSpeed;                  //The value of speed stored so if speed is changed during run time it can later be reverted back to it's original value
+	//private float normalSpeed;                  //The value of speed stored so if speed is changed during run time it can later be reverted back to it's original value
 	private bool foundDestinationOne = false;
 	private bool foundDestinationTwo = false;
 	private bool foundDestinationThree = false;
@@ -31,6 +31,10 @@ public class EnemyController : MonoBehaviour {
 	private bool canMoveDown = true;
 	public bool isMovementPaused = false;
 	public bool isPaused = false;
+	public float speedX = 2;                    //The x-axis speed of the enemy
+	public float speedY = 3;                    //The y-axis speed of the enemy
+	private float normalSpeedX;                 //The value of speedX stored so if speed is changed during run time it can later be reverted back to it's original value
+	private float normalSpeedY;                 //The value of speedY stored so if speed is changed during run time it can later be reverted back to it's original value
 	void Start()
 	{
 		//Start() assigns a random value between 0 and 4 to each enemy spawn, this in turn decides their starting lane
@@ -55,38 +59,45 @@ public class EnemyController : MonoBehaviour {
 			Debug.Log ("Start randomization failed");
 			break;
 		}
-		normalSpeed = speed;
+		//normalSpeed = speed;
+		normalSpeedX = speedX;
+		normalSpeedY = speedY;
 	}
 	void FixedUpdate()
 	{
 		//Every FixedUpdate() the enemy moves towards the target position, 
 		//which is calculated by adding (speed value multiplied by Time.deltaTime) to the X-value of the enemies current position
-		//CheckForTag(); //this should not be in update for the enemy!!
 		if (isPaused) {
-			speed = normalSpeed * 0;
+			MultiplySpeed (0f, 0f);
 		}
-		float step = speed * Time.fixedDeltaTime;
+		float stepX = speedX * Time.fixedDeltaTime;
+		//float stepY = speedY * Time.fixedDeltaTime;
 		currentPosition = transform.position;
-		targetPosition.x = currentPosition.x += step*0.8f;
-		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step*1.25f);
+		targetPosition.x = currentPosition.x += stepX;
+		//targetPosition.y = currentPosition.y += stepY;
+		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, stepX);
 		MoveToDestination ();
 	}
 	public void CheckForTag(){
-		if (gameObject.CompareTag("Enemy")) {
-			speed = normalSpeed;
-		} else if (gameObject.CompareTag("FrozenEnemy")) {
-			speed = normalSpeed * 0;
+		if (gameObject.CompareTag ("Enemy")) {
+			MultiplySpeed (1f, 1f);
+		} else if (gameObject.CompareTag ("FrozenEnemy")) {
+			MultiplySpeed (0f, 0f);
 			//Debug.Log("Enemy is frozen!");
-		} else if (gameObject.CompareTag("TarredEnemy")) {
-			speed = normalSpeed / 2;
+		} else if (gameObject.CompareTag ("TarredEnemy")) {
+			MultiplySpeed (0.5f, 0.5f);
 			//Debug.Log("Enemy is tarred!");
-		} else if (gameObject.CompareTag("BurningEnemy")) {
-			speed = normalSpeed;
-			Debug.Log("Enemy is burning!");
+		} else if (gameObject.CompareTag ("BurningEnemy")) {
+			MultiplySpeed (1f, 1f);
+			Debug.Log ("Enemy is burning!");
 		} else {
 			Debug.Log ("Enemy CheckForTag() failed!");
 			return;
 		}
+	}
+	public void MultiplySpeed(float speedMultX, float speedMultY){
+		speedX = normalSpeedX * speedMultX;
+		speedY = normalSpeedY * speedMultY;
 	}
 	void RandomLaneMovement()
 	{
@@ -110,7 +121,7 @@ public class EnemyController : MonoBehaviour {
 			return 0;
 		}
 	}
-	void SwitchLanes()
+	public void SwitchLanes()
 	{
 		//SwitchLanes() first checks for the y-position of the enemy and then decides aitch lane it is on
 		//Then, depending on lane, MoveTo() is called using the value of the lane that the enemy is supposed to move to
@@ -261,7 +272,7 @@ public class EnemyController : MonoBehaviour {
 		}
 		if (collider.CompareTag("Fear")) {
 			gameObject.GetComponent<ClothingController>().villagerOrientation = "right";
-			speed = 2;
+			MultiplySpeed (1f, 1f);
 		}
 		if (collider.tag == "Wall" && objectCollision == false) 
 		{

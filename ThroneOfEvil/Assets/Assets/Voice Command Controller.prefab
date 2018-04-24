@@ -60,7 +60,7 @@ MonoBehaviour:
   confidence: 2
   minionSpeed: 3
   minion: {fileID: 1981358933227212, guid: 8f3575fc2f45eeb40acd8cc1fec59f21, type: 2}
-  numOfMinions: 10
+  numOfMinions: 20
   fire: {fileID: 1039698808575432, guid: bb6f3232c8b369448a635793ea8a1f1e, type: 2}
   lightning: {fileID: 1749509020380682, guid: e0d38630d6a7290448215d3789f5d9a0, type: 2}
   fear: {fileID: 1652137723988522, guid: 9ca3cc026187f9541b5521a3bb13f4c7, type: 2}

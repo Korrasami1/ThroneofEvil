@@ -5,12 +5,12 @@ using UnityEngine;
 public class FearBehaviour : MonoBehaviour {
 
 	EnemyHealthController enemyHealth;
-	public GameObject fearStopRadius;
+	public float fearSpeed = -3f;
 	ScoreManager Scoreboard;
 	GameObject healthObject;
 	public float damage = 0;
 	public float timetoDestroy = 1f;
-	public int FearDuration = 3;
+	GameObject[] gameObjects;
 
 	void Start(){
 		getEnemyHealthController ();
@@ -42,29 +42,26 @@ public class FearBehaviour : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
+	void OnTriggerStay(Collider other) //was ontriggerenter
 	{
 		if (healthObject != null) {
 			if (other.CompareTag ("Enemy")) {
 				Scoreboard.killType = "Fear";
 				other.GetComponent<EnemyHealthController>().DealDamage (damage);
-				other.GetComponent<EnemyController> ().speed *= -1;
+				other.GetComponent<EnemyController> ().SwitchLanes ();
+				other.GetComponent<EnemyController> ().MultiplySpeed(fearSpeed, 0f);
 				other.GetComponent<ClothingController>().villagerOrientation = "left";
+				collectCurrentEnemies ();
 			}
 		}
 		Destroy (gameObject, timetoDestroy);
 	}
-	/*void OnTriggerStay(Collider other)
-	{
-		if (healthObject != null) {
-			if (other.CompareTag ("Enemy")) {
-				Debug.Log("inside collider");
-				Scoreboard.killType = "Fear";
-				enemyHealth.DealDamage (damage);
-				other.GetComponent<EnemyController> ().speed *= -1;
-				other.GetComponent<ClothingController>().villagerOrientation = "left";
-			}
+	void collectCurrentEnemies(){
+		gameObjects =  GameObject.FindGameObjectsWithTag ("Enemy");
+		for (var i = 0; i < gameObjects.Length; i++) {
+			gameObjects[i].GetComponent<EnemyController> ().SwitchLanes ();
+			gameObjects [i].GetComponent<EnemyController> ().MultiplySpeed(fearSpeed, 0f);
+			gameObjects [i].GetComponent<ClothingController>().villagerOrientation = "left";
 		}
-	}*/
-		
+	}
 }
