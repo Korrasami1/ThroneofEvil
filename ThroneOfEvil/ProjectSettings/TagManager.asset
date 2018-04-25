@@ -37,6 +37,8 @@ TagManager:
   - ModMenu
   - EnemyHealth
   - BurningBoulder
+  - VoiceCommandController
+  - Evilness
   layers:
   - Default
   - TransparentFX

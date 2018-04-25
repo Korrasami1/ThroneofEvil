@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114115698140925426}
   m_Layer: 0
   m_Name: Voice Command Controller
-  m_TagString: Untagged
+  m_TagString: VoiceCommandController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +58,10 @@ MonoBehaviour:
   - Lightning
   - Fear
   - Mind Control
+  - Burn
+  - Burn them Alive
+  - Thunder
+  - Ha ha ha
   confidence: 2
   minionSpeed: 3
   minion: {fileID: 1981358933227212, guid: 8f3575fc2f45eeb40acd8cc1fec59f21, type: 2}
@@ -67,11 +71,13 @@ MonoBehaviour:
   fear: {fileID: 1652137723988522, guid: 9ca3cc026187f9541b5521a3bb13f4c7, type: 2}
   MindControl: {fileID: 1867152972554878, guid: a22d8f9ead57e9b448a9f8ab11a0beb4,
     type: 2}
+  Evil: {fileID: 1393450373701634, guid: c55bf3842fabd594599250901f6408da, type: 2}
   minionCooldown: 0
   fireCooldown: 10
   lightningCooldown: 10
   fearCooldown: 20
   MindControlCooldown: 10
+  EvilLaughterCoolDown: 5
 --- !u!114 &114115698140925426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,12 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd742f125fe7e741b5757fb91907996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keywords:
-  - Send in the minions
-  - Fire
-  - Lightning
-  - Fear
-  - Mind Control
   minionSpeed: 3
   minion: {fileID: 1981358933227212, guid: 8f3575fc2f45eeb40acd8cc1fec59f21, type: 2}
   numOfMinions: 20

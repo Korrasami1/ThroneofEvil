@@ -7,8 +7,8 @@ namespace DigitalRuby.SoundManagerNamespace
 {
 public class SoundsSceneManager : MonoBehaviour {
 
-		//public Slider SoundSlider;
-		//public Slider MusicSlider;
+		public Slider SoundSlider;
+		public Slider MusicSlider;
 		//public int SoundCountTextBox;//was input field
 		//int count = 0;
 		public Toggle PersistToggle;
@@ -111,12 +111,12 @@ public class SoundsSceneManager : MonoBehaviour {
 
 		public void SoundVolumeChanged()
 		{
-			//SoundManager.SoundVolume = SoundSlider.value;
+			SoundManager.SoundVolume = SoundSlider.value;
 		}
 
 		public void MusicVolumeChanged()
 		{
-			//SoundManager.MusicVolume = MusicSlider.value;
+			SoundManager.MusicVolume = MusicSlider.value;
 		}
 }
 }

@@ -821,6 +821,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dcccf526f89cc64481b700a71fcf49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundSlider: {fileID: 0}
+  MusicSlider: {fileID: 0}
   PersistToggle: {fileID: 0}
   SoundAudioSources:
   - {fileID: 82363987018380520}

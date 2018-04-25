@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MutedVoiceCommands : MonoBehaviour {
 
-	public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning", "Fear", "Mind Control"};
+	//public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning", "Fear", "Mind Control"};
 	public float minionSpeed;
-	protected string word = "Voice Commands Active";
+	//protected string word = "Voice Commands Active";
 	public GameObject minion;
 	public int numOfMinions = 20;
 	private bool isSpawningMinions = false;
@@ -29,6 +29,11 @@ public class MutedVoiceCommands : MonoBehaviour {
 		hasLightningCooledDown = true;
 		hasFearCooledDown = true;
 		hasMindControlCooledDown = true;
+		isSpawningMinions = true;
+		isSpawningFire = true;
+		isSpawningLightning = true;
+		isSpawningFear = true;
+		isSpawningMindControl = true;
 	}
 	private void FixedUpdate()
 	{
@@ -66,6 +71,7 @@ public class MutedVoiceCommands : MonoBehaviour {
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (minionCooldown);
 				hasMinionsCooleddown = true;
+				isSpawningMinions = true;
 			}
 			break;
 		case 2/*"Fire"*/:
@@ -73,24 +79,28 @@ public class MutedVoiceCommands : MonoBehaviour {
 				yield return new WaitForSeconds (fireCooldown);
 				hasFireCooledDown = true;
 				Debug.Log ("fire has cooled");
+				isSpawningFire = true;
 			}
 			break;
 		case 3/*"Lightning"*/:
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (lightningCooldown);
 				hasLightningCooledDown = true;
+				isSpawningLightning = true;
 			}
 			break;
 		case 4/*"Fear"*/:
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (fearCooldown);
 				hasFearCooledDown = true;
+				isSpawningFear = true;
 			}
 			break;
 		case 5/*"Mind Control"*/:
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (MindControlCooldown);
 				hasMindControlCooledDown = true;
+				isSpawningMindControl = true;
 			}
 			break;
 		}

@@ -19,6 +19,7 @@ public class TrapController : MonoBehaviour {
 	float laneOne, laneTwo, laneThree, laneFour, laneFive;
 	private float minLane, maxLane;
 	MouseRenderer mouse;
+	Color col1, col2;
 
 	void Start(){
 		laneOne = 5f;
@@ -28,6 +29,8 @@ public class TrapController : MonoBehaviour {
 		laneFive = -5f;
 		minLane = 1.25f;
 		maxLane = 3.75f;
+		col1 = new Color (105/255.0F, 105/255.0F, 105/255.0F); //cooldown visual
+		col2 = new Color (255/255.0F, 255/255.0F, 255/255.0F); //normal visual
 		hasTrap1Cooled = true;
 		hasTrap2Cooled = true;
 		hasTrap3Cooled = true;
@@ -151,10 +154,10 @@ public class TrapController : MonoBehaviour {
 
 	IEnumerator BoulderCooldown(bool hasbeenCooled){
 		if (hasbeenCooled == false) {
-			Boulders.color = new Color (105f, 105f, 105f, 1f);
+			Boulders.color = col1;
 			yield return new WaitForSeconds (BoulderCooldownSpeed);
 			hasBoulderCooledDown = true;
-			Boulders.color = new Color (255f, 255f, 255f, 1f);
+			Boulders.color = col2;
 		}
 	}
 	
@@ -254,19 +257,19 @@ public class TrapController : MonoBehaviour {
 			break;
 		case 4: //Freeze Trap
 			if (hasCooled == false) {
-				Freezes.color = new Color (105f, 105f, 105f, 1f);
+				Freezes.color = col1;
 				yield return new WaitForSeconds (Trap4CoolSpeed);
 				hasTrap4Cooled = true;
-				Freezes.color = new Color (255f, 255f, 255f, 1f);
+				Freezes.color = col2;
 			}
 			break;
 		case 5:
 			//Tar trap
 			if (hasCooled == false) {
-				Tars.color = new Color (105f, 105f, 105f, 1f);
+				Tars.color = col1;
 				yield return new WaitForSeconds (Trap5CoolSpeed);
 				hasTrap5Cooled = true;
-				Tars.color = new Color (255f, 255f, 255f, 1f);
+				Tars.color = col2;
 			}
 			break;
 		}
