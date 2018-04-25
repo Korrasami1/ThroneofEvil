@@ -43,27 +43,27 @@ public class SoundsSceneManager : MonoBehaviour {
 				return;
 			}*/
 
-			if (Input.GetKeyDown(KeyCode.Alpha1) || playSound == 1)
+			if (playSound == 1)
 			{
 				PlaySound(0);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha2)|| playSound == 2)
+			if (playSound == 2)
 			{
 				PlaySound(1);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha3)|| playSound == 3)
+			if (playSound == 3)
 			{
 				PlaySound(2);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha4)|| playSound == 4)
+			if (playSound == 4)
 			{
 				PlaySound(3);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha5)|| playSound == 5)
+			if (playSound == 5)
 			{
 				PlaySound(4);
 			}
-			if (Input.GetKeyDown(KeyCode.Alpha6)|| playSound == 6)
+			if (playSound == 6)
 			{
 				PlaySound(5);
 			}
@@ -71,7 +71,7 @@ public class SoundsSceneManager : MonoBehaviour {
 			{
 				PlaySound(6);
 			}*/
-			if (Input.GetKeyDown(KeyCode.Alpha8)|| playMusic== 1)
+			if (playMusic== 1)
 			{
 				PlayMusic(0);
 			}

@@ -100,9 +100,9 @@ public class GameController : MonoBehaviour {
 				break;
 			}
 			if (winner2) {
-				//SceneManager.LoadScene("ExitScene");
-				SceneManager.LoadScene("fristblah", LoadSceneMode.Additive);
-				SceneManager.MoveGameObjectToScene (gameObject, SceneManager.GetSceneByName("Level2"));
+				SceneManager.LoadScene("Level2");
+				//SceneManager.LoadScene("fristblah", LoadSceneMode.Additive);
+				//SceneManager.MoveGameObjectToScene (gameObject, SceneManager.GetSceneByName("Level2"));
 				break;
 			}
         }

@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour {
     {
         Time.timeScale = 1;
         //SceneManager.LoadScene("Master"); // use this one it loades the master scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1); // load the next scene form the curren one
+        SceneManager.LoadScene("MainMenu"); // load the next scene form the curren one
     }
     public void LoadMainMenuFromQuit()
     {

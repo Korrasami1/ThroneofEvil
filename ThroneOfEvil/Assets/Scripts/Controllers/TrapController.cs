@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TrapController : MonoBehaviour {
 	public GameObject trap1, trap2, trap3, trap4, trap5, trap6;
+	public Image Freezes, Boulders, Tars;
 	public Text[] cooldownVisual;
 	public float BoulderCooldownSpeed = 3;
 	private bool hasBoulderCooledDown = true;
@@ -18,7 +19,6 @@ public class TrapController : MonoBehaviour {
 	float laneOne, laneTwo, laneThree, laneFour, laneFive;
 	private float minLane, maxLane;
 	MouseRenderer mouse;
-	bool istimer = true;
 
 	void Start(){
 		laneOne = 5f;
@@ -46,28 +46,7 @@ public class TrapController : MonoBehaviour {
 			cooldownVisual [i].text = "";
 		}
 	}
-	void cooldownVisualTime(bool truefalse, float cooldownTime, Text componentV)
-	{
-		float cooldown = cooldownTime;
-		if (truefalse == false)
-		{
-			cooldown -= Time.deltaTime;
-			componentV.text = cooldown.ToString();
-		}else if (truefalse == true)
-		{
-			componentV.text = "";
-		}
-	}
-
-	void Update(){
-		//BoulderCooldownSpeed -= Time.deltaTime;
-		//cooldownVisual[2].text = BoulderCooldownSpeed.ToString();
-		//these are the visual Ques for the cooldowns
-		cooldownVisualTime (istimer, BoulderCooldownSpeed, cooldownVisual[2]);
-		cooldownVisualTime (hasTrap4Cooled, Trap4CoolSpeed, cooldownVisual[0]);
-		cooldownVisualTime (hasTrap5Cooled, Trap5CoolSpeed, cooldownVisual[1]);
-	}
-
+		
 	// Update is called once per frame
 	void FixedUpdate () {
 		//To get the current mouse position
@@ -75,6 +54,9 @@ public class TrapController : MonoBehaviour {
 
 		//Convert the mousePosition according to World position
 		targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,distance));
+
+		//trap selection for buttons
+		trapSelection2();
 
 		//If Left Button is clicked #was 0 also was trapClone.transform.position
 		setTrap();
@@ -90,7 +72,6 @@ public class TrapController : MonoBehaviour {
 					reCentreTrap ();
 					Instantiate (trapClone, targetPosition, Quaternion.identity);
 					hasBoulderCooledDown = false;
-					istimer = false;
 					StartCoroutine (BoulderCooldown (hasBoulderCooledDown));
 				}
 			//normal functionality
@@ -170,14 +151,15 @@ public class TrapController : MonoBehaviour {
 
 	IEnumerator BoulderCooldown(bool hasbeenCooled){
 		if (hasbeenCooled == false) {
+			Boulders.color = new Color (105f, 105f, 105f, 1f);
 			yield return new WaitForSeconds (BoulderCooldownSpeed);
 			hasBoulderCooledDown = true;
-			istimer = true;
+			Boulders.color = new Color (255f, 255f, 255f, 1f);
 		}
 	}
 	
 	public void trapSelection(int trapNum){
-		if (trapNum == 1) {
+		if (trapNum == 1 ) {
 			//crate trap
 			isTrapReady = true;	
 			trapClone = trap1;
@@ -201,7 +183,7 @@ public class TrapController : MonoBehaviour {
 			trapClone = trap4;
 			mouse.cursorChangeNum = 4;
 			tempTrapNum = 4;
-		} else if (trapNum == 5) {
+		} else if (trapNum == 5 ) {
 			//mouse normal
 			mouse.cursorChangeNum = 0;
 		} else if (trapNum == 6) {
@@ -218,6 +200,34 @@ public class TrapController : MonoBehaviour {
 				trapClone = trap6;
 				mouse.cursorChangeNum = 6;
 				tempTrapNum = 5;
+		}
+	}	
+
+	public void trapSelection2(){
+		
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+			//bear trap
+			isTrapReady = true;
+			trapClone = trap4;
+			mouse.cursorChangeNum = 4;
+			tempTrapNum = 4;
+		}  else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+			//Boulder
+			if (hasBoulderCooledDown == true) {
+				isTrapReady = true;
+				trapClone = trap5;
+				mouse.cursorChangeNum = 5;
+				tempTrapNum = 6;
+			}
+		}else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+			//Tar trap
+			isTrapReady = true;
+			trapClone = trap6;
+			mouse.cursorChangeNum = 6;
+			tempTrapNum = 5;
+		}else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+			//mouse normal
+			mouse.cursorChangeNum = 0;
 		}
 	}	
 
@@ -244,15 +254,19 @@ public class TrapController : MonoBehaviour {
 			break;
 		case 4: //Freeze Trap
 			if (hasCooled == false) {
+				Freezes.color = new Color (105f, 105f, 105f, 1f);
 				yield return new WaitForSeconds (Trap4CoolSpeed);
 				hasTrap4Cooled = true;
+				Freezes.color = new Color (255f, 255f, 255f, 1f);
 			}
 			break;
 		case 5:
 			//Tar trap
 			if (hasCooled == false) {
+				Tars.color = new Color (105f, 105f, 105f, 1f);
 				yield return new WaitForSeconds (Trap5CoolSpeed);
 				hasTrap5Cooled = true;
+				Tars.color = new Color (255f, 255f, 255f, 1f);
 			}
 			break;
 		}
