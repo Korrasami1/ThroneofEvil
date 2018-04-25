@@ -74,7 +74,7 @@ public class VariableController : MonoBehaviour {
 	void Update () 
 	{
 		//exampleText.text = "the test value is: " + ExampleScript.test.ToString();
-		speedText.text = "The enemy speed is: " + enemy.speed.ToString();
+		speedText.text = "The enemy speed is: " + enemy.speedX.ToString();
 		startWaitText.text = "Enemystart wait is: " + gameController.startWait.ToString ();
 		spawnWaitText.text = "Enemy Spawn wait is: " + gameController.spawnWait.ToString ();
 		waveWaitText.text = "Enemy Wave Wait is: " + gameController.waveWait.ToString ();
@@ -128,9 +128,9 @@ public class VariableController : MonoBehaviour {
 	public void Text_EnemySpeed(string newValueSpeed){
 
 	  float tempSpeed = float.Parse(newValueSpeed);
-	  enemy.speed = tempSpeed;
+	  enemy.speedX = tempSpeed;
 	  //Debug.Log("value update" + newValueSpeed);
-	  Debug.Log("speed value of enemyes updated to:  " + enemy.speed);
+	  Debug.Log("speed value of enemyes updated to:  " + enemy.speedX);
 	
 	}
 		
@@ -153,14 +153,14 @@ public class VariableController : MonoBehaviour {
 	//--------------------------------------------------------------------------------------
 	//--------------------------------------------------------------------------------------
 	public void onClickSpeedButtonHigher(){
-		if(!(enemy.speed >= 10)){
-			enemy.speed++;
+		if(!(enemy.speedX >= 10)){
+			enemy.speedX++;
 			//BoudlerColdownText.text = "couldown on boulder is: " + TrapController.BoulderCooldownSpeed.ToString ();
 		}
 	}
 	public void onClickSpeedButtonLower(){
-		if(!(enemy.speed <= 0)){
-			enemy.speed--;
+		if(!(enemy.speedX <= 0)){
+			enemy.speedX--;
 			//BoudlerColdownText.text = "couldown on boulder is: " + TrapController.BoulderCooldownSpeed.ToString ();
 		}
 	}

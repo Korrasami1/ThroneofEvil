@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class TrapController : MonoBehaviour {
 	public GameObject trap1, trap2, trap3, trap4, trap5, trap6;
 	public Text[] cooldownVisual;
-	public int BoulderCooldownSpeed = 3;
+	public float BoulderCooldownSpeed = 3;
 	private bool hasBoulderCooledDown = true;
 	private bool hasTrap1Cooled, hasTrap2Cooled, hasTrap3Cooled, hasTrap4Cooled, hasTrap5Cooled;
-	public int Trap1CoolSpeed, Trap2CoolSpeed, Trap3CoolSpeed, Trap4CoolSpeed, Trap5CoolSpeed;
+	public float Trap1CoolSpeed, Trap2CoolSpeed, Trap3CoolSpeed, Trap4CoolSpeed, Trap5CoolSpeed;
 	private int tempTrapNum = 0; //this is just so that the cooldown doesnt spam start every time a trap is placed
 	private bool isTrapReady = false;
 	Vector3 mousePosition,targetPosition;
@@ -18,6 +18,7 @@ public class TrapController : MonoBehaviour {
 	float laneOne, laneTwo, laneThree, laneFour, laneFive;
 	private float minLane, maxLane;
 	MouseRenderer mouse;
+	bool istimer = true;
 
 	void Start(){
 		laneOne = 5f;
@@ -45,20 +46,35 @@ public class TrapController : MonoBehaviour {
 			cooldownVisual [i].text = "";
 		}
 	}
+	void cooldownVisualTime(bool truefalse, float cooldownTime, Text componentV)
+	{
+		float cooldown = cooldownTime;
+		if (truefalse == false)
+		{
+			cooldown -= Time.deltaTime;
+			componentV.text = cooldown.ToString();
+		}else if (truefalse == true)
+		{
+			componentV.text = "";
+		}
+	}
+
+	void Update(){
+		//BoulderCooldownSpeed -= Time.deltaTime;
+		//cooldownVisual[2].text = BoulderCooldownSpeed.ToString();
+		//these are the visual Ques for the cooldowns
+		cooldownVisualTime (istimer, BoulderCooldownSpeed, cooldownVisual[2]);
+		cooldownVisualTime (hasTrap4Cooled, Trap4CoolSpeed, cooldownVisual[0]);
+		cooldownVisualTime (hasTrap5Cooled, Trap5CoolSpeed, cooldownVisual[1]);
+	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
-
 		//To get the current mouse position
 		mousePosition = Input.mousePosition;
 
 		//Convert the mousePosition according to World position
 		targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,distance));
-
-		//these are the visual Ques for the cooldowns
-		cooldownVisualTime (hasBoulderCooledDown, BoulderCooldownSpeed, cooldownVisual[2]);
-		cooldownVisualTime (hasTrap4Cooled, Trap4CoolSpeed, cooldownVisual[0]);
-		cooldownVisualTime (hasTrap5Cooled, Trap5CoolSpeed, cooldownVisual[1]);
 
 		//If Left Button is clicked #was 0 also was trapClone.transform.position
 		setTrap();
@@ -66,7 +82,7 @@ public class TrapController : MonoBehaviour {
 	//had as public for a different script but its not in use right now
 	public void setTrap(){
 		//If Left Button is clicked #was 0 also was trapClone.transform.position
-		if (Input.GetMouseButtonUp(1) && isTrapReady == true)
+		if (Input.GetMouseButtonUp(0) && isTrapReady == true)
 		{
 			//boulder cooldown funcitonality
 			if (tempTrapNum == 6) {
@@ -74,6 +90,7 @@ public class TrapController : MonoBehaviour {
 					reCentreTrap ();
 					Instantiate (trapClone, targetPosition, Quaternion.identity);
 					hasBoulderCooledDown = false;
+					istimer = false;
 					StartCoroutine (BoulderCooldown (hasBoulderCooledDown));
 				}
 			//normal functionality
@@ -155,19 +172,7 @@ public class TrapController : MonoBehaviour {
 		if (hasbeenCooled == false) {
 			yield return new WaitForSeconds (BoulderCooldownSpeed);
 			hasBoulderCooledDown = true;
-		}
-	}
-	void cooldownVisualTime(bool truefalse, float cooldownTime, Text componentV)
-	{
-		float cooldown = cooldownTime;
-		if (truefalse == false)
-		{
-			cooldownTime -= Time.deltaTime;
-			componentV.text = cooldownTime.ToString();
-		}else if (truefalse == true)
-		{
-			componentV.text = "";
-			cooldownTime = cooldown; //was 20
+			istimer = true;
 		}
 	}
 	
@@ -237,7 +242,7 @@ public class TrapController : MonoBehaviour {
 				hasTrap3Cooled = true;
 			}
 			break;
-		case 4: //Bear Trap
+		case 4: //Freeze Trap
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (Trap4CoolSpeed);
 				hasTrap4Cooled = true;

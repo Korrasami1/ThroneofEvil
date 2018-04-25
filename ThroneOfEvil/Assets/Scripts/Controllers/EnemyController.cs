@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-	public float speed = 2;              //The speed of the enemy
+	public float speedX = 2;              		//The x-axis speed of the enemy
+	public float speedY = 3;					//The y-axis speed of the enemy
 	public float horizontal;                    //This has no function until random movement within the different lanes is implemented
 	public float vertical;                      //This has no function until random movement within the different lanes is implemented
 	public float laneOne = 5f;                  //Representing the Y-value of lane 1
@@ -20,9 +21,10 @@ public class EnemyController : MonoBehaviour {
 	public Vector3 destinationThree;
 	private Vector3 currentPosition;            //The current position of the enemy on this update
 	private Vector3 targetPosition;             //The position the enemy will move to on the next update
-	//private Vector3 previousPosition;         //The position position of the enemy on the update before, not currently in use
+	private Vector3 previousPosition;         	//The position position of the enemy on the update before, not currently in use
 	private float targetY;                      //The Y-value of targetPosition
-	//private float normalSpeed;                  //The value of speed stored so if speed is changed during run time it can later be reverted back to it's original value
+	private float normalSpeedX;                 //The value of speedX stored so if speed is changed during run time it can later be reverted back to it's original value
+	private float normalSpeedY;					//The value of speedY stored so if speed is changed during run time it can later be reverted back to it's original value
 	private bool foundDestinationOne = false;
 	private bool foundDestinationTwo = false;
 	private bool foundDestinationThree = false;
@@ -31,10 +33,6 @@ public class EnemyController : MonoBehaviour {
 	private bool canMoveDown = true;
 	public bool isMovementPaused = false;
 	public bool isPaused = false;
-	public float speedX = 2;                    //The x-axis speed of the enemy
-	public float speedY = 3;                    //The y-axis speed of the enemy
-	private float normalSpeedX;                 //The value of speedX stored so if speed is changed during run time it can later be reverted back to it's original value
-	private float normalSpeedY;                 //The value of speedY stored so if speed is changed during run time it can later be reverted back to it's original value
 	void Start()
 	{
 		//Start() assigns a random value between 0 and 4 to each enemy spawn, this in turn decides their starting lane
@@ -59,7 +57,6 @@ public class EnemyController : MonoBehaviour {
 			Debug.Log ("Start randomization failed");
 			break;
 		}
-		//normalSpeed = speed;
 		normalSpeedX = speedX;
 		normalSpeedY = speedY;
 	}
@@ -67,29 +64,30 @@ public class EnemyController : MonoBehaviour {
 	{
 		//Every FixedUpdate() the enemy moves towards the target position, 
 		//which is calculated by adding (speed value multiplied by Time.deltaTime) to the X-value of the enemies current position
+		//CheckForTag(); //this should not be in update for the enemy!!
 		if (isPaused) {
 			MultiplySpeed (0f, 0f);
 		}
 		float stepX = speedX * Time.fixedDeltaTime;
-		//float stepY = speedY * Time.fixedDeltaTime;
+		float stepY = speedY * Time.fixedDeltaTime;
+		float step = (stepX + stepY);
 		currentPosition = transform.position;
 		targetPosition.x = currentPosition.x += stepX;
-		//targetPosition.y = currentPosition.y += stepY;
-		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, stepX);
+		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
 		MoveToDestination ();
 	}
 	public void CheckForTag(){
-		if (gameObject.CompareTag ("Enemy")) {
+		if (gameObject.CompareTag("Enemy")) {
 			MultiplySpeed (1f, 1f);
-		} else if (gameObject.CompareTag ("FrozenEnemy")) {
+		} else if (gameObject.CompareTag("FrozenEnemy")) {
 			MultiplySpeed (0f, 0f);
 			//Debug.Log("Enemy is frozen!");
-		} else if (gameObject.CompareTag ("TarredEnemy")) {
+		} else if (gameObject.CompareTag("TarredEnemy")) {
 			MultiplySpeed (0.5f, 0.5f);
 			//Debug.Log("Enemy is tarred!");
-		} else if (gameObject.CompareTag ("BurningEnemy")) {
+		} else if (gameObject.CompareTag("BurningEnemy")) {
 			MultiplySpeed (1f, 1f);
-			Debug.Log ("Enemy is burning!");
+			Debug.Log("Enemy is burning!");
 		} else {
 			Debug.Log ("Enemy CheckForTag() failed!");
 			return;
@@ -254,15 +252,9 @@ public class EnemyController : MonoBehaviour {
 	}
 	IEnumerator BounceBack()
 	{
-		//This script is a kind of work in progress since I don't think it looks super nice. But right now it gets the job done and I'm focusing on more urgent stuff.
-		objectCollision = true;
-		speed *= -1;
-		float previousTargetY = targetY;
-		targetY = transform.position.y;
+		MultiplySpeed (-5f, 7f);
 		yield return new WaitForSeconds (0.2f);
-		targetY = previousTargetY;
-		speed *= -1f;
-		objectCollision = false;
+		MultiplySpeed (1f, 1f);
 	}
 	void OnTriggerEnter(Collider collider)
 	{
@@ -274,10 +266,17 @@ public class EnemyController : MonoBehaviour {
 			gameObject.GetComponent<ClothingController>().villagerOrientation = "right";
 			MultiplySpeed (1f, 1f);
 		}
-		if (collider.tag == "Wall" && objectCollision == false) 
+		if (collider.CompareTag("Wall") && objectCollision == false) 
 		{
 			//StartCoroutine (BounceBack ());
 			objectCollision = true;
+		}
+		if (collider.CompareTag("TarPool") || collider.CompareTag("TarredBoulder")){
+
+		}
+		if (collider.CompareTag("Boulder") || collider.CompareTag("BurningBoulder") || collider.CompareTag("TarredBoulder")){
+			StartCoroutine (BounceBack ());
+			SwitchLanes ();
 		}
 	}
 	void OnTriggerStay(Collider collider)
@@ -286,11 +285,11 @@ public class EnemyController : MonoBehaviour {
 		{
 			AvoidObstacle (transform.position.x, transform.position.y);
 		}
-			if (collider.CompareTag ("Trap Downwards Detection"))
+		if (collider.CompareTag ("Trap Downwards Detection"))
 		{
 			canMoveDown = false;
 		}
-				if (collider.CompareTag ("Trap Upwards Detection"))
+		if (collider.CompareTag ("Trap Upwards Detection"))
 		{
 			canMoveUp = false;
 		}

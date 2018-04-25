@@ -5,6 +5,7 @@ using UnityEngine;
 public class Boulder : MonoBehaviour {
 
 	public float speed = 10;
+	public float tarredSpeed = 5;
 	public float smooth = 5;
 	public float rotationSpeed = 15;
 	private float normalSpeed;
@@ -14,9 +15,8 @@ public class Boulder : MonoBehaviour {
 	void Start () {
 		normalSpeed = speed;
 	}
-	void Update () {
-		CheckForTag ();
-		float step = speed * Time.deltaTime;
+	void FixedUpdate () {
+		float step = speed * Time.fixedDeltaTime;
 		currentPosition = transform.position;
 		targetPosition = currentPosition -= new Vector3(step, 0f);
 		transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
@@ -26,7 +26,7 @@ public class Boulder : MonoBehaviour {
 		if (gameObject.CompareTag("Boulder")) {
 			speed = normalSpeed;
 		} else if (gameObject.tag == "TarredBoulder") {
-			speed = normalSpeed / 2;
+			speed = tarredSpeed;
 		} else if (gameObject.tag == "BurningBoulder") {
 			speed = normalSpeed;
 			Debug.Log("Boulder is burning!");
@@ -40,7 +40,7 @@ public class Boulder : MonoBehaviour {
 		tiltAngle += rotationSpeed;
 		float rotation = tiltAngle;
 		Quaternion target = Quaternion.Euler (0f, 0f, rotation);
-		transform.rotation = Quaternion.Slerp (transform.rotation, target, Time.deltaTime * smooth);
+		transform.rotation = Quaternion.Slerp (transform.rotation, target, Time.fixedDeltaTime * smooth);
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -49,10 +49,12 @@ public class Boulder : MonoBehaviour {
 		}
 		if (other.CompareTag ("TarPool")) {
 			gameObject.tag = "TarredBoulder";
+			CheckForTag ();
 		}
 		if (gameObject.CompareTag("TarredBoulder")){
 			if (other.CompareTag("Fire") || other.CompareTag("Explosion")){
 				gameObject.tag = "BurningBoulder";
+				CheckForTag ();
 			}
 		}
 	}

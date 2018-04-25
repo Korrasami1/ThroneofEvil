@@ -6,6 +6,7 @@ public class VillagerDamageController : MonoBehaviour {
 	public float trapDoorDamage = 100;
 	public float boulderDamage = 50;
 	public float boulderFrozenDamage = 100;
+	public float burningBoulderDamage = 100;
 	public float fireDamage = 25;
 	public float fireFrozenDamage = 0;
 	public float explosionDamage = 75;
@@ -13,18 +14,22 @@ public class VillagerDamageController : MonoBehaviour {
 	public float burningDamageOverTime = 5;
 	public float lightningDamage = 50;
 	public float lightningFrozenDamage = 100;
-	public float minionDamage = 100;
+	public float minionDamage = 50;
 	public float mindControlAttackDamage = 25;
+	public float freezeDurationSeconds = 3f;
+	public float slowDurationSeconds = 3f;
+	public bool useDebugs = false;
 	EnemyHealthController enemyHealth;
 	ScoreManager scoreboard;
 	private bool isBurned = false;
+	//private bool isImmune = false;
 	void Start(){
 		GetEnemyHealthController ();
 		GetScoreManager ();
 	}
 	void FixedUpdate() {
 		if(gameObject.CompareTag("BurningEnemy") && !isBurned){
-			//StartCoroutine (BurningDamage ());
+			StartCoroutine (BurningDamage ());
 		}
 	}
 	IEnumerator BurningDamage()
@@ -33,6 +38,9 @@ public class VillagerDamageController : MonoBehaviour {
 		isBurned = true;
 		yield return new WaitForSeconds (1f);
 		isBurned = false;
+		if (useDebugs) {
+			Debug.Log ("Enemy took " + burningDamageOverTime + " burning damage!");
+		}
 	}
 	void GetEnemyHealthController(){
 		enemyHealth = gameObject.GetComponent<EnemyHealthController>();
@@ -52,11 +60,31 @@ public class VillagerDamageController : MonoBehaviour {
 			Debug.Log("Cannot find 'ScoreboardManager' script from VillagerDamageController script");
 		}
 	}
+	IEnumerator TarCountdown(GameObject other)
+	{
+		other.tag = "TarredEnemy";
+		gameObject.GetComponent<EnemyController>().CheckForTag();
+		yield return new WaitForSeconds (slowDurationSeconds);
+		other.tag = "Enemy";
+		gameObject.GetComponent<EnemyController>().CheckForTag();
+	}
+	IEnumerator FreezeCountdown(GameObject other)
+	{
+		other.tag = "FrozenEnemy";
+		gameObject.GetComponent<EnemyController>().CheckForTag();
+		yield return new WaitForSeconds (freezeDurationSeconds);
+		other.tag = "Enemy";
+		gameObject.GetComponent<EnemyController>().CheckForTag();
+	}
 	void DebugHealth(string damager){
-		Debug.Log("Health of enemy before " + damager + " damage is: " + enemyHealth.currentHealth);
+		if (useDebugs) {
+			Debug.Log ("Health of enemy before " + damager + " damage is: " + enemyHealth.currentHealth);
+		}
 	}
 	void DebugDamage(float damage, string damager){
-		Debug.Log ("Enemy took " + damage + " points of " + damager + " damage, while isFrozen was " + gameObject.CompareTag ("FrozenEnemy") + ", current health of enemy is: " + enemyHealth.currentHealth);
+		if (useDebugs) {
+			Debug.Log ("Enemy took " + damage + " points of " + damager + " damage, while isFrozen was " + gameObject.CompareTag ("FrozenEnemy") + ", current health of enemy is: " + enemyHealth.currentHealth);
+		}
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -67,7 +95,7 @@ public class VillagerDamageController : MonoBehaviour {
 			enemyHealth.DealDamage (trapDoorDamage);
 			DebugDamage (trapDoorDamage, damagerDebug);
 		}
-		if (other.CompareTag("Boulder")){
+		if (other.CompareTag("Boulder") || other.CompareTag("TarredBoulder")){
 			DebugHealth (damagerDebug);
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				scoreboard.killType = "Shatter";
@@ -77,6 +105,18 @@ public class VillagerDamageController : MonoBehaviour {
 				scoreboard.killType = "Boulder";
 				enemyHealth.DealDamage (boulderDamage);
 				DebugDamage (boulderDamage, damagerDebug);
+			}
+		}
+		if (other.CompareTag("BurningBoulder")){
+			DebugHealth (damagerDebug);
+			if (gameObject.CompareTag ("FrozenEnemy")) {
+				scoreboard.killType = "Shatter";
+				enemyHealth.DealDamage (boulderFrozenDamage);
+				DebugDamage (boulderFrozenDamage, damagerDebug);
+			} else {
+				scoreboard.killType = "Boulder";
+				enemyHealth.DealDamage (burningBoulderDamage);
+				DebugDamage (burningBoulderDamage, damagerDebug);
 			}
 		}
 		if (other.CompareTag("Lightning")){
@@ -129,6 +169,23 @@ public class VillagerDamageController : MonoBehaviour {
 				DebugDamage (explosionDamage, damagerDebug);
 			}
 		}
+		if (other.CompareTag("FreezeTrapExplosion")){
+			DebugHealth (damagerDebug);
+			if (gameObject.CompareTag ("BurningEnemy")) {
+				gameObject.tag = "Enemy";
+				gameObject.GetComponent<EnemyController>().CheckForTag();
+			}else {
+				StartCoroutine (FreezeCountdown (gameObject));
+			}
+		}
+		if (other.CompareTag("TarPool")){
+			DebugHealth (damagerDebug);
+			if (gameObject.CompareTag ("TarredEnemy")) {
+				return;
+			} else {
+				StartCoroutine (TarCountdown (gameObject));
+			}
+		}
 		if (other.CompareTag ("Minion")) {
 			DebugHealth (damagerDebug); 
 			scoreboard.killType = "Minion";
@@ -141,15 +198,5 @@ public class VillagerDamageController : MonoBehaviour {
 			enemyHealth.DealDamage (mindControlAttackDamage);
 			DebugDamage (mindControlAttackDamage, damagerDebug);
 		}*/
-	}
-
-	void OnTriggerStay(Collider other){
-		string damagerDebug = other.tag;
-		if (other.CompareTag ("MindControlAttack")) {
-			DebugHealth (damagerDebug);
-			scoreboard.killType = "MindControl";
-			enemyHealth.DealDamage (mindControlAttackDamage);
-			DebugDamage (mindControlAttackDamage, damagerDebug);
-		}
 	}
 }
