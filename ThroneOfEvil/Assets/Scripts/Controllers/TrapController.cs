@@ -67,7 +67,7 @@ public class TrapController : MonoBehaviour {
 	//had as public for a different script but its not in use right now
 	public void setTrap(){
 		//If Left Button is clicked #was 0 also was trapClone.transform.position
-		if (Input.GetMouseButtonUp(0) && isTrapReady == true)
+		if (/*Input.GetMouseButtonUp(0) && isTrapReady == true || */Input.GetButton("Fire1") && isTrapReady == true)
 		{
 			//boulder cooldown funcitonality
 			if (tempTrapNum == 6) {

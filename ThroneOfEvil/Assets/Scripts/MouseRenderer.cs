@@ -17,7 +17,6 @@ public class MouseRenderer : MonoBehaviour {
 
 	void Update()
 	{
-		//mouse = new Vector3(Input.GetAxis("Horizontal"), Screen.height - Input.GetAxis("Vertical"), 0.0f);
 		mouse = new Vector3(Input.mousePosition.x, Screen.height - Input.mousePosition.y, 0.0f);
 	}
 
