@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour {
 
 	public float speedX = 2;              		//The x-axis speed of the enemy
 	public float speedY = 3;					//The y-axis speed of the enemy
+	public float RunningAroundOnfireSpeed = -3f;
 	public float horizontal;                    //This has no function until random movement within the different lanes is implemented
 	public float vertical;                      //This has no function until random movement within the different lanes is implemented
 	public float laneOne = 5f;                  //Representing the Y-value of lane 1
@@ -86,7 +87,9 @@ public class EnemyController : MonoBehaviour {
 			MultiplySpeed (0.5f, 0.5f);
 			//Debug.Log("Enemy is tarred!");
 		} else if (gameObject.CompareTag("BurningEnemy")) {
-			MultiplySpeed (1f, 1f);
+			SwitchLanes ();
+			MultiplySpeed(RunningAroundOnfireSpeed, 0f);
+			gameObject.GetComponent<ClothingController>().villagerOrientation = "left";
 			Debug.Log("Enemy is burning!");
 		} else {
 			Debug.Log ("Enemy CheckForTag() failed!");

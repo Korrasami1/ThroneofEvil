@@ -208,13 +208,13 @@ public class TrapController : MonoBehaviour {
 
 	public void trapSelection2(){
 		
-		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+		if (Input.GetButton("TrapBtn1")) {
 			//bear trap
 			isTrapReady = true;
 			trapClone = trap4;
 			mouse.cursorChangeNum = 4;
 			tempTrapNum = 4;
-		}  else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+		}  else if (Input.GetButton("TrapBtn2")) {
 			//Boulder
 			if (hasBoulderCooledDown == true) {
 				isTrapReady = true;
@@ -222,13 +222,13 @@ public class TrapController : MonoBehaviour {
 				mouse.cursorChangeNum = 5;
 				tempTrapNum = 6;
 			}
-		}else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+		}else if (Input.GetButton("TrapBtn3")) {
 			//Tar trap
 			isTrapReady = true;
 			trapClone = trap6;
 			mouse.cursorChangeNum = 6;
 			tempTrapNum = 5;
-		}else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+		}else if (Input.GetButton("MouseSelect")) {
 			//mouse normal
 			mouse.cursorChangeNum = 0;
 		}

@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4703290625530198}
   - component: {fileID: 114719764256984754}
-  - component: {fileID: 65734877199832610}
   - component: {fileID: 212466923077500528}
+  - component: {fileID: 135959790760689650}
   m_Layer: 8
   m_Name: FreezingTrap
   m_TagString: Untagged
@@ -37,23 +37,11 @@ Transform:
   m_GameObject: {fileID: 1180376267905436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.8068724, y: -1.1644795, z: 0}
-  m_LocalScale: {x: 0.4779385, y: 0.5215723, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65734877199832610
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1180376267905436}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.121891, y: 6.049289, z: 5}
-  m_Center: {x: 0.05787146, y: -0.0000018284604, z: 0}
 --- !u!114 &114719764256984754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,6 +55,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeExplosion: {fileID: 114862277587920106, guid: 2f2228215a3d8334aa9444042239223e,
     type: 2}
+--- !u!135 &135959790760689650
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180376267905436}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212466923077500528
 SpriteRenderer:
   m_ObjectHideFlags: 1

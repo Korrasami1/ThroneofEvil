@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour {
 			leveltimedelay = Time.time + leveltimedelay;
 			Winner (2);	
 		}
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetButton("Cancel")/*GetKeyDown (KeyCode.Escape)*/) {
 			Time.timeScale = 0;
 			pauseMenu.SetActive (true);
 		}
