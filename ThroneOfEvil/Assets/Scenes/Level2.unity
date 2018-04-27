@@ -1565,13 +1565,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hazards:
   - {fileID: 1539559234517020, guid: e6ef239925b435b4697a705fa478bf89, type: 2}
+  levelNum: 2
   VoiceCommands: {fileID: 1253534602109302, guid: 86101b372db321b41ac7f07193b0d54b,
     type: 2}
   spawnValues: {x: -15, y: 1.32, z: 0}
   hazardCount: 1
-  spawnWait: 1
+  spawnWait: 3
   startWait: 1
-  waveWait: 1
+  waveWait: 3
   restartText: {fileID: 855451759}
   gameOverText: {fileID: 797672779}
   gameOver: 0

@@ -64,17 +64,21 @@ public class VillagerDamageController : MonoBehaviour {
 	{
 		other.tag = "TarredEnemy";
 		gameObject.GetComponent<EnemyController>().CheckForTag();
+		gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 		yield return new WaitForSeconds (slowDurationSeconds);
 		other.tag = "Enemy";
 		gameObject.GetComponent<EnemyController>().CheckForTag();
+		gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 	}
 	IEnumerator FreezeCountdown(GameObject other)
 	{
 		other.tag = "FrozenEnemy";
 		gameObject.GetComponent<EnemyController>().CheckForTag();
+		gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 		yield return new WaitForSeconds (freezeDurationSeconds);
 		other.tag = "Enemy";
 		gameObject.GetComponent<EnemyController>().CheckForTag();
+		gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 	}
 	void DebugHealth(string damager){
 		if (useDebugs) {
@@ -136,12 +140,14 @@ public class VillagerDamageController : MonoBehaviour {
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				gameObject.tag = "Enemy";
 				gameObject.GetComponent<EnemyController>().CheckForTag();
+				gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 				scoreboard.killType = "Shatter";
 				enemyHealth.DealDamage (fireFrozenDamage);
 				DebugDamage (fireFrozenDamage, damagerDebug);
 			} else if (gameObject.CompareTag ("TarredEnemy")) {
 				gameObject.tag = "BurningEnemy";
 				gameObject.GetComponent<EnemyController>().CheckForTag();
+				gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 				enemyHealth.DealDamage (fireDamage);
 				DebugDamage (fireDamage, damagerDebug);
 			}else {
@@ -155,12 +161,14 @@ public class VillagerDamageController : MonoBehaviour {
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				gameObject.tag = "Enemy";
 				gameObject.GetComponent<EnemyController>().CheckForTag();
+				gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 				scoreboard.killType = "Shatter";
 				enemyHealth.DealDamage (explosionFrozenDamage);
 				DebugDamage (explosionFrozenDamage, damagerDebug);
 			} else if (gameObject.CompareTag ("TarredEnemy")) {
 				gameObject.tag = "BurningEnemy";
 				gameObject.GetComponent<EnemyController>().CheckForTag();
+				gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 				enemyHealth.DealDamage (explosionDamage);
 				DebugDamage (explosionDamage, damagerDebug);
 			}else {
@@ -174,6 +182,7 @@ public class VillagerDamageController : MonoBehaviour {
 			if (gameObject.CompareTag ("BurningEnemy")) {
 				gameObject.tag = "Enemy";
 				gameObject.GetComponent<EnemyController>().CheckForTag();
+				gameObject.GetComponent<VillagerIdleMode>().CheckForTag();
 			}else {
 				StartCoroutine (FreezeCountdown (gameObject));
 			}

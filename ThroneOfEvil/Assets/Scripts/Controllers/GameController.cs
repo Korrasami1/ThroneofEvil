@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     public GameObject[] hazards;
+	public int levelNum;
 	public GameObject VoiceCommands;
     public Vector3 spawnValues;
     public int hazardCount;
@@ -41,6 +42,13 @@ public class GameController : MonoBehaviour {
 		leveltimedelay = Time.time + leveltimedelay;
 		Instantiate (VoiceCommands, transform.position, Quaternion.identity);
         //isSpawnOver = false;
+		if (levelNum == 1) {
+			hazards [0].GetComponent<EnemyController> ().enabled = false;
+			hazards [0].GetComponent<VillagerIdleMode> ().enabled = true;
+		} else if (levelNum == 2) {
+			hazards [0].GetComponent<EnemyController> ().enabled = true;
+			hazards [0].GetComponent<VillagerIdleMode> ().enabled = false;
+		}
         StartCoroutine(SpawnWaves());
     }
 
@@ -57,13 +65,19 @@ public class GameController : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-		if (killCounter >= WinnerCondition) {
-			Winner (1);
-		}else if(Time.time > leveltimedelay){
-			leveltimedelay = Time.time + leveltimedelay;
-			Winner (2);	
+		if (levelNum == 2) {
+			if (killCounter >= WinnerCondition) {
+				Winner (1);
+			} else if (Time.time > leveltimedelay) {
+				leveltimedelay = Time.time + leveltimedelay;
+				Winner (2);	
+			}
+		} else if (levelNum == 1) {
+			if (killCounter >= WinnerCondition) {
+				Winner (2);
+			}
 		}
-		if (Input.GetButton("Cancel")/*GetKeyDown (KeyCode.Escape)*/) {
+		if (Input.GetButton("Cancel")) {
 			Time.timeScale = 0;
 			pauseMenu.SetActive (true);
 		}

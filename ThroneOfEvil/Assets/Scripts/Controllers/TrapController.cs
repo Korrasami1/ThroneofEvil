@@ -226,7 +226,7 @@ public class TrapController : MonoBehaviour {
 				Freezes.color = col1;
 				yield return new WaitForSeconds (freezeTrapCooldownSpeed);
 				hasFreezeTrapCooledDown = true;
-				Freezes.color = col1;
+				Freezes.color = col2;
 			}
 			break;
 		case 5:
@@ -235,7 +235,7 @@ public class TrapController : MonoBehaviour {
 				Tars.color = col1;
 				yield return new WaitForSeconds (tarTrapCooldownSpeed);
 				hasTarTrapCooledDown = true;
-				Tars.color = col1;
+				Tars.color = col2;
 			}
 			break;
 		}
