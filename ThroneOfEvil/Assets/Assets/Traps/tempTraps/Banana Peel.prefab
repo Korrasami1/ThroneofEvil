@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1632174370296408
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,9 +38,10 @@ GameObject:
   - component: {fileID: 212110258378708632}
   - component: {fileID: 54299848024823768}
   - component: {fileID: 65062227857707790}
+  - component: {fileID: 114749564786509488}
   m_Layer: 8
   m_Name: Banana Peel
-  m_TagString: Trap
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1632174370296408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06742065, y: 2.5, z: 0}
+  m_LocalPosition: {x: -9.57, y: -5.92, z: 0}
   m_LocalScale: {x: 0.2667275, y: 0.24295445, z: 1}
   m_Children:
   - {fileID: 4752563648014828}
@@ -85,7 +86,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 8
+  m_Constraints: 72
   m_CollisionDetection: 0
 --- !u!65 &65002007909188766
 BoxCollider:
@@ -111,6 +112,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.9322083, y: 4.4164286, z: 10}
   m_Center: {x: -0.039129864, y: -0.0742266, z: 0}
+--- !u!114 &114749564786509488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1632174370296408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa0dcbbec8fc944c972acbe81410989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  target: {fileID: 0}
+  timedelay: 1
+  XMin: -16
+  XMax: 13
+  YMin: -6
+  YMax: 4.7
 --- !u!212 &212110258378708632
 SpriteRenderer:
   m_ObjectHideFlags: 1

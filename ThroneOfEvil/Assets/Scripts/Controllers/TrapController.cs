@@ -4,38 +4,40 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TrapController : MonoBehaviour {
-	public GameObject trap1, trap2, trap3, trap4, trap5, trap6;
+	//public GameObject trap1, trap2, trap3, trap4, trap5, trap6;
+	public GameObject boulder, freezeTrap, tarTrap;
 	public Image Freezes, Boulders, Tars;
 	public Text[] cooldownVisual;
 	public float BoulderCooldownSpeed = 3;
 	private bool hasBoulderCooledDown = true;
-	private bool hasTrap1Cooled, hasTrap2Cooled, hasTrap3Cooled, hasTrap4Cooled, hasTrap5Cooled;
-	public float Trap1CoolSpeed, Trap2CoolSpeed, Trap3CoolSpeed, Trap4CoolSpeed, Trap5CoolSpeed;
+	public float tarTrapCooldownSpeed = 3;
+	public float freezeTrapCooldownSpeed = 3;
+	private bool hasFreezeTrapCooledDown = true;
+	private bool hasTarTrapCooledDown = true; 
+	//private bool hasTrap1Cooled, hasTrap2Cooled, hasTrap3Cooled, hasTrap4Cooled, hasTrap5Cooled;
+	//public float Trap1CoolSpeed, Trap2CoolSpeed, Trap3CoolSpeed, Trap4CoolSpeed, Trap5CoolSpeed;
+	public float laneOne = 5.25f;                  //Representing the Y-value of lane 1
+	public float laneTwo = 3.5f;                //Representing the Y-value of lane 2
+	public float laneThree = 1.75f;                //Representing the Y-value of lane 3
+	public float laneFour = 0f;              //Representing the Y-value of lane 4
+	public float laneFive = -1.75f;                //Representing the Y-value of lane 5
+	public float laneSix = -3.5f;                //Representing the Y-value of lane 5
+	public float laneSeven = -5.25f;                //Representing the Y-value of lane 5
+	private float laneDifference;
 	private int tempTrapNum = 0; //this is just so that the cooldown doesnt spam start every time a trap is placed
 	private bool isTrapReady = false;
 	Vector3 mousePosition,targetPosition;
 	private GameObject trapClone;
 	float distance=10f;
-	float laneOne, laneTwo, laneThree, laneFour, laneFive;
-	private float minLane, maxLane;
 	MouseRenderer mouse;
 	Color col1, col2;
 
 	void Start(){
-		laneOne = 5f;
-		laneTwo = 2.5f;
-		laneThree = 0f;
-		laneFour = -2.5f;
-		laneFive = -5f;
-		minLane = 1.25f;
-		maxLane = 3.75f;
 		col1 = new Color (105/255.0F, 105/255.0F, 105/255.0F); //cooldown visual
 		col2 = new Color (255/255.0F, 255/255.0F, 255/255.0F); //normal visual
-		hasTrap1Cooled = true;
-		hasTrap2Cooled = true;
-		hasTrap3Cooled = true;
-		hasTrap4Cooled = true;
-		hasTrap5Cooled = true;
+		hasBoulderCooledDown = true;
+		hasFreezeTrapCooledDown = true;
+		hasTarTrapCooledDown = true;
 		GameObject mouseObject = GameObject.FindWithTag("Mouse");
 		if (mouseObject != null)
 		{
@@ -48,6 +50,7 @@ public class TrapController : MonoBehaviour {
 		for (int i = 0; i < cooldownVisual.Length; i++) {
 			cooldownVisual [i].text = "";
 		}
+		laneDifference = laneThree - laneFour;
 	}
 		
 	// Update is called once per frame
@@ -67,59 +70,35 @@ public class TrapController : MonoBehaviour {
 	//had as public for a different script but its not in use right now
 	public void setTrap(){
 		//If Left Button is clicked #was 0 also was trapClone.transform.position
-		if (/*Input.GetMouseButtonUp(0) && isTrapReady == true || */Input.GetButton("Fire1") && isTrapReady == true)
+		if (Input.GetButton("Fire1") && isTrapReady == true)
 		{
 			//boulder cooldown funcitonality
 			if (tempTrapNum == 6) {
 				if (hasBoulderCooledDown == true) {
-					reCentreTrap ();
+					RecentreBoulder ();
 					Instantiate (trapClone, targetPosition, Quaternion.identity);
 					hasBoulderCooledDown = false;
 					StartCoroutine (BoulderCooldown (hasBoulderCooledDown));
 				}
-			//normal functionality
+				//normal functionality
 			} else {
 				switch (tempTrapNum)
 				{
-				case 1: //Crate
-					if (hasTrap1Cooled == true) {
-						reCentreTrap ();
-						Instantiate (trapClone, targetPosition, Quaternion.identity);
-						hasTrap1Cooled = false;
-						StartCoroutine (TrapCoolDown (1, hasTrap1Cooled));
-					}
-					break;
-				case 2: //Banana Peel
-					if (hasTrap2Cooled == true) {
-						reCentreTrap ();
-						Instantiate (trapClone, targetPosition, Quaternion.identity);
-						hasTrap2Cooled = false;
-						StartCoroutine (TrapCoolDown (2, hasTrap2Cooled));
-					}
-					break;
-				case 3: //Dynamite
-					if (hasTrap3Cooled == true) {
-						reCentreTrap ();
-						Instantiate (trapClone, targetPosition, Quaternion.identity);
-						hasTrap3Cooled = false;
-						StartCoroutine (TrapCoolDown (3, hasTrap3Cooled));
-					}
-					break;
 				case 4: //Freeze Trap
-					if (hasTrap4Cooled == true) {
-						reCentreTrap ();
+					if (hasFreezeTrapCooledDown == true) {
+						RecentreTrap ();
 						Instantiate (trapClone, targetPosition, Quaternion.identity);
-						hasTrap4Cooled = false;
-						StartCoroutine (TrapCoolDown (4, hasTrap4Cooled));
+						hasFreezeTrapCooledDown = false;
+						StartCoroutine (TrapCoolDown (4, hasFreezeTrapCooledDown));
 					}
 					break;
 				case 5:
 					//Tar trap
-					if (hasTrap5Cooled == true) {
-						reCentreTrap ();
+					if (hasTarTrapCooledDown == true) {
+						RecentreTrap ();
 						Instantiate (trapClone, targetPosition, Quaternion.identity);
-						hasTrap5Cooled = false;
-						StartCoroutine (TrapCoolDown (5, hasTrap5Cooled));
+						hasTarTrapCooledDown = false;
+						StartCoroutine (TrapCoolDown (5, hasTarTrapCooledDown));
 					}
 					break;
 				}
@@ -128,27 +107,50 @@ public class TrapController : MonoBehaviour {
 	}
 
 	//had as public for a different script but its not in use right now
-	public void reCentreTrap(){
+	public void RecentreTrap(){
 		//lane one
-		if (targetPosition.y >= laneOne || targetPosition.y >= maxLane && targetPosition.y <= laneOne) {
+		if (targetPosition.y >= laneOne - laneDifference) {
 			targetPosition = new Vector3 (targetPosition.x, laneOne, 0f);
-			//trapClone.transform.position = targetPosition;
-		//lane two
-		} else if (targetPosition.y < maxLane && targetPosition.y >= laneTwo || targetPosition.y <= laneTwo && targetPosition.y >= minLane) {
+			//lane two
+		} else if (targetPosition.y < laneTwo + laneDifference && targetPosition.y >= laneTwo - laneDifference) {
 			targetPosition = new Vector3 (targetPosition.x, laneTwo, 0f);
-			//trapClone.transform.position = targetPosition;
-		//lane three
-		} else if (targetPosition.y < minLane && targetPosition.y >= laneThree || targetPosition.y <= laneThree && targetPosition.y >= -minLane) {
+			//lane three
+		} else if (targetPosition.y < laneThree + laneDifference && targetPosition.y >= laneThree - laneDifference) {
 			targetPosition = new Vector3 (targetPosition.x, laneThree, 0f);
-			//trapClone.transform.position = targetPosition;
-		//lane four
-		} else if (targetPosition.y > -maxLane && targetPosition.y <= laneFour || targetPosition.y >= laneFour && targetPosition.y <= -minLane) {
+			//lane four
+		} else if (targetPosition.y < laneFour + laneDifference && targetPosition.y >= laneFour - laneDifference) {
 			targetPosition = new Vector3 (targetPosition.x, laneFour, 0f);
-			//trapClone.transform.position = targetPosition;
-		//lane five
-		} else if (targetPosition.y <= laneFive && targetPosition.y <= laneFive || targetPosition.y <= laneFive && targetPosition.y >= -maxLane) {
+			//lane five
+		} else if (targetPosition.y < laneFive + laneDifference && targetPosition.y >= laneFive - laneDifference) {
 			targetPosition = new Vector3 (targetPosition.x, laneFive, 0f);
-			//trapClone.transform.position = targetPosition;
+			//lane six
+		} else if (targetPosition.y < laneSix + laneDifference && targetPosition.y >= laneSix - laneDifference) {
+			targetPosition = new Vector3 (targetPosition.x, laneSix, 0f);
+			//lane seven
+		} else if (targetPosition.y <= laneSeven + laneDifference) {
+			targetPosition = new Vector3 (targetPosition.x, laneSeven, 0f);
+		}
+	}
+	public void RecentreBoulder(){
+		float boulderAdjustment = laneDifference / 2;
+		//lane one/two
+		if (targetPosition.y >= laneTwo) {
+			targetPosition = new Vector3 (targetPosition.x, laneOne - boulderAdjustment, 0f);
+			//lane two/three
+		} else if (targetPosition.y < laneTwo && targetPosition.y >= laneThree) {
+			targetPosition = new Vector3 (targetPosition.x, laneTwo - boulderAdjustment, 0f);
+			//lane three/four
+		} else if (targetPosition.y < laneThree && targetPosition.y >= laneFour) {
+			targetPosition = new Vector3 (targetPosition.x, laneThree - boulderAdjustment, 0f);
+			//lane four/five
+		} else if (targetPosition.y < laneFour && targetPosition.y >= laneFive) {
+			targetPosition = new Vector3 (targetPosition.x, laneFour - boulderAdjustment, 0f);
+			//lane five/six
+		} else if (targetPosition.y < laneFive && targetPosition.y >= laneSix) {
+			targetPosition = new Vector3 (targetPosition.x, laneFive - boulderAdjustment, 0f);
+			//lane six/seven
+		} else if (targetPosition.y < laneSix && targetPosition.y >= laneSeven) {
+			targetPosition = new Vector3 (targetPosition.x, laneSix - boulderAdjustment, 0f);
 		}
 	}
 
@@ -162,70 +164,52 @@ public class TrapController : MonoBehaviour {
 	}
 	
 	public void trapSelection(int trapNum){
-		if (trapNum == 1 ) {
-			//crate trap
-			isTrapReady = true;	
-			trapClone = trap1;
-			mouse.cursorChangeNum = 1;
-			tempTrapNum = 1;
-		} else if (trapNum == 2) {
-			//banana peel
+		if (trapNum == 4) {
+			//freeze trap
 			isTrapReady = true;
-			trapClone = trap2;
-			mouse.cursorChangeNum = 2;
-			tempTrapNum = 2;
-		} else if (trapNum == 3) {
-			//dynamite
-			isTrapReady = true;
-			trapClone = trap3;
-			mouse.cursorChangeNum = 3;
-			tempTrapNum = 3;
-		} else if (trapNum == 4) {
-			//bear trap
-			isTrapReady = true;
-			trapClone = trap4;
+			trapClone = freezeTrap;
 			mouse.cursorChangeNum = 4;
 			tempTrapNum = 4;
-		} else if (trapNum == 5 ) {
+		} else if (trapNum == 5) {
 			//mouse normal
 			mouse.cursorChangeNum = 0;
 		} else if (trapNum == 6) {
 			//Boulder
 			if (hasBoulderCooledDown == true) {
 				isTrapReady = true;
-				trapClone = trap5;
+				trapClone = boulder;
 				mouse.cursorChangeNum = 5;
 				tempTrapNum = 6;
 			}
-		}else if (trapNum == 7) {
+		} else if (trapNum == 7) {
 			//Tar trap
-				isTrapReady = true;
-				trapClone = trap6;
-				mouse.cursorChangeNum = 6;
-				tempTrapNum = 5;
+			isTrapReady = true;
+			trapClone = tarTrap;
+			mouse.cursorChangeNum = 6;
+			tempTrapNum = 5;
 		}
-	}	
+	}
 
 	public void trapSelection2(){
 		
 		if (Input.GetButton("TrapBtn1")) {
-			//bear trap
+			//freeze trap
 			isTrapReady = true;
-			trapClone = trap4;
+			trapClone = freezeTrap;
 			mouse.cursorChangeNum = 4;
 			tempTrapNum = 4;
 		}  else if (Input.GetButton("TrapBtn2")) {
 			//Boulder
 			if (hasBoulderCooledDown == true) {
 				isTrapReady = true;
-				trapClone = trap5;
+				trapClone = boulder;
 				mouse.cursorChangeNum = 5;
 				tempTrapNum = 6;
 			}
 		}else if (Input.GetButton("TrapBtn3")) {
 			//Tar trap
 			isTrapReady = true;
-			trapClone = trap6;
+			trapClone = tarTrap;
 			mouse.cursorChangeNum = 6;
 			tempTrapNum = 5;
 		}else if (Input.GetButton("MouseSelect")) {
@@ -237,39 +221,21 @@ public class TrapController : MonoBehaviour {
 	IEnumerator TrapCoolDown(int traptype, bool hasCooled){
 		switch (traptype)
 		{
-		case 1: //Crate
-			if (hasCooled == false) {
-				yield return new WaitForSeconds (Trap1CoolSpeed);
-				hasTrap1Cooled = true;
-			}
-			break;
-		case 2: //Banana Peel
-			if (hasCooled == false) {
-				yield return new WaitForSeconds (Trap2CoolSpeed);
-				hasTrap2Cooled = true;
-			}
-			break;
-		case 3: //Dynamite
-			if (hasCooled == false) {
-				yield return new WaitForSeconds (Trap3CoolSpeed);
-				hasTrap3Cooled = true;
-			}
-			break;
 		case 4: //Freeze Trap
 			if (hasCooled == false) {
 				Freezes.color = col1;
-				yield return new WaitForSeconds (Trap4CoolSpeed);
-				hasTrap4Cooled = true;
-				Freezes.color = col2;
+				yield return new WaitForSeconds (freezeTrapCooldownSpeed);
+				hasFreezeTrapCooledDown = true;
+				Freezes.color = col1;
 			}
 			break;
 		case 5:
 			//Tar trap
 			if (hasCooled == false) {
 				Tars.color = col1;
-				yield return new WaitForSeconds (Trap5CoolSpeed);
-				hasTrap5Cooled = true;
-				Tars.color = col2;
+				yield return new WaitForSeconds (tarTrapCooldownSpeed);
+				hasTarTrapCooledDown = true;
+				Tars.color = col1;
 			}
 			break;
 		}

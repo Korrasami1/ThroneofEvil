@@ -344,7 +344,7 @@ Transform:
   m_GameObject: {fileID: 1539559234517020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.6525183, y: -2.9019213, z: 0}
-  m_LocalScale: {x: 0.2646957, y: 0.26829246, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 224760932204103536}
   - {fileID: 4106593883947980}
@@ -597,6 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedX: 2
   speedY: 3
+  RunningAroundOnfireSpeed: -3
   horizontal: 0
   vertical: 0
   laneOne: 5
@@ -604,6 +605,8 @@ MonoBehaviour:
   laneThree: 0
   laneFour: -2.5
   laneFive: -5
+  laneSix: -3.5
+  laneSeven: -5.25
   laneDiversity: 0.5
   trapDoor: {fileID: 0}
   pathReactionTime: 4

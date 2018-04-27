@@ -19,7 +19,7 @@ public class TrackingController : MonoBehaviour {
 		getScoreManager ();
 	}
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 		/*Vector3 dir = target.position - transform.position; //was target.transform.position
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

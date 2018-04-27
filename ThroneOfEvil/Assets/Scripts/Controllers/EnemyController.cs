@@ -8,12 +8,14 @@ public class EnemyController : MonoBehaviour {
 	public float speedY = 3;					//The y-axis speed of the enemy
 	public float RunningAroundOnfireSpeed = -3f;
 	public float horizontal;                    //This has no function until random movement within the different lanes is implemented
-	public float vertical;                      //This has no function until random movement within the different lanes is implemented
-	public float laneOne = 5f;                  //Representing the Y-value of lane 1
-	public float laneTwo = 2.5f;                //Representing the Y-value of lane 2
-	public float laneThree = 0f;                //Representing the Y-value of lane 3
-	public float laneFour = -2.5f;              //Representing the Y-value of lane 4
-	public float laneFive = -5f;                //Representing the Y-value of lane 5
+	public float vertical;                      //This has no function until random movement within the different lanes is implemented 
+	public float laneOne = 5.25f;                  //Representing the Y-value of lane 1
+	public float laneTwo = 3.5f;                //Representing the Y-value of lane 2
+	public float laneThree = 1.75f;                //Representing the Y-value of lane 3
+	public float laneFour = 0f;              //Representing the Y-value of lane 4
+	public float laneFive = -1.75f;                //Representing the Y-value of lane 5
+	public float laneSix = -3.5f;                //Representing the Y-value of lane 5
+	public float laneSeven = -5.25f;                //Representing the Y-value of lane 5
 	public float laneDiversity = 0.5f;          //The randomized difference in Y-value for enemies on the same lane
 	public TrapDoorRelease trapDoor;
 	public float pathReactionTime;
@@ -34,10 +36,11 @@ public class EnemyController : MonoBehaviour {
 	private bool canMoveDown = true;
 	public bool isMovementPaused = false;
 	public bool isPaused = false;
+
 	void Start()
 	{
-		//Start() assigns a random value between 0 and 4 to each enemy spawn, this in turn decides their starting lane
-		int random = Random.Range (0, 5);
+		//Start() assigns a random value between 0 and 6 to each enemy spawn, this in turn decides their starting lane
+		int random = Random.Range(0,6);
 		switch (random) {
 		case 0:
 			MoveTo(laneOne);
@@ -54,6 +57,12 @@ public class EnemyController : MonoBehaviour {
 		case 4:
 			MoveTo(laneFive);
 			break;
+		case 5:
+			MoveTo(laneSix);
+			break;
+		case 6:
+			MoveTo(laneSeven);
+			break;
 		default:
 			Debug.Log ("Start randomization failed");
 			break;
@@ -65,9 +74,9 @@ public class EnemyController : MonoBehaviour {
 	{
 		//Every FixedUpdate() the enemy moves towards the target position, 
 		//which is calculated by adding (speed value multiplied by Time.deltaTime) to the X-value of the enemies current position
-		//CheckForTag(); //this should not be in update for the enemy!!
 		if (isPaused) {
 			MultiplySpeed (0f, 0f);
+			GetComponent<ClothingController> ().villagerOrientation = "Pause";
 		}
 		float stepX = speedX * Time.fixedDeltaTime;
 		float stepY = speedY * Time.fixedDeltaTime;
@@ -90,6 +99,7 @@ public class EnemyController : MonoBehaviour {
 			SwitchLanes ();
 			MultiplySpeed(RunningAroundOnfireSpeed, 0f);
 			gameObject.GetComponent<ClothingController>().villagerOrientation = "left";
+			//MultiplySpeed (1f, 1f);
 			Debug.Log("Enemy is burning!");
 		} else {
 			Debug.Log ("Enemy CheckForTag() failed!");
@@ -118,6 +128,10 @@ public class EnemyController : MonoBehaviour {
 			return 4;
 		} else if (yPosition < laneFive + laneDiversity && transform.position.y > laneFive - laneDiversity) {
 			return 5;
+		} else if (yPosition < laneSix + laneDiversity && transform.position.y > laneSix - laneDiversity) {
+			return 6;
+		} else if (yPosition < laneSeven + laneDiversity && transform.position.y > laneSeven - laneDiversity) {
+			return 7;
 		} else {
 			return 0;
 		}
@@ -164,14 +178,36 @@ public class EnemyController : MonoBehaviour {
 				RandomAdjacentLane (laneThree, laneFive);
 			}
 		} else if (CheckForLane(transform.position.y) == 5) {
+			if (!canMoveDown && !canMoveUp) {
+				RandomAdjacentLane (laneFour, laneSix);
+			} else if (!canMoveDown) {
+				MoveTo (laneThree);
+			} else if (!canMoveUp) {
+				MoveTo (laneFive);
+			} else {
+				RandomAdjacentLane (laneFour, laneSix);
+			}
+		}else if (CheckForLane(transform.position.y) == 6) {
+			if (!canMoveDown && !canMoveUp) {
+				RandomAdjacentLane (laneFive, laneSeven);
+			} else if (!canMoveDown) {
+				MoveTo (laneFive);
+			} else if (!canMoveUp) {
+				MoveTo (laneSeven);
+			} else {
+				RandomAdjacentLane (laneFive, laneSeven);
+			}
+		}else if (CheckForLane(transform.position.y) == 7) {
 			if (canMoveUp) {
-				MoveTo (laneFour);
+				MoveTo (laneSix);
 			} else {
 				return;
 			}
 		} else {
 			return;
 		}
+		canMoveUp = true;
+		canMoveDown = true;
 	}
 	void RandomAdjacentLane(float lane1, float lane2)
 	{
@@ -238,13 +274,18 @@ public class EnemyController : MonoBehaviour {
 			return num;
 		}
 	}
-	void AvoidObstacle(float xPosition, float yPosition)
+	void AvoidObstacle(Collider obstacle)
 	{
-		if (xPosition > destinationOne.x - pathReactionTime && xPosition < destinationOne.x) {
-			MoveTo (destinationOne.y);
+		Vector3 obstaclePosition = obstacle.transform.position;
+		if (currentPosition.y < obstacle.transform.position.y) {
+			canMoveUp = false;
 		} else {
-			return;
+			canMoveDown = false;
 		}
+	}
+	void CanMove(bool canMove){
+		canMoveDown = canMove;
+		canMoveUp = canMove;
 	}
 	void MoveTo(float lane)
 	{
@@ -279,14 +320,16 @@ public class EnemyController : MonoBehaviour {
 		}
 		if (collider.CompareTag("Boulder") || collider.CompareTag("BurningBoulder") || collider.CompareTag("TarredBoulder")){
 			StartCoroutine (BounceBack ());
+			AvoidObstacle (collider);
 			SwitchLanes ();
+			CanMove (true);
 		}
 	}
 	void OnTriggerStay(Collider collider)
 	{
 		if (collider.CompareTag ("Wall Detection"))
 		{
-			AvoidObstacle (transform.position.x, transform.position.y);
+			AvoidObstacle (collider);
 		}
 		if (collider.CompareTag ("Trap Downwards Detection"))
 		{
