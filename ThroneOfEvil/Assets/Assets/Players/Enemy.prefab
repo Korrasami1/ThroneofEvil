@@ -971,14 +971,14 @@ MonoBehaviour:
   fireDamage: 25
   fireFrozenDamage: 0
   explosionDamage: 75
-  explosionFrozenDamage: 100
+  explosionFrozenDamage: 0
   burningDamageOverTime: 5
   lightningDamage: 50
   lightningFrozenDamage: 100
   minionDamage: 50
   mindControlAttackDamage: 0.2
-  freezeDurationSeconds: 3
-  slowDurationSeconds: 3
+  freezeDurationSeconds: 7
+  slowDurationSeconds: 10
   useDebugs: 0
 --- !u!114 &114940696917969630
 MonoBehaviour:
