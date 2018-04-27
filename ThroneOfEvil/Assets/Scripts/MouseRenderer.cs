@@ -22,7 +22,11 @@ public class MouseRenderer : MonoBehaviour {
 
 	void OnGUI()
 	{
-		GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y /*- (h / 2)*/, w, h), cursor[cursorChangeNum]);
-		//GUI.DrawTexture(new Rect(Input.GetAxis("Mouse X") - (w / 2), Input.GetAxis("Mouse Y")- (h / 2), w, h), cursor[cursorChangeNum]);
+		if (cursorChangeNum == 0) {
+			GUI.DrawTexture (new Rect (mouse.x - (w / 2), mouse.y /*- (h / 2)*/, w, h), cursor [cursorChangeNum]);
+		} else {
+			GUI.DrawTexture (new Rect (mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor [cursorChangeNum]);
+			Debug.Log ("other numebr");
+		}
 	}
 }
