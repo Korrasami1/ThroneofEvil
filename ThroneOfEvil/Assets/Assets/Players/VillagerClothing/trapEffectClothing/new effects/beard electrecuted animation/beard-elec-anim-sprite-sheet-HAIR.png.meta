@@ -3,7 +3,19 @@ guid: 8959b62a3f2e61f43a1a442168b9e9a3
 timeCreated: 1525251380
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: beard-elec-anim-sprite-sheet-HAIR_0
+    21300002: beard-elec-anim-sprite-sheet-HAIR_1
+    21300004: beard-elec-anim-sprite-sheet-HAIR_2
+    21300006: beard-elec-anim-sprite-sheet-HAIR_3
+    21300008: beard-elec-anim-sprite-sheet-HAIR_4
+    21300010: beard-elec-anim-sprite-sheet-HAIR_5
+    21300012: beard-elec-anim-sprite-sheet-HAIR_6
+    21300014: beard-elec-anim-sprite-sheet-HAIR_7
+    21300016: beard-elec-anim-sprite-sheet-HAIR_8
+    21300018: beard-elec-anim-sprite-sheet-HAIR_9
+    21300020: beard-elec-anim-sprite-sheet-HAIR_10
+    21300022: beard-elec-anim-sprite-sheet-HAIR_11
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -108,7 +120,175 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 763
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_1
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 763
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_2
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 763
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_3
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 763
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_4
+      rect:
+        serializedVersion: 2
+        x: 2492
+        y: 763
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_5
+      rect:
+        serializedVersion: 2
+        x: 3115
+        y: 763
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_7
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 0
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_8
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 0
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_9
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 0
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_10
+      rect:
+        serializedVersion: 2
+        x: 2492
+        y: 0
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: beard-elec-anim-sprite-sheet-HAIR_11
+      rect:
+        serializedVersion: 2
+        x: 3115
+        y: 0
+        width: 623
+        height: 763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

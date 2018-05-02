@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows.Speech;
+using DigitalRuby.SoundManagerNamespace;
 
 public class VoiceCommandController : MonoBehaviour
 {
-
+	SoundsSceneManager sounds;
 	public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning", "Fear", "Mind Control", "Burn", "Burn them Alive", "Thunder", "Ha ha ha"};
 	public ConfidenceLevel confidence = ConfidenceLevel.Low;
 	public float minionSpeed;
@@ -43,6 +44,7 @@ public class VoiceCommandController : MonoBehaviour
 		hasFearCooledDown = true;
 		hasMindControlCooledDown = true;
 		hasEvilCooledDown = true;
+		sounds = GameObject.FindWithTag ("SoundManager").GetComponent<SoundsSceneManager> ();
 	}
 	private void FixedUpdate()
 	{
@@ -102,30 +104,39 @@ public class VoiceCommandController : MonoBehaviour
 	{
 		word = args.text;
 		if (word == "Fire" && !hasFireCooledDown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Burn" && !hasFireCooledDown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Burn them Alive" && !hasFireCooledDown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Lightning" && !hasLightningCooledDown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Thunder" && !hasLightningCooledDown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Send in the minions" && !hasMinionsCooleddown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Fear" && !hasFearCooledDown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Mind Control" && !hasMindControlCooledDown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Ha ha ha" && !hasEvilCooledDown) {
+			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		string debugText = "You said: <b>" + word + "</b>";
@@ -182,6 +193,7 @@ public class VoiceCommandController : MonoBehaviour
 	}
 	private void spawnMinions(){
 		if (isSpawningMinions == true) {
+			sounds.PlaySound(7);
 			int tempCounter = 0;
 			//Vector3 center = transform.position;
 			for (int i = 0; i < numOfMinions; i++) {

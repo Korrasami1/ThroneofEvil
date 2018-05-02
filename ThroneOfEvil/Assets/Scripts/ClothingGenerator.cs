@@ -6,7 +6,7 @@ public class ClothingGenerator : MonoBehaviour {
 	public GameObject Shirt;
 	public GameObject Skin;
 	public GameObject Hair;
-	public GameObject Hat;
+	public GameObject Accessorie;
 	//public Sprite[] childPants, manPants, womanPants;
 	//public Sprite[] childShirts, manShirts, womanShirts;
 	//public Sprite[] childHair, manHair, womanHair;
@@ -86,14 +86,14 @@ public class ClothingGenerator : MonoBehaviour {
 		GetComponent<SpriteRenderer>().color = pantsColour;
 		switch (vType)
 		{
-		case 1: //child
+		case 1: //elf
 			//Rpants = new Vector3 (0.04f, -1.68f, 0f);
 			//transform.localPosition = Rpants;
 			//pant = childPants[Random.Range(0, childPants.Length)];
 			//GetComponent<SpriteRenderer> ().sprite = pant;
 			GetComponent<Animator> ().runtimeAnimatorController = AnimationPants[0] as RuntimeAnimatorController;
 			break;
-		case 2: //man
+		case 2: //naar
 			//Rpants = new Vector3 (0.19f, -2.01f, 0f);
 			//transform.localPosition = Rpants;
 			//pant = manPants[Random.Range(0, manPants.Length)];
@@ -118,14 +118,14 @@ public class ClothingGenerator : MonoBehaviour {
 		Shirt.GetComponent<SpriteRenderer> ().color = shirtColour;
 		switch (vType)
 		{
-		case 1: //child
+		case 1: //elf
 			//shirt = childShirts[Random.Range(0, childShirts.Length)];
 			//Shirt.GetComponent<SpriteRenderer> ().sprite = shirt;
 			//Rshirt = new Vector3 (-0.11f, 0.87f, 0f);
 			//Shirt.transform.localPosition = Rshirt;
 			Shirt.GetComponent<Animator> ().runtimeAnimatorController = AnimationShirt[0] as RuntimeAnimatorController;
 			break;
-		case 2: //man
+		case 2: //naar
 			//shirt = manShirts[Random.Range(0, manShirts.Length)];
 			//Shirt.GetComponent<SpriteRenderer> ().sprite = shirt;
 			//Rshirt = new Vector3 (-0.11f, 0.87f, 0f);
@@ -150,14 +150,14 @@ public class ClothingGenerator : MonoBehaviour {
 		Hair.GetComponent<SpriteRenderer> ().color = HairColour;
 		switch (vType)
 		{
-		case 1: //child
+		case 1: //elf
 			//hair = childHair[Random.Range(0, childHair.Length)];
 			//Hair.GetComponent<SpriteRenderer> ().sprite = hair;
 			//Rhair = new Vector3 (-0.13f, 1.61f, 0f);
 			//Hair.transform.localPosition = Rhair;
 			Hair.GetComponent<Animator> ().runtimeAnimatorController = AnimationHair[0] as RuntimeAnimatorController;
 			break;
-		case 2: //man
+		case 2: //naar
 			//hair = manHair[Random.Range(0, manHair.Length)];
 			//Hair.GetComponent<SpriteRenderer> ().sprite = hair;
 			//Rhair = new Vector3 (-0.2f, 2.86f, 0f);
@@ -179,19 +179,19 @@ public class ClothingGenerator : MonoBehaviour {
 		haBlue = Random.Range (0f, 1f);
 		haGreen = Random.Range (0f, 1f);
 		HatColour = new Color(haRed, haGreen, haBlue);
-		Hat.GetComponent<SpriteRenderer> ().color = HatColour;
+		Accessorie.GetComponent<SpriteRenderer> ().color = HatColour;
 		switch (vType)
 		{
-		case 1: //child
-			Hat.SetActive(true);
-			Hat.GetComponent<Animator> ().runtimeAnimatorController = AnimationCapeorScarf[0] as RuntimeAnimatorController;
+		case 1: //elf
+			Accessorie.SetActive(true);
+			Accessorie.GetComponent<Animator> ().runtimeAnimatorController = AnimationCapeorScarf[0] as RuntimeAnimatorController;
 			break;
-		case 2: //man
-			Hat.SetActive(true);
-			Hat.GetComponent<Animator> ().runtimeAnimatorController = AnimationCapeorScarf[1] as RuntimeAnimatorController;
+		case 2: //naar
+			Accessorie.SetActive(true);
+			Accessorie.GetComponent<Animator> ().runtimeAnimatorController = AnimationCapeorScarf[1] as RuntimeAnimatorController;
 			break;
 		case 3: //woman
-			Hat.SetActive(false);
+			Accessorie.SetActive(false);
 			break;
 		}
 
@@ -202,14 +202,14 @@ public class ClothingGenerator : MonoBehaviour {
 		Skin.GetComponent<SpriteRenderer> ().color = SkinColour;
 		switch (vType)
 		{
-		case 1: //child
+		case 1: //elf
 			//skin = skins [0];
 			//Skin.GetComponent<SpriteRenderer> ().sprite = skin;
 			//Rskin = new Vector3 (0.12f, 0.61f, 0f);
 			//Skin.transform.localPosition = Rskin;
 			Skin.GetComponent<Animator> ().runtimeAnimatorController = AnimationSkin[0];
 			break;
-		case 2: //man
+		case 2: //naar
 			//skin = skins[1];
 			//Skin.GetComponent<SpriteRenderer> ().sprite = skin;
 			//Rskin = new Vector3 (-0.03f, 1.67f, 0f);

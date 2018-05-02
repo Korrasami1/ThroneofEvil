@@ -21,6 +21,7 @@ public class VillagerIdleMode : MonoBehaviour {
 		YMin = -6;
 		YMax = 4.7f;*/
 		timetodelay = Random.Range (0, 5);
+		_speed = Random.Range (1, 3); //want them to move first so 0 not called
 	}
 	
 	// Update is called once per frame
@@ -28,22 +29,22 @@ public class VillagerIdleMode : MonoBehaviour {
 		Vector3 dir = target.position - transform.position; //was target.transform.position
 		//float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		//transform.rotation = Quaternion.AngleAxis(angle + _angleOffset, Vector3.forward);*/
-		transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+		if (transform.position.y >= YMax1 || transform.position.y <= YMin1) {
+			transform.position = Vector3.MoveTowards (transform.position, -target.position, _speed * Time.deltaTime);
+		} else {
+			transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+		}
 		if(dir.x < 0){
 			gameObject.GetComponent<ClothingController>().villagerOrientation = "left";
 		}else if (dir.x > 0){
 			gameObject.GetComponent<ClothingController>().villagerOrientation = "right";
 		}
-		/*if(dir.y < 0){
-			gameObject.GetComponent<ClothingController>().villagerOrientation = "front";
-		}else if (dir.y > 0){
-			gameObject.GetComponent<ClothingController>().villagerOrientation = "back";
-		}*/
 
 		if (Time.time > timedelay) {
 			timedelay = Time.time + timetodelay;
 			target.position =  new Vector3 (Random.Range (XMin1, XMax1), Random.Range (YMin1, YMax1), 0.0f);
 			timetodelay = Random.Range (0, 5);
+			_speed = Random.Range (0, 3);
 			//wayPoints.position =  new Vector3 (Random.Range (1, 8), Random.Range (1, 8), 0.0f);
 			//target = wayPoints;
 		}

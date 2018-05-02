@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DigitalRuby.SoundManagerNamespace;
 
 public class TrapController : MonoBehaviour {
 	//public GameObject trap1, trap2, trap3, trap4, trap5, trap6;
+	//SoundsSceneManager sounds;
 	public GameObject boulder, freezeTrap, tarTrap;
 	public Image Freezes, Boulders, Tars;
 	public Text[] cooldownVisual;
@@ -33,6 +35,7 @@ public class TrapController : MonoBehaviour {
 	Color col1, col2;
 
 	void Start(){
+		//sounds = GameObject.FindWithTag ("SoundManager").GetComponent<SoundsSceneManager> ();
 		col1 = new Color (105/255.0F, 105/255.0F, 105/255.0F); //cooldown visual
 		col2 = new Color (255/255.0F, 255/255.0F, 255/255.0F); //normal visual
 		hasBoulderCooledDown = true;

@@ -358,7 +358,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539559234517020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.509635, y: 0.22603448, z: 0}
+  m_LocalPosition: {x: -13.550844, y: 3.6823447, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 224760932204103536}
@@ -714,7 +714,7 @@ MonoBehaviour:
   Shirt: {fileID: 1794886630908308}
   Skin: {fileID: 1263163866378088}
   Hair: {fileID: 1713061083621386}
-  Hat: {fileID: 1940574119323084}
+  Accessorie: {fileID: 0}
   AnimationHair: []
   AnimationPants: []
   AnimationSkin: []
@@ -737,8 +737,8 @@ MonoBehaviour:
   timedelay: 2
   XMin1: -15
   XMax1: 12.8
-  YMin1: -3.3
-  YMax1: 3
+  YMin1: -5.75
+  YMax1: 5
   timetodelay: 0
 --- !u!114 &114561437081888758
 MonoBehaviour:
@@ -766,7 +766,7 @@ MonoBehaviour:
   Shirt: {fileID: 1794886630908308}
   Skin: {fileID: 1263163866378088}
   Hair: {fileID: 1713061083621386}
-  Hat: {fileID: 1940574119323084}
+  Accessorie: {fileID: 1940574119323084}
   AnimationHair:
   - {fileID: 9100000, guid: f8b1f60539a1343469ccf37b0f0e7839, type: 2}
   - {fileID: 9100000, guid: 5cd63b8806bb87848b077bc4e52c667d, type: 2}
@@ -936,7 +936,7 @@ MonoBehaviour:
   Shirt: {fileID: 1794886630908308}
   Skin: {fileID: 1263163866378088}
   Hair: {fileID: 1713061083621386}
-  Hat: {fileID: 1940574119323084}
+  Accessorie: {fileID: 0}
   AnimationHair: []
   AnimationPants: []
   AnimationSkin: []

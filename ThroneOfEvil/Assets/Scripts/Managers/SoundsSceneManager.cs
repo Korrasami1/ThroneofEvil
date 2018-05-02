@@ -67,10 +67,26 @@ public class SoundsSceneManager : MonoBehaviour {
 			{
 				PlaySound(5);
 			}
-			/*if (Input.GetKeyDown(KeyCode.Alpha7))
+			if (playSound == 7)
 			{
 				PlaySound(6);
-			}*/
+			}
+			if (playSound == 8)
+			{
+				PlaySound(7);
+			}
+			if (playSound == 9)
+			{
+				PlaySound(8);
+			}
+			if (playSound == 10)
+			{
+				PlaySound (9);
+			}
+			if (playSound == 11)
+			{
+				PlaySound (10);
+			}
 			if (playMusic== 1)
 			{
 				PlayMusic(0);

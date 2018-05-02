@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
 	public bool winner2;
     private int counterforSpawning = 0;
 	public GameObject pauseMenu;
-    //private bool isSpawnOver = false;
+	ScoreManager score;
 	public float leveltimedelay = 20f;
 	public int WinnerCondition = 3;
 	private int killCounter = 0;
@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour {
 			hazards [0].GetComponent<VillagerIdleMode> ().enabled = false;
 		}
         StartCoroutine(SpawnWaves());
+		score = GameObject.FindWithTag ("Scoreboard").GetComponent<ScoreManager> ();
     }
 
     void FixedUpdate()
@@ -133,6 +134,7 @@ public class GameController : MonoBehaviour {
     }
 	public void Winner(int type)
 	{
+		score.writeToHighscoreBoard ();
 		if (type == 1) {
 			winner = true;
 		} else if (type == 2) {

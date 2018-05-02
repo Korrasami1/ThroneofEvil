@@ -130,8 +130,9 @@ public class ScoreManager : MonoBehaviour {
 		return TotalScores + currentScore;
 	}
 
-	private void writeToHighscoreBoard(){
+	public void writeToHighscoreBoard(){
 		//write to tezt file or something
+		PlayerPrefs.SetInt("HighScore", getTotalScore());
 	}
 
 }
