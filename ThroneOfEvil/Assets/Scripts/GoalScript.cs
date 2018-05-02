@@ -44,5 +44,15 @@ public class GoalScript : MonoBehaviour {
 			gameObjects [i].GetComponent<EnemyController> ().isPaused = false;
 			gameObjects [i].GetComponent<EnemyController>().CheckForTag();
 		}
+		gameObjects =  GameObject.FindGameObjectsWithTag ("TarredEnemy");
+		for (var i = 0; i < gameObjects.Length; i++) {
+			gameObjects [i].GetComponent<EnemyController> ().isPaused = false;
+			gameObjects [i].GetComponent<EnemyController>().CheckForTag();
+		}
+		gameObjects =  GameObject.FindGameObjectsWithTag ("BurningEnemy");
+		for (var i = 0; i < gameObjects.Length; i++) {
+			gameObjects [i].GetComponent<EnemyController> ().isPaused = false;
+			gameObjects [i].GetComponent<EnemyController>().CheckForTag();
+		}
 	}
 }

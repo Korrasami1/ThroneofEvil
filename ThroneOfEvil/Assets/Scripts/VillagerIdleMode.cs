@@ -12,6 +12,7 @@ public class VillagerIdleMode : MonoBehaviour {
 	public float XMax1 = 13;
 	public float YMin1 = -6;
 	public float YMax1 = 4.7f;
+	public float timetodelay;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,7 @@ public class VillagerIdleMode : MonoBehaviour {
 		XMax = 13;
 		YMin = -6;
 		YMax = 4.7f;*/
+		timetodelay = Random.Range (0, 5);
 	}
 	
 	// Update is called once per frame
@@ -39,8 +41,9 @@ public class VillagerIdleMode : MonoBehaviour {
 		}*/
 
 		if (Time.time > timedelay) {
-			timedelay = Time.time + 2f;
+			timedelay = Time.time + timetodelay;
 			target.position =  new Vector3 (Random.Range (XMin1, XMax1), Random.Range (YMin1, YMax1), 0.0f);
+			timetodelay = Random.Range (0, 5);
 			//wayPoints.position =  new Vector3 (Random.Range (1, 8), Random.Range (1, 8), 0.0f);
 			//target = wayPoints;
 		}

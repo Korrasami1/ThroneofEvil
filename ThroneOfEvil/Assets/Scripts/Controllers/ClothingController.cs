@@ -70,7 +70,7 @@ public class ClothingController : MonoBehaviour {
 			Villager [0].GetComponent<Animator> ().enabled = false;
 			Villager [1].GetComponent<Animator> ().enabled = false;
 			Villager [2].GetComponent<Animator> ().enabled = false;
-			//Villager [3].GetComponent<Animator> ().enabled = false;
+			Villager [3].GetComponent<Animator> ().enabled = false;
 			Villager [4].GetComponent<Animator> ().enabled = false;
 			//clothingRightView.GetComponent<Animator> ().enabled = false;
 			//clothingFrontView.GetComponent<Animator> ().enabled = false;
@@ -79,7 +79,7 @@ public class ClothingController : MonoBehaviour {
 			Villager [0].GetComponent<Animator> ().enabled = true;
 			Villager [1].GetComponent<Animator> ().enabled = true;
 			Villager [2].GetComponent<Animator> ().enabled = true;
-			//Villager [3].GetComponent<Animator> ().enabled = true;
+			Villager [3].GetComponent<Animator> ().enabled = true;
 			Villager [4].GetComponent<Animator> ().enabled = true;
 			//clothingRightView.GetComponent<Animator> ().enabled = true;
 			//clothingFrontView.GetComponent<Animator> ().enabled = true;
@@ -99,7 +99,7 @@ public class ClothingController : MonoBehaviour {
 			Villager [0].SetActive (false);
 			Villager [1].SetActive (false);
 			Villager [2].SetActive (false);
-			//Villager [3].SetActive (false);
+			Villager [3].SetActive (false);
 			Villager [4].SetActive (false);
 			//clothingFrontView.SetActive(false);
 			//clothingBackView.SetActive(false);
@@ -109,7 +109,7 @@ public class ClothingController : MonoBehaviour {
 			Villager [0].SetActive (true);
 			Villager [1].SetActive (true);
 			Villager [2].SetActive (true);
-			//Villager [3].SetActive (true);
+			Villager [3].SetActive (true);
 			Villager [4].SetActive (true);
 			break;
 		}
