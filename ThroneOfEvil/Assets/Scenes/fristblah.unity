@@ -5407,7 +5407,7 @@ MonoBehaviour:
   winner2: 0
   pauseMenu: {fileID: 1144281408}
   leveltimedelay: 180
-  WinnerCondition: 25
+  WinnerCondition: 6
 --- !u!4 &1616743549
 Transform:
   m_ObjectHideFlags: 0
