@@ -133,6 +133,7 @@ public class VillagerDamageController : MonoBehaviour {
 				scoreboard.killType = "Lightning";
 				enemyHealth.DealDamage (lightningDamage);
 				DebugDamage (lightningDamage, damagerDebug);
+				gameObject.GetComponent<Animator> ().enabled = true; //will change to Play("Lightning") later
 			}
 		}
 		if (other.CompareTag("Fire")){
