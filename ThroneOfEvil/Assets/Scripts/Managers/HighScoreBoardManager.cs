@@ -8,22 +8,37 @@ public class HighScoreBoardManager : MonoBehaviour {
 	public Text[] scores;
 	public Text[] Names;
 	private int currentPlayerScore;
-	private int[] score;
+	private string currentPlayerName;
+	List<PlayerScores> highscores;
+
 	// Use this for initialization
 	void Start () {
 		PlayerPrefs.SetInt ("HighScore", 50);
 		currentPlayerScore = PlayerPrefs.GetInt ("HighScore");
-		Debug.Log (scores[0].text);
+		PlayerPrefs.SetString ("PlayerName", "steve");
+		currentPlayerName = PlayerPrefs.GetString ("PlayerName");
+		highscores = new List<PlayerScores> ();
+		//this adds the names with their scores to an array that so it can be sorted.
 		for (int i = 0; i < scores.Length; i++) {
-			score [i] = int.Parse(scores [i].text);
+			highscores.Add (new PlayerScores () { names = Names [i].text, points = int.Parse (scores [i].text) });
+		}
+		highscores.Add (new PlayerScores () { names = currentPlayerName, points = currentPlayerScore });
+		//sorts and collects just the top 10 players
+		PlayerScores[] top10 = GetHighScores (10);
+
+		//places the top 10 names into the scenes's text files
+		for (int i = 0; i < 10; i++) {
+			Names [i].text = top10 [i].names;
+			scores [i].text = top10 [i].points.ToString();
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		foreach (int sort in score.OrderBy(score=>score))
-		{
-			Debug.Log(sort);
-		}
+
+	PlayerScores[] GetHighScores(int top10){
+		return highscores.OrderBy (highscores => -highscores.points).Take (top10).ToArray ();
+	}
+
+	public struct PlayerScores{
+		public int points;
+		public string names;
 	}
 }
