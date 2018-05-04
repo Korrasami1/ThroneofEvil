@@ -45,6 +45,7 @@ public class VillagerIdleMode : MonoBehaviour {
 			target.position =  new Vector3 (Random.Range (XMin1, XMax1), Random.Range (YMin1, YMax1), 0.0f);
 			timetodelay = Random.Range (0, 5);
 			_speed = Random.Range (0, 3);
+			XMin1 -= 0.5f;
 			//wayPoints.position =  new Vector3 (Random.Range (1, 8), Random.Range (1, 8), 0.0f);
 			//target = wayPoints;
 		}

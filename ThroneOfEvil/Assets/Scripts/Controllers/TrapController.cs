@@ -10,6 +10,7 @@ public class TrapController : MonoBehaviour {
 	public GameObject boulder, freezeTrap, tarTrap;
 	public Image Freezes, Boulders, Tars;
 	public Text[] cooldownVisual;
+	private float cooldowntimerBoulder, cooldowntimerFreeze, cooldowntimerTar; 
 	public float BoulderCooldownSpeed = 3;
 	private bool hasBoulderCooledDown = true;
 	public float tarTrapCooldownSpeed = 3;
@@ -53,6 +54,9 @@ public class TrapController : MonoBehaviour {
 		for (int i = 0; i < cooldownVisual.Length; i++) {
 			cooldownVisual [i].text = "";
 		}
+		cooldowntimerBoulder = BoulderCooldownSpeed;
+		cooldowntimerTar = tarTrapCooldownSpeed;
+		cooldowntimerFreeze = freezeTrapCooldownSpeed;
 		laneDifference = laneThree - laneFour;
 	}
 		
@@ -69,6 +73,38 @@ public class TrapController : MonoBehaviour {
 
 		//If Left Button is clicked #was 0 also was trapClone.transform.position
 		setTrap();
+
+		//on screen timer of the cooldowns
+		if (hasBoulderCooledDown == false) {
+			GUITimers (1);
+		} else if (hasFreezeTrapCooledDown == false) {
+			GUITimers (2);
+		} else if (hasTarTrapCooledDown == false) {
+			GUITimers (3);
+		}
+	}
+
+	void GUITimers(int trapnum){
+		if (trapnum == 1) {
+			cooldowntimerBoulder -= Time.deltaTime;
+			cooldownVisual [2].text = cooldowntimerBoulder.ToString ();
+		} else if (trapnum == 2) {
+			cooldowntimerFreeze -= Time.deltaTime;
+			cooldownVisual [0].text = cooldowntimerFreeze.ToString ();
+		} else if (trapnum == 3) {
+			cooldowntimerTar -= Time.deltaTime;
+			cooldownVisual [1].text = cooldowntimerTar.ToString ();
+		}
+		if (cooldowntimerBoulder <= 0) {
+			cooldowntimerBoulder = BoulderCooldownSpeed;
+			cooldownVisual [2].text = "";
+		}else if (cooldowntimerFreeze <= 0) {
+			cooldowntimerFreeze = freezeTrapCooldownSpeed;
+			cooldownVisual [0].text = "";
+		}else if (cooldowntimerTar <= 0) {
+			cooldowntimerTar = tarTrapCooldownSpeed;
+			cooldownVisual [1].text = "";
+		}
 	}
 	//had as public for a different script but its not in use right now
 	public void setTrap(){

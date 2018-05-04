@@ -23,8 +23,8 @@ public class MouseRenderer : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if (cursorChangeNum == 0) {
-			GUI.DrawTexture (new Rect (mouse.x - (w / 2), mouse.y, w, h), cursor [cursorChangeNum]);
+		if (cursorChangeNum == 0) { //normal mouse pointer
+			GUI.DrawTexture (new Rect (mouse.x, mouse.y, w, h), cursor [cursorChangeNum]);
 		} else {
 			GUI.DrawTexture (new Rect (mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor [cursorChangeNum]);
 		}

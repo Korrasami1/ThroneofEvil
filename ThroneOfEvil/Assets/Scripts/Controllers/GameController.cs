@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     public GameObject[] hazards;
+	public Transform[] spawnLocations;
+	Vector3 spawn;
 	public int levelNum;
 	public GameObject VoiceCommands;
     public Vector3 spawnValues;
@@ -16,6 +18,7 @@ public class GameController : MonoBehaviour {
     public float waveWait;
     public Text restartText;
     public Text gameOverText;
+	public Text gameTimerText;
     public bool gameOver;
     private bool restart;
     public bool winner;
@@ -24,6 +27,8 @@ public class GameController : MonoBehaviour {
 	public GameObject pauseMenu;
 	ScoreManager score;
 	public float leveltimedelay = 20f;
+	private float levelTime;
+	private float gameTime;
 	public int WinnerCondition = 3;
 	private int killCounter = 0;
 	public int villagerDeathCount(){
@@ -38,17 +43,19 @@ public class GameController : MonoBehaviour {
 		winner2 = false;
         restartText.text = "";
         gameOverText.text = "";
+		gameTimerText.text = "";
         counterforSpawning = 0;
-		leveltimedelay = Time.time + leveltimedelay;
+		levelTime = leveltimedelay; //for the delay
+		gameTime = levelTime; //for the on screen timer
 		Instantiate (VoiceCommands, transform.position, Quaternion.identity);
         //isSpawnOver = false;
 		if (levelNum == 1) {
-			hazards [0].GetComponent<EnemyController> ().enabled = false;
+			//hazards [0].GetComponent<EnemyController> ().enabled = false;
 			hazards [0].GetComponent<VillagerIdleMode> ().enabled = true;
-		} else if (levelNum == 2) {
+		} /*else if (levelNum == 2) {
 			hazards [0].GetComponent<EnemyController> ().enabled = true;
 			hazards [0].GetComponent<VillagerIdleMode> ().enabled = false;
-		}
+		}*/
         StartCoroutine(SpawnWaves());
 		score = GameObject.FindWithTag ("Scoreboard").GetComponent<ScoreManager> ();
     }
@@ -66,16 +73,22 @@ public class GameController : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-		if (levelNum == 2) {
+		/*if (levelNum == 2) {
 			if (killCounter >= WinnerCondition) {
 				Winner (1);
 			} else if (Time.time > leveltimedelay) {
 				leveltimedelay = Time.time + leveltimedelay;
 				Winner (2);	
 			}
-		} else if (levelNum == 1) {
+		} else*/ 
+		GUIgameTimer ();
+		if (levelNum == 1) {
 			if (killCounter >= WinnerCondition) {
 				Winner (2);
+			}
+			else if (Time.time > leveltimedelay || gameTime == 0) {
+				leveltimedelay = Time.time + levelTime;
+				Winner (2);	
 			}
 		}
 		if (Input.GetButton("Cancel")) {
@@ -84,6 +97,16 @@ public class GameController : MonoBehaviour {
 		}
     }
 
+	void GUIgameTimer(){
+		gameTime -= Time.deltaTime;
+		var minutes = gameTime / 60; //Divide the guiTime by sixty to get the minutes.
+		var seconds = gameTime % 60;//Use the euclidean division for the seconds.
+		var fraction = (gameTime * 100) % 100;
+
+		//update the label value
+		gameTimerText.text = string.Format ("{0:00} : {1:00} : {2:000}", minutes, seconds, fraction);
+
+	}
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
@@ -92,9 +115,9 @@ public class GameController : MonoBehaviour {
             for (int i = 0; i < hazardCount; i++)
             {
                 GameObject hazard = hazards[Random.Range(0, hazards.Length)];
-                Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.z), 0f);
+                //Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.z), 0f);
                 Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(hazard, spawnPosition, spawnRotation);
+				Instantiate(hazard, randomiseSpawnLocation(), spawnRotation);
                 counterforSpawning = counterforSpawning + 1;
                 yield return new WaitForSeconds(spawnWait);
             }
@@ -123,6 +146,22 @@ public class GameController : MonoBehaviour {
         }
 
     }
+	private Vector3 randomiseSpawnLocation(){
+		int num = Random.Range (1, 4);
+		switch (num)
+		{
+		case 1:
+			spawn = spawnLocations [0].position;
+			break;
+		case 2:
+			spawn = spawnLocations [1].position;
+			break;
+		case 3:
+			spawn = spawnLocations [2].position;
+			break;
+		}
+		return spawn;
+	}
     public void GameOver()
     {
         gameOver = true;
@@ -130,7 +169,7 @@ public class GameController : MonoBehaviour {
     public void Restart()
     {
         restart = true;
-		leveltimedelay = Time.time + leveltimedelay;
+		leveltimedelay = Time.time + levelTime;
     }
 	public void Winner(int type)
 	{
