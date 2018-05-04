@@ -7,6 +7,7 @@ public class TarPool : MonoBehaviour {
 
 	public int uses = 3;
 	public GameObject explosion;
+	public GameObject exp;
 	void Start () {
 	}
 	void Update () {
@@ -24,6 +25,7 @@ public class TarPool : MonoBehaviour {
 		}
 		if (other.CompareTag ("Fire") || other.CompareTag ("Explosion") || other.CompareTag ("BurningEnemy")) {
 			Instantiate (explosion, transform.position, transform.rotation);
+			Instantiate (exp, transform.position, transform.rotation);
 			Destroy (gameObject);
 		}
 	}

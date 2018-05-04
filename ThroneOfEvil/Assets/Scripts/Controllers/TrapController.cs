@@ -95,16 +95,6 @@ public class TrapController : MonoBehaviour {
 			cooldowntimerTar -= Time.deltaTime;
 			cooldownVisual [1].text = cooldowntimerTar.ToString ();
 		}
-		if (cooldowntimerBoulder <= 0) {
-			cooldowntimerBoulder = BoulderCooldownSpeed;
-			cooldownVisual [2].text = "";
-		}else if (cooldowntimerFreeze <= 0) {
-			cooldowntimerFreeze = freezeTrapCooldownSpeed;
-			cooldownVisual [0].text = "";
-		}else if (cooldowntimerTar <= 0) {
-			cooldowntimerTar = tarTrapCooldownSpeed;
-			cooldownVisual [1].text = "";
-		}
 	}
 	//had as public for a different script but its not in use right now
 	public void setTrap(){
@@ -199,6 +189,8 @@ public class TrapController : MonoBehaviour {
 			yield return new WaitForSeconds (BoulderCooldownSpeed);
 			hasBoulderCooledDown = true;
 			Boulders.color = col2;
+			cooldowntimerBoulder = BoulderCooldownSpeed;
+			cooldownVisual [2].text = "";
 		}
 	}
 	
@@ -266,6 +258,8 @@ public class TrapController : MonoBehaviour {
 				yield return new WaitForSeconds (freezeTrapCooldownSpeed);
 				hasFreezeTrapCooledDown = true;
 				Freezes.color = col2;
+				cooldowntimerFreeze = freezeTrapCooldownSpeed;
+				cooldownVisual [0].text = "";
 			}
 			break;
 		case 5:
@@ -275,6 +269,8 @@ public class TrapController : MonoBehaviour {
 				yield return new WaitForSeconds (tarTrapCooldownSpeed);
 				hasTarTrapCooledDown = true;
 				Tars.color = col2;
+				cooldowntimerTar = tarTrapCooldownSpeed;
+				cooldownVisual [1].text = "";
 			}
 			break;
 		}

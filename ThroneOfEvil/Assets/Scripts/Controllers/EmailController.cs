@@ -7,216 +7,403 @@ using System.Net.Mail;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EmailController : MonoBehaviour {
 
-	//StreamWriter writer;
+	public Text debugText;
+	//public Text QuestionOne;
+	public string questionOneAnswer;
+	//public string questionTwoAnswer;
+	public InputField QuestionOneInput;
+
+
+
+	void Start(){
+		//QuestionOne.text = GetComponent<Text>().text; 
+		//QuestionOneInput.text = questionOneAnswer; 
+		//		_valueTestBoulder = PlayerPrefs.GetFloat("valueTestBoulder");
+	}
+
+	void Update (){
+		//QuestionOneInput.text = "write text here"; 
+		//QuestionOne = "Write Question here";
+		//QuestionOneInput.text = questionOneAnswer; 
+
+	}
+
 
 	public void Gmailsender ()
 	{
+
+
 		string FilePath = "";
 		string AttachmentName = "test.txt";
 		string FileName = "test.txt";
-		string Screenshot = "ScreenShot.PNG";
-		FilePath = string.Format(@"", AttachmentName);
+		//string Screenshot = "ScreenShot.PNG";
+		FilePath = string.Format (@"", AttachmentName);
 		FilePath = Application.persistentDataPath + "/" + AttachmentName;
 		Debug.Log (FilePath);
-		MailMessage mail = new MailMessage();
-		mail.From = new MailAddress("malefisheepfeedback@gmail.com");
-		mail.To.Add("kontakt@erikrosenberg.se");
+		MailMessage mail = new MailMessage ();
+		mail.From = new MailAddress ("malefisheepfeedback@gmail.com");
+		mail.To.Add ("kontakt@erikrosenberg.se");
 		mail.Subject = "Throne of Evil Feedback";
 		mail.Body = "This is where we want to add the inputs and so on";
-		Attachment data = new Attachment(FileName, System.Net.Mime.MediaTypeNames.Application.Octet);
-		Attachment screendata = new Attachment(Screenshot, System.Net.Mime.MediaTypeNames.Application.Octet);
+		Attachment data = new Attachment (FileName, System.Net.Mime.MediaTypeNames.Application.Octet);
+		//Attachment screendata = new Attachment (Screenshot, System.Net.Mime.MediaTypeNames.Application.Octet);
 		// Add time stamp information for the file.
 		System.Net.Mime.ContentDisposition disposition = data.ContentDisposition;
-		disposition.CreationDate = System.IO.File.GetCreationTime(FileName);
-		disposition.ModificationDate = System.IO.File.GetLastWriteTime(FileName);
-		disposition.ReadDate = System.IO.File.GetLastAccessTime(FileName);
-		mail.Attachments.Add(data);
-		mail.Attachments.Add(screendata);
-		SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+		disposition.CreationDate = System.IO.File.GetCreationTime (FileName);
+		disposition.ModificationDate = System.IO.File.GetLastWriteTime (FileName);
+		disposition.ReadDate = System.IO.File.GetLastAccessTime (FileName);
+		mail.Attachments.Add (data);
+		//mail.Attachments.Add (screendata);
+		SmtpClient smtpServer = new SmtpClient ("smtp.gmail.com");
 		smtpServer.Port = 587;
-		smtpServer.Credentials = new System.Net.NetworkCredential("malefisheepfeedback@gmail.com", "feedback123") as ICredentialsByHost;
+		smtpServer.Credentials = new System.Net.NetworkCredential ("malefisheepfeedback@gmail.com", "feedback123") as ICredentialsByHost;
 		smtpServer.EnableSsl = true;
 		ServicePointManager.ServerCertificateValidationCallback = 
-			delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) 
-		{ return true; };
-		smtpServer.Send(mail);
-		Debug.Log("success");
+			delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
+			return true;
+		};
+		smtpServer.Send (mail);
+		Debug.Log ("success");
+
+	}
+	public void questionOneInputField(string newStringOne){
+
+		QuestionOneInput.GetComponent<InputField>().lineType = InputField.LineType.MultiLineNewline;
+		questionOneAnswer = newStringOne;
+		//questionTwoAnswer = newStringOne;
+		//Debug.Log("value update" + newValueSpeed);
+		//Debug.Log("Answer on question one is: " + questionOneAnswer);
+
 	}
 
 
-	public void ButtonOneClick(){
+	public void QuestionOneSend(){
+		//writes the question to text file
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+
+		writer.WriteLine("Answer to the question 1 is: " + questionOneAnswer);
+		//writer.WriteLine("question Two is: " + questionTwoAnswer);
+
+		writer.Close();
+		Debug.Log("Question answer 1 is:  " + questionOneAnswer);
+		//Debug.Log("Question two answer is:  " + questionTwoAnswer);
+
+	}
+	public void QuestionTwoSend(){
+		//writes the question to text file
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+
+		writer.WriteLine("Answer to the question 2 is: " + questionOneAnswer);
+		//writer.WriteLine("question Two is: " + questionTwoAnswer);
+
+		writer.Close();
+		Debug.Log("Question answer  2  is:  " + questionOneAnswer);
+		//Debug.Log("Question two answer is:  " + questionTwoAnswer);
+
+	}
+	public void QuestionThreeSend(){
+		//writes the question to text file
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+
+		writer.WriteLine("Answer to the question 3 is: " + questionOneAnswer);
+		//writer.WriteLine("question Two is: " + questionTwoAnswer);
+
+		writer.Close();
+		Debug.Log("Question answer  3  is:  " + questionOneAnswer);
+		//Debug.Log("Question two answer is:  " + questionTwoAnswer);
+
+	}
+	public void QuestionFourSend(){
+		//writes the question to text file
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+
+		writer.WriteLine("Answer to the question 4 is: " + questionOneAnswer);
+		//writer.WriteLine("question Two is: " + questionTwoAnswer);
+
+		writer.Close();
+		Debug.Log("Question answer  4  is:  " + questionOneAnswer);
+		//Debug.Log("Question two answer is:  " + questionTwoAnswer);
+
+	}
+	// -----------------------------------------------------------------------------------------
+	public void ButtonOneClickQOne(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 1");
+		writer.WriteLine("How useful was the Tar Trap? Player scored it: 1 ");
 		writer.Close();
-		//WriteValuesToTextFile ();
+		Debug.Log("How useful was the Tar Trap? Player scored it: 1");
 
 	}
-	public void ButtonTwoClick(){
+	public void ButtonTwoClickQOne(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 2");
+		writer.WriteLine("How useful was the Tar Trap? Player scored it: 2 ");
 		writer.Close();
-		//WriteValuesToTextFile ();
+
 
 	}
-	public void ButtonThreeClick(){
+	public void ButtonThreeClickQOne(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 3");
+		writer.WriteLine("How useful was the Tar Trap? Player scored it: 3 ");
 		writer.Close();
-		//WriteValuesToTextFile ();
+
 
 	}
-	public void ButtonFourClick(){
+	public void ButtonFourClickQOne(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 4");
+		writer.WriteLine("How useful was the Tar Trap? Player scored it: 4 ");
 		writer.Close();
-		//WriteValuesToTextFile ();
+
 
 	}
-	public void ButtonFiveClick(){
+	public void ButtonFiveClickQOne(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 5");
+		writer.WriteLine("How useful was the Tar Trap? Player scored it: 5 ");
 		writer.Close();
-		//WriteValuesToTextFile ();
+
 
 	}
-	public void ButtonSixClick(){
+
+	// -----------------------------------------------------------------------------------------
+	public void ButtonOneClickQTwo(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 6");
+		writer.WriteLine("How useful was the Freezing Trap? Player scored it: 1 ");
 		writer.Close();
-		//WriteValuesToTextFile ();
+		Debug.Log("How useful was the Freezing Trap? Player scored it: 1");
 
 	}
-	public void ButtonSevenClick(){
+	public void ButtonTwoClickQTwo(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 7");
+		writer.WriteLine("How useful was the Freezing Trap? Player scored it: 2 ");
 		writer.Close();
-		//WriteValuesToTextFile ();
+
 
 	}
-	public void ButtonEightClick(){
+	public void ButtonThreeClickQTwo(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 8");
-		//WriteValuesToTextFile ();
+		writer.WriteLine("How useful was the Freezing Trap? Player scored it: 3 ");
 		writer.Close();
 
+
 	}
-	public void ButtonNineClick(){
+	public void ButtonFourClickQTwo(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 9");
+		writer.WriteLine("How useful was the Freezing Trap? Player scored it: 4 ");
 		writer.Close();
-	
+
+
 	}
-	public void ButtonTenClick(){
+	public void ButtonFiveClickQTwo(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine("Player Scored The GamePlay 10");
+		writer.WriteLine("How useful was the Freezing Trap? Player scored it: 5 ");
 		writer.Close();
 
+
 	}
+	// -----------------------------------------------------------------------------------------
+	public void ButtonOneClickQThree(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Boulder? Player scored it: 1 ");
+		writer.Close();
+		Debug.Log("How useful was the Boulder? Player scored it: 1");
+
+	}
+	public void ButtonTwoClickQThree(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Boulder? Player scored it: 2 ");
+		writer.Close();
+
+
+	}
+	public void ButtonThreeClickQThree(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Boulder? Player scored it: 3 ");
+		writer.Close();
+
+
+	}
+	public void ButtonFourClickQThree(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Boulder? Player scored it: 4 ");
+		writer.Close();
+
+
+	}
+	public void ButtonFiveClickQThree(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Boulder? Player scored it: 5 ");
+		writer.Close();
+
+
+	}
+	// -----------------------------------------------------------------------------------------
+	public void ButtonOneClickQFour(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Lightning Bolt Player scored it: 1 ");
+		writer.Close();
+		Debug.Log("How useful was the Lightning Bolt Player scored it: 1");
+
+	}
+	public void ButtonTwoClickQFour(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Lightning Bolt Player scored it: 2 ");
+		writer.Close();
+
+
+	}
+	public void ButtonThreeClickQFour(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Lightning Bolt Player scored it: 3 ");
+		writer.Close();
+
+
+	}
+	public void ButtonFourClickQFour(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Lightning Bolt Player scored it: 4 ");
+		writer.Close();
+
+
+	}
+	public void ButtonFiveClickQFour(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Lightning Bolt Player scored it: 5 ");
+		writer.Close();
+
+
+	}
+	// -----------------------------------------------------------------------------------------
+	public void ButtonOneClickQFive(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Fireball? Player scored it: 1 ");
+		writer.Close();
+		Debug.Log("How useful was the Fireball? Player scored it: 1");
+
+	}
+	public void ButtonTwoClickQFive(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Fireball? Player scored it: 2 ");
+		writer.Close();
+
+
+	}
+	public void ButtonThreeClickQFive(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Fireball? Player scored it: 3 ");
+		writer.Close();
+
+
+	}
+	public void ButtonFourClickQFive(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Fireball? Player scored it: 4 ");
+		writer.Close();
+
+
+	}
+	public void ButtonFiveClickQFive(){
+
+		string path = "test.txt";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine("How useful was the Fireball? Player scored it: 5 ");
+		writer.Close();
+
+
+	}
+	// -----------------------------------------------------------------------------------------
+
 	public void ResetTextFile(){
 
 		string path = "test.txt";
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, false);
-		writer.WriteLine(""); //adds a emty row
+		//writer.WriteLine(""); //adds a emty row
 		writer.Close();
 
 	}
-
-	/*public void WriteValuesToTextFile(){
-
-		//string path = "test.txt";
-		//Write some text to the test.txt file
-		//StreamWriter writer = new StreamWriter(path, true);
-		//writer.WriteLine("send text " + Convert.ToString(Boulder.smooth)); //adds a emty row
-		writer.WriteLine("send text " + Convert.ToString(enemy.speed));
-		writer.WriteLine("send text " + Convert.ToString(gameController.spawnWait));
-		writer.WriteLine("send text " + Convert.ToString(gameController.waveWait));
-		writer.WriteLine("send text " + Convert.ToString(gameController.startWait));
-		//writer.WriteLine("send text " + Convert.ToString(EnemyController.damage));
-		writer.WriteLine("send text " + Convert.ToString(voicecommand.numOfMinions));
-		writer.WriteLine("send text " + Convert.ToString(villagerdamage.fireDamage));
-		writer.WriteLine("send text " + Convert.ToString(trapcontrol.BoulderCooldownSpeed));
-		writer.WriteLine("send text " + Convert.ToString(villagerdamage.fireFrozenDamage));
-		writer.WriteLine("send text " + Convert.ToString(villagerdamage.trapDoorDamage));
-		writer.WriteLine("send text " + Convert.ToString(boulder.speed));
-		writer.WriteLine("send text " + Convert.ToString(villagerdamage.lightningDamage));
-		writer.WriteLine("send text " + Convert.ToString(villagerdamage.lightningFrozenDamage));
-		writer.WriteLine("send text " + Convert.ToString(villagerdamage.boulderFrozenDamage));
-		//writer.WriteLine("send text " + Convert.ToString(ExampleScript.test));
-
-		writer.Close();
-
-		//Debug.Log("send text " + Convert.ToString(Boulder.smooth));
-		Debug.Log("send text " + Convert.ToString(enemy.speed));
-		Debug.Log("send text " + Convert.ToString(gameController.spawnWait));
-		Debug.Log("send text " + Convert.ToString(gameController.waveWait));
-		Debug.Log("send text " + Convert.ToString(gameController.startWait));
-		//Debug.Log("send text " + Convert.ToString(EnemyController.damage));
-		Debug.Log("send text " + Convert.ToString(voicecommand.numOfMinions));
-		Debug.Log("send text " + Convert.ToString(villagerdamage.fireDamage));
-		Debug.Log("send text " + Convert.ToString(trapcontrol.BoulderCooldownSpeed));
-		Debug.Log("send text " + Convert.ToString(villagerdamage.fireFrozenDamage));
-		Debug.Log("send text " + Convert.ToString(villagerdamage.trapDoorDamage));
-		Debug.Log("send text " + Convert.ToString(villagerdamage.lightningDamage));
-		Debug.Log("send text " + Convert.ToString(villagerdamage.lightningFrozenDamage));
-		Debug.Log("send text " + Convert.ToString(villagerdamage.boulderFrozenDamage));
-		Debug.Log("send text " + Convert.ToString(boulder.speed));
-		//Debug.Log("send text " + Convert.ToString(ExampleScript.test));
-
-	}*/
-
-	//	public void asdasdasd(){
-	//		asdasd = PlayerPrefs.GetInt ("Enemy");
-	//
-	//		string path = "test.txt";
-	//		//Write some text to the test.txt file
-	//		StreamWriter writer = new StreamWriter(path, true);
-	//		writer.WriteLine(asdasd); //adds a emty row
-	//		writer.Close();
-	//
-	//	}
-
-	//	public void Writetotextfile()
-	//	{
-	//		string path = "test.txt";
-	//		//Write some text to the test.txt file
-	//		StreamWriter writer = new StreamWriter(path, true);
-	//		writer.WriteLine("First row added");
-	//		writer.WriteLine("Second row added");
-	//		writer.Close();
-	//	}
 
 }

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DigitalRuby.SoundManagerNamespace;
 
 public class MutedVoiceCommands : MonoBehaviour {
 
 	//public string[] keywords = new string[] {"Send in the minions", "Fire", "Lightning", "Fear", "Mind Control"};
+	SoundsSceneManager sounds;
 	public float minionSpeed;
 	//protected string word = "Voice Commands Active";
 	public GameObject minion;
@@ -18,8 +20,11 @@ public class MutedVoiceCommands : MonoBehaviour {
 	private bool isSpawningFear = false;
 	public GameObject MindControl;
 	private bool isSpawningMindControl = false;
-	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown, hasFearCooledDown, hasMindControlCooledDown;
-	public float minionCooldown, fireCooldown, lightningCooldown, fearCooldown, MindControlCooldown;
+	public GameObject Evil;
+	private bool isSpawningEvil = false;
+	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown, hasFearCooledDown, hasMindControlCooledDown, hasEvilCooledDown;
+	public float minionCooldown, fireCooldown, lightningCooldown, fearCooldown, MindControlCooldown, EvilLaughterCoolDown;
+	Camera cam;
 	//private static bool created = false;
 	void Start()
 	{
@@ -34,34 +39,61 @@ public class MutedVoiceCommands : MonoBehaviour {
 		isSpawningLightning = true;
 		isSpawningFear = true;
 		isSpawningMindControl = true;
+		cam = Camera.main;
+		hasEvilCooledDown = true;
+		sounds = GameObject.FindWithTag ("SoundManager").GetComponent<SoundsSceneManager> ();
 	}
 	private void FixedUpdate()
 	{
 		if (Input.GetKeyDown (KeyCode.A)) {
 			Debug.Log ("You pressed A");
+			if (hasMinionsCooleddown == false) {
+				sounds.PlaySound(8);
+			}
 			spawnMinions ();
 			hasMinionsCooleddown = false;
 			StartCoroutine (MagicCoolDown (1, hasMinionsCooleddown));
 		} else if (Input.GetKeyDown (KeyCode.S)) {
 			Debug.Log ("You pressed S");
+			if (hasFireCooledDown == false) {
+				sounds.PlaySound(8);
+			}
 			SpawnFire ();
 			hasFireCooledDown = false;
 			StartCoroutine (MagicCoolDown (2, hasFireCooledDown));
 		} else if (Input.GetKeyDown (KeyCode.D)) {
 			Debug.Log ("You pressed D");
+			if (hasLightningCooledDown == false) {
+				sounds.PlaySound(8);
+			}
 			SpawnLightning ();
 			hasLightningCooledDown = false;
 			StartCoroutine (MagicCoolDown (3, hasLightningCooledDown));
 		} else if (Input.GetKeyDown (KeyCode.F)) {
 			Debug.Log ("You pressed F");
+			if (hasFearCooledDown == false) {
+				sounds.PlaySound(8);
+			}
 			SpawnFear ();
 			hasFearCooledDown = false;
 			StartCoroutine (MagicCoolDown (4, hasFearCooledDown));
 		} else if (Input.GetKeyDown (KeyCode.G)) {
 			Debug.Log ("You pressed G");
+			if (hasMindControlCooledDown == false) {
+				sounds.PlaySound(8);
+			}
 			SpawnMindControl ();
 			hasMindControlCooledDown = false;
 			StartCoroutine (MagicCoolDown (5, hasMindControlCooledDown));
+		}
+		else if (Input.GetKeyDown (KeyCode.H)) {
+			Debug.Log ("You pressed H");
+			if (hasEvilCooledDown == false) {
+				sounds.PlaySound(8);
+			}
+			SpawnEvilPromotion ();
+			hasEvilCooledDown = false;
+			StartCoroutine (MagicCoolDown (6, hasEvilCooledDown));
 		}
 	}
 	IEnumerator MagicCoolDown(int magictype/*string magictype*/, bool hasCooled){
@@ -103,6 +135,13 @@ public class MutedVoiceCommands : MonoBehaviour {
 				isSpawningMindControl = true;
 			}
 			break;
+		case 6/*"Evil Laugh"*/:
+			if (hasCooled == false) {
+				yield return new WaitForSeconds (EvilLaughterCoolDown);
+				hasEvilCooledDown = true;
+				isSpawningEvil = true;
+			}
+			break;
 		}
 	}
 	private void spawnMinions(){
@@ -110,7 +149,7 @@ public class MutedVoiceCommands : MonoBehaviour {
 			int tempCounter = 0;
 			//Vector3 center = transform.position;
 			for (int i = 0; i < numOfMinions; i++) {
-				float a = -15f + i*1.5f;
+				float a = cam.gameObject.transform.localPosition.x-15f + i*1.5f;
 				Vector3 spawnPosition = new Vector3(a, 16f, 0f);
 				Instantiate (minion, spawnPosition, Quaternion.identity);
 				tempCounter++;
@@ -149,6 +188,14 @@ public class MutedVoiceCommands : MonoBehaviour {
 				Instantiate (MindControl, MindControl.transform.position, Quaternion.identity);
 			}
 			isSpawningMindControl = false;
+		}
+	}
+	private void SpawnEvilPromotion(){
+		if (isSpawningEvil == true) {
+			for (int i = 0; i < 1; i++) {
+				Instantiate (Evil, Evil.transform.position, Quaternion.identity);
+			}
+			isSpawningEvil = false;
 		}
 	}
 	//spawning minions in a circle on the field

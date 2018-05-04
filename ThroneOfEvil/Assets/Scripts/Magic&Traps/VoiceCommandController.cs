@@ -28,6 +28,7 @@ public class VoiceCommandController : MonoBehaviour
 	private bool isSpawningEvil = false;
 	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown, hasFearCooledDown, hasMindControlCooledDown, hasEvilCooledDown;
 	public float minionCooldown, fireCooldown, lightningCooldown, fearCooldown, MindControlCooldown, EvilLaughterCoolDown;
+	Camera cam;
 	//private static bool created = false;
 	void Start()
 	{
@@ -45,6 +46,7 @@ public class VoiceCommandController : MonoBehaviour
 		hasMindControlCooledDown = true;
 		hasEvilCooledDown = true;
 		sounds = GameObject.FindWithTag ("SoundManager").GetComponent<SoundsSceneManager> ();
+		cam = Camera.main;
 	}
 	private void FixedUpdate()
 	{
@@ -197,7 +199,7 @@ public class VoiceCommandController : MonoBehaviour
 			int tempCounter = 0;
 			//Vector3 center = transform.position;
 			for (int i = 0; i < numOfMinions; i++) {
-				float a = -15f + i*1.5f;
+				float a = cam.gameObject.transform.localPosition.x-15f + i*1.5f;
 				Vector3 spawnPosition = new Vector3(a, 16f, 0f);
 				Instantiate (minion, spawnPosition, Quaternion.identity);
 				tempCounter++;

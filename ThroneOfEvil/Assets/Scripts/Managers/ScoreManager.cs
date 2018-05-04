@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class ScoreManager : MonoBehaviour {
 	public Text ScoreTXT;
@@ -111,12 +112,18 @@ public class ScoreManager : MonoBehaviour {
 
 	private void screenScoreText(int currentKill, Transform others){
 		screenPoints.GetComponent<Text> ().text = currentKill.ToString ();
-		Vector3 toCamera = Camera.main.WorldToScreenPoint(others.position);
-		screenPoints.transform.position = toCamera;
-		Text clonePoints = screenPoints;
-		Text game = Instantiate(clonePoints, toCamera, Quaternion.identity);
-		game.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
-		game.transform.position = toCamera;
+		try{
+			Vector3 toCamera = Camera.main.WorldToScreenPoint(others.position);
+			screenPoints.transform.position = toCamera;
+			Text clonePoints = screenPoints;
+			Text game = Instantiate(clonePoints, toCamera, Quaternion.identity);
+			game.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+			game.transform.position = toCamera;
+		}
+		catch(NullReferenceException e){
+			print (e);
+		}
+
 	}
 
 	public int getCurrentScore(){

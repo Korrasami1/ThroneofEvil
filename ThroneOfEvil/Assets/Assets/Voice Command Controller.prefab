@@ -47,7 +47,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253534602109302}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a1aa2700ca0ecb4da660775963bd6bb, type: 3}
   m_Name: 
@@ -97,8 +97,10 @@ MonoBehaviour:
   fear: {fileID: 1652137723988522, guid: 9ca3cc026187f9541b5521a3bb13f4c7, type: 2}
   MindControl: {fileID: 1867152972554878, guid: a22d8f9ead57e9b448a9f8ab11a0beb4,
     type: 2}
+  Evil: {fileID: 1393450373701634, guid: c55bf3842fabd594599250901f6408da, type: 2}
   minionCooldown: 0
   fireCooldown: 10
   lightningCooldown: 10
   fearCooldown: 20
   MindControlCooldown: 10
+  EvilLaughterCoolDown: 1

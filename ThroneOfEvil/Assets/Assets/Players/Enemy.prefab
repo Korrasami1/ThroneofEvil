@@ -917,7 +917,7 @@ MonoBehaviour:
   burningDamageOverTime: 5
   lightningDamage: 50
   lightningFrozenDamage: 100
-  minionDamage: 50
+  minionDamage: 100
   mindControlAttackDamage: 0.2
   freezeDurationSeconds: 7
   slowDurationSeconds: 10

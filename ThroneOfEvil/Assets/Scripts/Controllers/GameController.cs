@@ -84,10 +84,12 @@ public class GameController : MonoBehaviour {
 		GUIgameTimer ();
 		if (levelNum == 1) {
 			if (killCounter >= WinnerCondition) {
+				gameTime = levelTime;
 				Winner (2);
 			}
-			else if (Time.time > leveltimedelay || gameTime == 0) {
+			else if (Time.time > leveltimedelay || gameTime <= 0) {
 				leveltimedelay = Time.time + levelTime;
+				gameTime = levelTime;
 				Winner (2);	
 			}
 		}

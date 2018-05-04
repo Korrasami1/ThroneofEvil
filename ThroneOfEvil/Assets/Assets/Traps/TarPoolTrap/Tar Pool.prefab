@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uses: 3
   explosion: {fileID: 1679949121091116, guid: 7aace8cd9738ddb408428e811800fb0e, type: 2}
+  exp: {fileID: 1707930676883668, guid: 7314a6f722a828b448107b4e98a5db37, type: 2}
 --- !u!135 &135694371225777642
 SphereCollider:
   m_ObjectHideFlags: 1

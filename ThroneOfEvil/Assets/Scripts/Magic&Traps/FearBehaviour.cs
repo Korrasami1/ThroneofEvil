@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FearBehaviour : MonoBehaviour {
-
+	Vector3 mousePosition,targetPosition;
 	EnemyHealthController enemyHealth;
 	public float fearSpeed = -3f;
 	ScoreManager Scoreboard;
@@ -11,11 +11,20 @@ public class FearBehaviour : MonoBehaviour {
 	public float damage = 0;
 	public float timetoDestroy = 1f;
 	GameObject[] gameObjects;
+	public float distance = 10f;
 
 	void Start(){
 		getEnemyHealthController ();
 		getScoreManager ();
 		//fearactivated = true;
+		//To get the current mouse position
+		mousePosition = Input.mousePosition;
+		//Convert the mousePosition according to World position
+		transform.position = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,distance));
+	}
+	void FixedUpdate(){
+		//To get the current mouse position
+		mousePosition = Input.mousePosition;
 	}
 
 	void getEnemyHealthController(){
