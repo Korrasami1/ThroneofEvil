@@ -83,14 +83,15 @@ public class GameController : MonoBehaviour {
 		} else*/ 
 		GUIgameTimer ();
 		if (levelNum == 1) {
-			if (killCounter >= WinnerCondition) {
-				gameTime = levelTime;
+			/*if (killCounter >= WinnerCondition) {
 				Winner (2);
+				gameTime = levelTime;
 			}
-			else if (Time.time > leveltimedelay || gameTime <= 0) {
+			else */if (Time.time > leveltimedelay || gameTime <= 0) {
+				Winner (2);
 				leveltimedelay = Time.time + levelTime;
 				gameTime = levelTime;
-				Winner (2);	
+
 			}
 		}
 		if (Input.GetButton("Cancel")) {
@@ -101,11 +102,12 @@ public class GameController : MonoBehaviour {
 
 	void GUIgameTimer(){
 		gameTime -= Time.deltaTime;
-		var minutes = gameTime / 60; //Divide the guiTime by sixty to get the minutes.
-		var seconds = gameTime % 60;//Use the euclidean division for the seconds.
-		var fraction = (gameTime * 100) % 100;
+		int minutes = Mathf.FloorToInt(gameTime / 60); //Divide the gameTime by sixty to get the minutes.
+		int seconds = Mathf.FloorToInt(gameTime % 60);//Use the euclidean division for the seconds.
+		int fraction = Mathf.FloorToInt((gameTime * 100) % 100);
 
 		//update the label value
+		//gameTimerText.text = string.Format ("{0:00} : {1:00}", minutes, seconds);
 		gameTimerText.text = string.Format ("{0:00} : {1:00} : {2:000}", minutes, seconds, fraction);
 
 	}

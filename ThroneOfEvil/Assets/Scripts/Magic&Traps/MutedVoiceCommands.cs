@@ -149,8 +149,9 @@ public class MutedVoiceCommands : MonoBehaviour {
 			int tempCounter = 0;
 			//Vector3 center = transform.position;
 			for (int i = 0; i < numOfMinions; i++) {
-				float a = cam.gameObject.transform.localPosition.x-15f + i*1.5f;
-				Vector3 spawnPosition = new Vector3(a, 16f, 0f);
+				float a = 4f - i*1.5f; //was x //was -15f
+				float b = cam.gameObject.transform.localPosition.x+15f/* + i*1.5f*/;
+				Vector3 spawnPosition = new Vector3(b, a, 0f);
 				Instantiate (minion, spawnPosition, Quaternion.identity);
 				tempCounter++;
 				Debug.Log ("minion counter: " + tempCounter); //remove after num of minions is set

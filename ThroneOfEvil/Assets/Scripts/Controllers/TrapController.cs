@@ -72,7 +72,7 @@ public class TrapController : MonoBehaviour {
 		trapSelection2();
 
 		//If Left Button is clicked #was 0 also was trapClone.transform.position
-		setTrap();
+		//setTrap();
 
 		//on screen timer of the cooldowns
 		if (hasBoulderCooledDown == false) {
@@ -229,6 +229,12 @@ public class TrapController : MonoBehaviour {
 			trapClone = freezeTrap;
 			mouse.cursorChangeNum = 4;
 			tempTrapNum = 4;
+			if (hasFreezeTrapCooledDown == true) {
+				//RecentreTrap ();
+				Instantiate (trapClone, targetPosition, Quaternion.identity);
+				hasFreezeTrapCooledDown = false;
+				StartCoroutine (TrapCoolDown (4, hasFreezeTrapCooledDown));
+			}
 		}  else if (Input.GetButton("TrapBtn2")) {
 			//Boulder
 			if (hasBoulderCooledDown == true) {
@@ -236,6 +242,10 @@ public class TrapController : MonoBehaviour {
 				trapClone = boulder;
 				mouse.cursorChangeNum = 5;
 				tempTrapNum = 6;
+				RecentreBoulder ();
+				Instantiate (trapClone, targetPosition, Quaternion.identity);
+				hasBoulderCooledDown = false;
+				StartCoroutine (BoulderCooldown (hasBoulderCooledDown));
 			}
 		}else if (Input.GetButton("TrapBtn3")) {
 			//Tar trap
@@ -243,6 +253,12 @@ public class TrapController : MonoBehaviour {
 			trapClone = tarTrap;
 			mouse.cursorChangeNum = 6;
 			tempTrapNum = 5;
+			if (hasTarTrapCooledDown == true) {
+				//RecentreTrap ();
+				Instantiate (trapClone, targetPosition, Quaternion.identity);
+				hasTarTrapCooledDown = false;
+				StartCoroutine (TrapCoolDown (5, hasTarTrapCooledDown));
+			}
 		}else if (Input.GetButton("MouseSelect")) {
 			//mouse normal
 			mouse.cursorChangeNum = 0;

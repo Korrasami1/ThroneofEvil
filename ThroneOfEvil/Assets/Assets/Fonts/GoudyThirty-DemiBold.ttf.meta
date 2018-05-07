@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: f51efa0f1021118448fec8c46071ecf2
+timeCreated: 1525681463
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Goudy Thirty
+  fontNames:
+  - Goudy Thirty
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2dbfa4753af42cf4fae75e2ce5ecdc5d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

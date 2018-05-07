@@ -24,7 +24,7 @@ public class TrackingController : MonoBehaviour {
 		/*Vector3 dir = target.position - transform.position; //was target.transform.position
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.AngleAxis(angle + _angleOffset, Vector3.forward);*/
-		transform.position += -transform.up * _speed * Time.deltaTime;
+		transform.position += -transform.right * _speed * Time.deltaTime; //was -transform.up
 	}
 	void getEnemyHealthController(){
 		healthObject = GameObject.FindWithTag("Enemy");

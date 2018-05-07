@@ -1,23 +1,7 @@
-The enemy speed is: 2
-Enemystart wait is: 1.4
-Enemy Spawn wait is: 3
-Enemy Wave Wait is: 1
-speed of the boulder: 10
-Damage of fire is: 25
-Damage on villiger is: 0
-Damage on door is: 100
-BoulderFrozen Damage is: 100
-LightningDamage is: 50
-LightninFrozengDamage is: 100
-ExplosiveDamage is: 75
-BoulderDamage is: 50
-MinionDamage is: 100
-MindControlAttackDamage is: 0.2
-BouldercCooldownSpeed is: 3
-Answer to the question 1 is: 
-Answer to the question 2 is: 
-Answer to the question 3 is: 
-Answer to the question 4 is: 
+Answer to the question 1 is: wetetqet
+Answer to the question 2 is: wer
+Answer to the question 3 is: werwerwer
+Answer to the question 4 is: uehfpewofndefwf
 How useful was the Tar Trap? Player scored it: 1 
 How useful was the Freezing Trap? Player scored it: 1 
 How useful was the Boulder? Player scored it: 1 

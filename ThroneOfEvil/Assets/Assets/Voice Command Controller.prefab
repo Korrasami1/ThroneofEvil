@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4891030191196564}
   - component: {fileID: 114060717176434854}
   - component: {fileID: 114115698140925426}
+  - component: {fileID: 114507457790329476}
   m_Layer: 0
   m_Name: Voice Command Controller
   m_TagString: VoiceCommandController
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253534602109302}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a1aa2700ca0ecb4da660775963bd6bb, type: 3}
   m_Name: 
@@ -65,7 +66,7 @@ MonoBehaviour:
   confidence: 2
   minionSpeed: 3
   minion: {fileID: 1981358933227212, guid: 8f3575fc2f45eeb40acd8cc1fec59f21, type: 2}
-  numOfMinions: 20
+  numOfMinions: 10
   fire: {fileID: 1039698808575432, guid: bb6f3232c8b369448a635793ea8a1f1e, type: 2}
   lightning: {fileID: 1749509020380682, guid: e0d38630d6a7290448215d3789f5d9a0, type: 2}
   fear: {fileID: 1652137723988522, guid: 9ca3cc026187f9541b5521a3bb13f4c7, type: 2}
@@ -91,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionSpeed: 3
   minion: {fileID: 1981358933227212, guid: 8f3575fc2f45eeb40acd8cc1fec59f21, type: 2}
-  numOfMinions: 20
+  numOfMinions: 10
   fire: {fileID: 1039698808575432, guid: bb6f3232c8b369448a635793ea8a1f1e, type: 2}
   lightning: {fileID: 1749509020380682, guid: e0d38630d6a7290448215d3789f5d9a0, type: 2}
   fear: {fileID: 1652137723988522, guid: 9ca3cc026187f9541b5521a3bb13f4c7, type: 2}
@@ -104,3 +105,18 @@ MonoBehaviour:
   fearCooldown: 20
   MindControlCooldown: 10
   EvilLaughterCoolDown: 1
+--- !u!114 &114507457790329476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1253534602109302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a3b292dd64ded44cb8a7d5351610181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: {fileID: 1253534602109302}
+  tog1: {fileID: 0}
+  tog2: {fileID: 0}
+  isOnPrefab: 1

@@ -259,12 +259,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &520993049 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114803398447708600, guid: 18be947bf805c154192c755f27fe8b19,
-    type: 2}
-  m_PrefabInternal: {fileID: 1582587919}
-  m_Script: {fileID: 11500000, guid: c6e1eb0c50be9f645b9053222da1c97b, type: 3}
 --- !u!1 &797706788
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,11 +593,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 948916776}
     m_Modifications:
-    - target: {fileID: 114211095831039704, guid: 18be947bf805c154192c755f27fe8b19,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 224997872261152816, guid: 18be947bf805c154192c755f27fe8b19,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -693,31 +682,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211095831039704, guid: 18be947bf805c154192c755f27fe8b19,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 520993049}
-    - target: {fileID: 114211095831039704, guid: 18be947bf805c154192c755f27fe8b19,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: ResetTextFile
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211095831039704, guid: 18be947bf805c154192c755f27fe8b19,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211095831039704, guid: 18be947bf805c154192c755f27fe8b19,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211095831039704, guid: 18be947bf805c154192c755f27fe8b19,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18be947bf805c154192c755f27fe8b19, type: 2}
