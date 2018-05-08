@@ -974,7 +974,7 @@ MonoBehaviour:
   CameraMovement: 1
   BackgroundMovement: 0
   cam: {fileID: 606638411}
-  CameraSpeed: 0.2
+  CameraSpeed: 0
   backgroundSpeeds:
   - 0.2
   backgrounds:
@@ -2918,17 +2918,7 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114138178512497966, guid: d5d39e435213b6747b6089f5ed1c2052,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 907687953}
-    - target: {fileID: 114614499617837762, guid: d5d39e435213b6747b6089f5ed1c2052,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 907687953}
-    - target: {fileID: 114323736247758782, guid: d5d39e435213b6747b6089f5ed1c2052,
+    - target: {fileID: 114404568393002424, guid: d5d39e435213b6747b6089f5ed1c2052,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2938,7 +2928,17 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 907687953}
-    - target: {fileID: 114404568393002424, guid: d5d39e435213b6747b6089f5ed1c2052,
+    - target: {fileID: 114323736247758782, guid: d5d39e435213b6747b6089f5ed1c2052,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 907687953}
+    - target: {fileID: 114614499617837762, guid: d5d39e435213b6747b6089f5ed1c2052,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 907687953}
+    - target: {fileID: 114138178512497966, guid: d5d39e435213b6747b6089f5ed1c2052,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5786,6 +5786,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Evilbar: {fileID: 1614659039}
+  voicecommands: {fileID: 1253534602109302, guid: 86101b372db321b41ac7f07193b0d54b,
+    type: 2}
+  EvilPromotionEffectTime: 10
 --- !u!114 &1616743547
 MonoBehaviour:
   m_ObjectHideFlags: 0

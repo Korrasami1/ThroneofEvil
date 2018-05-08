@@ -10,6 +10,7 @@ public class TrapController : MonoBehaviour {
 	public GameObject boulder, freezeTrap, tarTrap;
 	public Image Freezes, Boulders, Tars;
 	public Text[] cooldownVisual;
+	private float previousBoldercooldowntime, previousTarcooldowntime, previousFreezecooldowntime;
 	private float cooldowntimerBoulder, cooldowntimerFreeze, cooldowntimerTar; 
 	public float BoulderCooldownSpeed = 3;
 	private bool hasBoulderCooledDown = true;
@@ -181,6 +182,22 @@ public class TrapController : MonoBehaviour {
 		} else if (targetPosition.y < laneSix && targetPosition.y >= laneSeven) {
 			targetPosition = new Vector3 (targetPosition.x, laneSix - boulderAdjustment, 0f);
 		}
+	}
+	public void backfromPromotion(){
+		BoulderCooldownSpeed = previousBoldercooldowntime;
+		freezeTrapCooldownSpeed = previousFreezecooldowntime;
+		tarTrapCooldownSpeed = previousTarcooldowntime;
+		Debug.Log ("boulder"+BoulderCooldownSpeed+"freeze"+freezeTrapCooldownSpeed+"tar"+tarTrapCooldownSpeed);
+	}
+
+	public void promotional(){
+		previousTarcooldowntime = tarTrapCooldownSpeed;
+		previousFreezecooldowntime = freezeTrapCooldownSpeed;
+		previousBoldercooldowntime = BoulderCooldownSpeed;
+		BoulderCooldownSpeed = BoulderCooldownSpeed * 0.5f;
+		freezeTrapCooldownSpeed = freezeTrapCooldownSpeed * 0.5f;
+		tarTrapCooldownSpeed = tarTrapCooldownSpeed * 0.5f;
+		Debug.Log ("boulder"+BoulderCooldownSpeed+"freeze"+freezeTrapCooldownSpeed+"tar"+tarTrapCooldownSpeed);
 	}
 
 	IEnumerator BoulderCooldown(bool hasbeenCooled){

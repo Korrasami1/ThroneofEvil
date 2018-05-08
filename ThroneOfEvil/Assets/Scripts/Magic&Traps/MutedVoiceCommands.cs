@@ -24,6 +24,7 @@ public class MutedVoiceCommands : MonoBehaviour {
 	private bool isSpawningEvil = false;
 	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown, hasFearCooledDown, hasMindControlCooledDown, hasEvilCooledDown;
 	public float minionCooldown, fireCooldown, lightningCooldown, fearCooldown, MindControlCooldown, EvilLaughterCoolDown;
+	private float previousMinioncool, previousFirecool, previousLightningcool, previousFearcool, previousMindcool;
 	Camera cam;
 	//private static bool created = false;
 	void Start()
@@ -95,6 +96,29 @@ public class MutedVoiceCommands : MonoBehaviour {
 			hasEvilCooledDown = false;
 			StartCoroutine (MagicCoolDown (6, hasEvilCooledDown));
 		}
+	}
+	public void BackfromPromotion(){
+		minionCooldown = previousMinioncool;
+		fireCooldown = previousFirecool;
+		lightningCooldown = previousLightningcool;
+		fearCooldown = previousFearcool;
+		MindControlCooldown = previousMindcool;
+		Debug.Log ("yes");
+		Debug.Log ("minion"+minionCooldown+"fire"+fireCooldown+"light"+lightningCooldown+"fear"+fearCooldown+"mind"+MindControlCooldown);
+	}
+
+	public void Promotion(){
+		previousMinioncool = minionCooldown;
+		previousFirecool = fireCooldown;
+		previousLightningcool = lightningCooldown;
+		previousFearcool = fearCooldown;
+		previousMindcool = MindControlCooldown;
+		minionCooldown = minionCooldown * 0.5f;
+		fireCooldown = fireCooldown * 0.5f;
+		lightningCooldown = lightningCooldown * 0.5f;
+		fearCooldown = fearCooldown * 0.5f;
+		MindControlCooldown = MindControlCooldown * 0.5f;
+		Debug.Log ("minion"+minionCooldown+"fire"+fireCooldown+"light"+lightningCooldown+"fear"+fearCooldown+"mind"+MindControlCooldown);
 	}
 	IEnumerator MagicCoolDown(int magictype/*string magictype*/, bool hasCooled){
 		switch (magictype)

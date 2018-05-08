@@ -142,9 +142,8 @@ public class GameController : MonoBehaviour {
 				break;
 			}
 			if (winner2) {
+				score.writeToHighscoreBoard ();
 				SceneManager.LoadScene("Level2");
-				//SceneManager.LoadScene("fristblah", LoadSceneMode.Additive);
-				//SceneManager.MoveGameObjectToScene (gameObject, SceneManager.GetSceneByName("Level2"));
 				break;
 			}
         }
@@ -177,7 +176,6 @@ public class GameController : MonoBehaviour {
     }
 	public void Winner(int type)
 	{
-		score.writeToHighscoreBoard ();
 		if (type == 1) {
 			winner = true;
 		} else if (type == 2) {

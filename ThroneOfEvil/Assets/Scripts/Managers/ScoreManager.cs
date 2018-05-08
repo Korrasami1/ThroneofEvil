@@ -121,7 +121,7 @@ public class ScoreManager : MonoBehaviour {
 			game.transform.position = toCamera;
 		}
 		catch(NullReferenceException e){
-			print (e);
+			print ("healthbars off screen: "+e);
 		}
 
 	}
@@ -139,7 +139,7 @@ public class ScoreManager : MonoBehaviour {
 
 	public void writeToHighscoreBoard(){
 		//write to tezt file or something
-		PlayerPrefs.SetInt("HighScore", getTotalScore());
+		PlayerPrefs.SetInt("HighScore", getCurrentScore());
 	}
 
 }
