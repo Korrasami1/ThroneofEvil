@@ -20,15 +20,15 @@ public class VoiceCommandController : MonoBehaviour
 	private bool isSpawningFire = false;
 	public GameObject lightning;
 	private bool isSpawningLightning = false;
-	public GameObject fear;
-	private bool isSpawningFear = false;
-	public GameObject MindControl;
-	private bool isSpawningMindControl = false;
+	//public GameObject fear;
+	//private bool isSpawningFear = false;
+	//public GameObject MindControl;
+	//private bool isSpawningMindControl = false;
 	public GameObject Evil;
 	private bool isSpawningEvil = false;
-	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown, hasFearCooledDown, hasMindControlCooledDown, hasEvilCooledDown;
-	public float minionCooldown, fireCooldown, lightningCooldown, fearCooldown, MindControlCooldown, EvilLaughterCoolDown;
-	private float previousMinioncool, previousFirecool, previousLightningcool, previousFearcool, previousMindcool;
+	private bool hasFireCooledDown, hasLightningCooledDown, hasMinionsCooleddown/*, hasFearCooledDown, hasMindControlCooledDown*/, hasEvilCooledDown;
+	public float minionCooldown, fireCooldown, lightningCooldown/*, fearCooldown, MindControlCooldow*/, EvilLaughterCoolDown;
+	private float previousMinioncool, previousFirecool, previousLightningcool/*, previousFearcool, previousMindcool*/;
 	Camera cam;
 	//private static bool created = false;
 	void Start()
@@ -43,8 +43,8 @@ public class VoiceCommandController : MonoBehaviour
 		hasFireCooledDown = true;
 		hasMinionsCooleddown = true;
 		hasLightningCooledDown = true;
-		hasFearCooledDown = true;
-		hasMindControlCooledDown = true;
+		//hasFearCooledDown = true;
+		//hasMindControlCooledDown = true;
 		hasEvilCooledDown = true;
 		sounds = GameObject.FindWithTag ("SoundManager").GetComponent<SoundsSceneManager> ();
 		cam = Camera.main;
@@ -83,7 +83,7 @@ public class VoiceCommandController : MonoBehaviour
 			hasLightningCooledDown = false;
 			StartCoroutine (MagicCoolDown (3, hasLightningCooledDown));
 			break;
-		case "Fear":
+		/*case "Fear":
 			SpawnFear ();
 			hasFearCooledDown = false;
 			StartCoroutine (MagicCoolDown (4, hasFearCooledDown));
@@ -92,7 +92,7 @@ public class VoiceCommandController : MonoBehaviour
 			SpawnMindControl ();
 			hasMindControlCooledDown = false;
 			StartCoroutine (MagicCoolDown (5, hasMindControlCooledDown));
-			break;
+			break;*/
 		case "Ha ha ha":
 			SpawnEvilPromotion ();
 			hasEvilCooledDown = false;
@@ -130,14 +130,14 @@ public class VoiceCommandController : MonoBehaviour
 			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
-		if (word == "Fear" && !hasFearCooledDown) {
+		/*if (word == "Fear" && !hasFearCooledDown) {
 			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
 		}
 		if (word == "Mind Control" && !hasMindControlCooledDown) {
 			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
-		}
+		}*/
 		if (word == "Ha ha ha" && !hasEvilCooledDown) {
 			sounds.PlaySound(8);
 			word = "Cooldown in effect!";
@@ -148,8 +148,8 @@ public class VoiceCommandController : MonoBehaviour
 		isSpawningMinions = true;
 		isSpawningFire = true;
 		isSpawningLightning = true;
-		isSpawningFear = true;
-		isSpawningMindControl = true;
+		//isSpawningFear = true;
+		//isSpawningMindControl = true;
 		isSpawningEvil = true;
 	}
 
@@ -157,24 +157,24 @@ public class VoiceCommandController : MonoBehaviour
 		minionCooldown = previousMinioncool;
 		fireCooldown = previousFirecool;
 		lightningCooldown = previousLightningcool;
-		fearCooldown = previousFearcool;
-		MindControlCooldown = previousMindcool;
+		//fearCooldown = previousFearcool;
+		//MindControlCooldown = previousMindcool;
 		Debug.Log ("yes");
-		Debug.Log ("minion"+minionCooldown+"fire"+fireCooldown+"light"+lightningCooldown+"fear"+fearCooldown+"mind"+MindControlCooldown);
+		Debug.Log ("minion"+minionCooldown+"fire"+fireCooldown+"light"+lightningCooldown/*+"fear"+fearCooldown+"mind"+MindControlCooldown*/);
 	}
 
 	public void Promotion(){
 		previousMinioncool = minionCooldown;
 		previousFirecool = fireCooldown;
 		previousLightningcool = lightningCooldown;
-		previousFearcool = fearCooldown;
-		previousMindcool = MindControlCooldown;
+		//previousFearcool = fearCooldown;
+		//previousMindcool = MindControlCooldown;
 		minionCooldown = minionCooldown * 0.5f;
 		fireCooldown = fireCooldown * 0.5f;
 		lightningCooldown = lightningCooldown * 0.5f;
-		fearCooldown = fearCooldown * 0.5f;
-		MindControlCooldown = MindControlCooldown * 0.5f;
-		Debug.Log ("minion"+minionCooldown+"fire"+fireCooldown+"light"+lightningCooldown+"fear"+fearCooldown+"mind"+MindControlCooldown);
+		//fearCooldown = fearCooldown * 0.5f;
+		//MindControlCooldown = MindControlCooldown * 0.5f;
+		Debug.Log ("minion"+minionCooldown+"fire"+fireCooldown+"light"+lightningCooldown/*+"fear"+fearCooldown+"mind"+MindControlCooldown*/);
 	}
 	IEnumerator MagicCoolDown(int magictype/*string magictype*/, bool hasCooled){
 		switch (magictype)
@@ -198,18 +198,18 @@ public class VoiceCommandController : MonoBehaviour
 				hasLightningCooledDown = true;
 			}
 			break;
-		case 4/*"Fear"*/:
+		/*case 4/*"Fear":
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (fearCooldown);
 				hasFearCooledDown = true;
 			}
 			break;
-		case 5/*"Mind Control"*/:
+		case 5/*"Mind Control"/:
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (MindControlCooldown);
 				hasMindControlCooledDown = true;
 			}
-			break;
+			break;*/
 		case 6/*"Evilness"*/:
 			if (hasCooled == false) {
 				yield return new WaitForSeconds (EvilLaughterCoolDown);
@@ -250,7 +250,7 @@ public class VoiceCommandController : MonoBehaviour
 			isSpawningLightning = false;
 		}
 	}
-	private void SpawnFear(){
+	/*private void SpawnFear(){
 		if (isSpawningFear == true) {
 			for (int i = 0; i < 1; i++) {
 				Instantiate (fear, fear.transform.position, Quaternion.identity);
@@ -265,7 +265,7 @@ public class VoiceCommandController : MonoBehaviour
 			}
 			isSpawningMindControl = false;
 		}
-	}
+	}*/
 	private void SpawnEvilPromotion(){
 		if (isSpawningEvil == true) {
 			for (int i = 0; i < 1; i++) {

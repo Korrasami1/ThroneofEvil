@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FearBehaviour : MonoBehaviour {
-	Vector3 mousePosition,targetPosition;
+	//Vector3 mousePosition,targetPosition;
 	EnemyHealthController enemyHealth;
 	public float fearSpeed = -3f;
 	ScoreManager Scoreboard;
@@ -11,20 +11,20 @@ public class FearBehaviour : MonoBehaviour {
 	public float damage = 0;
 	public float timetoDestroy = 1f;
 	GameObject[] gameObjects;
-	public float distance = 10f;
+	//public float distance = 10f;
 
 	void Start(){
 		getEnemyHealthController ();
 		getScoreManager ();
 		//fearactivated = true;
 		//To get the current mouse position
-		mousePosition = Input.mousePosition;
+		//mousePosition = Input.mousePosition;
 		//Convert the mousePosition according to World position
-		transform.position = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,distance));
+		//transform.position = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,distance));
 	}
 	void FixedUpdate(){
 		//To get the current mouse position
-		mousePosition = Input.mousePosition;
+		//mousePosition = Input.mousePosition;
 	}
 
 	void getEnemyHealthController(){
@@ -51,26 +51,29 @@ public class FearBehaviour : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerStay(Collider other) //was ontriggerenter
+	void OnTriggerEnter(Collider other) //was ontriggerenter
 	{
-		if (healthObject != null) {
-			if (other.CompareTag ("Enemy")) {
-				Scoreboard.killType = "Fear";
-				other.GetComponent<EnemyHealthController>().DealDamage (damage);
-				other.GetComponent<EnemyController> ().SwitchLanes ();
-				other.GetComponent<EnemyController> ().MultiplySpeed(fearSpeed, 0f);
-				other.GetComponent<ClothingController>().villagerOrientation = "left";
-				collectCurrentEnemies ();
-			}
+		if (other.CompareTag ("Enemy")) {
+			Debug.Log ("has entered fear");
+			other.tag = "FearedEnemy";
+			//other.GetComponent<VillagerIdleMode> ().moveAway();
+			other.GetComponent<VillagerIdleMode>().CheckForTag();
+			//Scoreboard.killType = "Fear";
+			//other.GetComponent<EnemyHealthController>().DealDamage (damage);
+			//other.GetComponent<VillagerIdleMode> ().randomiseFearLocation();
+			//other.GetComponent<EnemyController> ().SwitchLanes ();
+			//other.GetComponent<EnemyController> ().MultiplySpeed(fearSpeed, 0f);
+			//other.GetComponent<ClothingController>().villagerOrientation = "left";
+			//collectCurrentEnemies ();
 		}
-		Destroy (gameObject, timetoDestroy);
+		//Destroy (gameObject, timetoDestroy);
 	}
+
 	void collectCurrentEnemies(){
 		gameObjects =  GameObject.FindGameObjectsWithTag ("Enemy");
-		for (var i = 0; i < gameObjects.Length; i++) {
-			gameObjects[i].GetComponent<EnemyController> ().SwitchLanes ();
-			gameObjects [i].GetComponent<EnemyController> ().MultiplySpeed(fearSpeed, 0f);
-			gameObjects [i].GetComponent<ClothingController>().villagerOrientation = "left";
+		for (int i = 0; i < gameObjects.Length; i++) {
+			gameObjects[i].tag = "FearedEnemy";
+			gameObjects [i].GetComponent<VillagerIdleMode> ().CheckForTag();
 		}
 	}
 }

@@ -12,6 +12,7 @@ public class EnemyHealthController : MonoBehaviour {
 	ScoreManager Scoreboard;
 	GameObject points;
 	Transform pointsPlacement;
+	//float health;
 	public Slider healthbar;
 
 	// Use this for initialization
@@ -19,7 +20,10 @@ public class EnemyHealthController : MonoBehaviour {
 		MaxHealth = 100f;
 		//resetting health after every completed level
 		currentHealth = MaxHealth;
-		healthbar.value = calculateHealth();
+		//health = calculateHealth ();
+		if (healthbar.enabled == true) {
+			healthbar.value = calculateHealth ();
+		}
 		getGameController();
 		getScoreManager ();
 	}
@@ -27,7 +31,9 @@ public class EnemyHealthController : MonoBehaviour {
 	void Update()
 	{
 		pointsPlacement = gameObject.transform;
-		healthBarPlacement ();
+		if (healthbar.enabled == true) {
+			healthBarPlacement ();
+		}
 	}
 	void healthBarPlacement(){
 		Vector3 toCamera = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -63,7 +69,10 @@ public class EnemyHealthController : MonoBehaviour {
 	public void DealDamage(float damageValue)
 	{
 		currentHealth -= damageValue;
-		healthbar.value = calculateHealth();
+		//health = calculateHealth ();
+		if (healthbar.enabled == true) {
+			healthbar.value = calculateHealth ();
+		}
 		if(currentHealth <= 0)
 		{
 			Die();
@@ -87,7 +96,9 @@ public class EnemyHealthController : MonoBehaviour {
 		Scoreboard.DealPoints (pointsPlacement);
 		Debug.Log("Villager Killed!");
 		Destroy(gameObject);
-		Destroy(healthbar.gameObject);
+		if (healthbar.enabled == true) {
+			Destroy (healthbar.gameObject);
+		}
 	}
 		
 }

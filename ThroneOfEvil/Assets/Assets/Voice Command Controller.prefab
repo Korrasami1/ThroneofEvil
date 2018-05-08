@@ -69,15 +69,10 @@ MonoBehaviour:
   numOfMinions: 10
   fire: {fileID: 1039698808575432, guid: bb6f3232c8b369448a635793ea8a1f1e, type: 2}
   lightning: {fileID: 1749509020380682, guid: e0d38630d6a7290448215d3789f5d9a0, type: 2}
-  fear: {fileID: 1652137723988522, guid: 9ca3cc026187f9541b5521a3bb13f4c7, type: 2}
-  MindControl: {fileID: 1867152972554878, guid: a22d8f9ead57e9b448a9f8ab11a0beb4,
-    type: 2}
   Evil: {fileID: 1393450373701634, guid: c55bf3842fabd594599250901f6408da, type: 2}
   minionCooldown: 2
   fireCooldown: 3
   lightningCooldown: 3
-  fearCooldown: 2
-  MindControlCooldown: 2
   EvilLaughterCoolDown: 5
 --- !u!114 &114115698140925426
 MonoBehaviour:
@@ -95,15 +90,10 @@ MonoBehaviour:
   numOfMinions: 10
   fire: {fileID: 1039698808575432, guid: bb6f3232c8b369448a635793ea8a1f1e, type: 2}
   lightning: {fileID: 1749509020380682, guid: e0d38630d6a7290448215d3789f5d9a0, type: 2}
-  fear: {fileID: 1652137723988522, guid: 9ca3cc026187f9541b5521a3bb13f4c7, type: 2}
-  MindControl: {fileID: 1867152972554878, guid: a22d8f9ead57e9b448a9f8ab11a0beb4,
-    type: 2}
   Evil: {fileID: 1393450373701634, guid: c55bf3842fabd594599250901f6408da, type: 2}
   minionCooldown: 2
   fireCooldown: 3
   lightningCooldown: 3
-  fearCooldown: 2
-  MindControlCooldown: 2
   EvilLaughterCoolDown: 1
 --- !u!114 &114507457790329476
 MonoBehaviour:

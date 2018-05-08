@@ -121,7 +121,7 @@ public class ScoreManager : MonoBehaviour {
 			game.transform.position = toCamera;
 		}
 		catch(NullReferenceException e){
-			print ("healthbars off screen: "+e);
+			print ("Points earned off have gone off screen: "+e);
 		}
 
 	}

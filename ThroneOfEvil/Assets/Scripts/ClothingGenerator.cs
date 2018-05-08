@@ -191,7 +191,8 @@ public class ClothingGenerator : MonoBehaviour {
 			Accessorie.GetComponent<Animator> ().runtimeAnimatorController = AnimationCapeorScarf[1] as RuntimeAnimatorController;
 			break;
 		case 3: //woman
-			Accessorie.SetActive(false);
+			Accessorie.SetActive(true);
+			Accessorie.GetComponent<Animator> ().runtimeAnimatorController = AnimationCapeorScarf[2] as RuntimeAnimatorController;
 			break;
 		}
 
@@ -228,7 +229,7 @@ public class ClothingGenerator : MonoBehaviour {
 	}
 
 	int RandomiseVillagerType(){
-		vType = Random.Range (1, 3);
+		vType = Random.Range (1, 4);
 		villagerType = vType;
 		return vType;
 	}

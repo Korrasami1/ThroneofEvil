@@ -205,7 +205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1713061083621386
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +734,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2
   target: {fileID: 4087457579059688}
+  fearPositions:
+  - {fileID: 4450163403019452, guid: f925e855b2629a64fbbe3c77efaa5a24, type: 2}
+  - {fileID: 4410948863586434, guid: f925e855b2629a64fbbe3c77efaa5a24, type: 2}
+  - {fileID: 4662760731701786, guid: f925e855b2629a64fbbe3c77efaa5a24, type: 2}
+  - {fileID: 4107296645708532, guid: f925e855b2629a64fbbe3c77efaa5a24, type: 2}
+  - {fileID: 4369826268708952, guid: f925e855b2629a64fbbe3c77efaa5a24, type: 2}
+  - {fileID: 4303816407937380, guid: f925e855b2629a64fbbe3c77efaa5a24, type: 2}
   timedelay: 2
   XMin1: -15
   XMax1: 15
@@ -770,22 +777,23 @@ MonoBehaviour:
   AnimationHair:
   - {fileID: 9100000, guid: f8b1f60539a1343469ccf37b0f0e7839, type: 2}
   - {fileID: 9100000, guid: 5cd63b8806bb87848b077bc4e52c667d, type: 2}
-  - {fileID: 0}
+  - {fileID: 9100000, guid: b8fee5087eb76174a8a38935c3637ffe, type: 2}
   AnimationPants:
   - {fileID: 9100000, guid: 4d644ebce501977439e3124ad5031b0c, type: 2}
   - {fileID: 9100000, guid: b32ecd76d31821342836670c697707d6, type: 2}
-  - {fileID: 9100000, guid: 66aa09bee321f7d458ac85cde5ff206f, type: 2}
+  - {fileID: 9100000, guid: 2ee0877dc5e770b4fa9b899b8151844f, type: 2}
   AnimationSkin:
   - {fileID: 9100000, guid: 7464cc637f66461478599a98b93f82b6, type: 2}
   - {fileID: 9100000, guid: 66aa09bee321f7d458ac85cde5ff206f, type: 2}
-  - {fileID: 0}
+  - {fileID: 9100000, guid: cfe0229c4a5c0144db4051f8519f7f0a, type: 2}
   AnimationShirt:
   - {fileID: 9100000, guid: 30576a38d792acc4792cad292c1a2335, type: 2}
   - {fileID: 9100000, guid: 108623b1131aa0c4dbf7b39b74b18731, type: 2}
-  - {fileID: 0}
+  - {fileID: 9100000, guid: 6e89877311294654582d328d524e162d, type: 2}
   AnimationCapeorScarf:
   - {fileID: 9100000, guid: 6a746bb42c8c47442805be8c932a07b5, type: 2}
   - {fileID: 9100000, guid: 0b022683d9933ca46b9a4d87b65d38a7, type: 2}
+  - {fileID: 9100000, guid: 9b8a5a08f72f4e84e8c5461d50722544, type: 2}
   villagerType: 0
 --- !u!114 &114583684375257704
 MonoBehaviour:
@@ -907,15 +915,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapDoorDamage: 100
-  boulderDamage: 50
+  boulderDamage: 100
   boulderFrozenDamage: 100
   burningBoulderDamage: 100
-  fireDamage: 25
-  fireFrozenDamage: 0
-  explosionDamage: 75
-  explosionFrozenDamage: 0
-  burningDamageOverTime: 5
-  lightningDamage: 50
+  fireDamage: 100
+  fireFrozenDamage: 100
+  explosionDamage: 100
+  explosionFrozenDamage: 100
+  burningDamageOverTime: 100
+  lightningDamage: 100
   lightningFrozenDamage: 100
   minionDamage: 100
   mindControlAttackDamage: 0.2
