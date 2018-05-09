@@ -48,7 +48,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253534602109302}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a1aa2700ca0ecb4da660775963bd6bb, type: 3}
   m_Name: 
@@ -69,6 +69,14 @@ MonoBehaviour:
   numOfMinions: 10
   fire: {fileID: 1039698808575432, guid: bb6f3232c8b369448a635793ea8a1f1e, type: 2}
   lightning: {fileID: 1749509020380682, guid: e0d38630d6a7290448215d3789f5d9a0, type: 2}
+  cooldownVisual:
+  - {fileID: 114080521959343658, guid: 89d8250240c599f4ebfd481c1e64f176, type: 2}
+  - {fileID: 114973125276459962, guid: 89d8250240c599f4ebfd481c1e64f176, type: 2}
+  - {fileID: 114161130190481752, guid: 89d8250240c599f4ebfd481c1e64f176, type: 2}
+  cooldownImage:
+  - {fileID: 114293854040733480, guid: 89d8250240c599f4ebfd481c1e64f176, type: 2}
+  - {fileID: 114104637940384830, guid: 89d8250240c599f4ebfd481c1e64f176, type: 2}
+  - {fileID: 114459734226639578, guid: 89d8250240c599f4ebfd481c1e64f176, type: 2}
   Evil: {fileID: 1393450373701634, guid: c55bf3842fabd594599250901f6408da, type: 2}
   minionCooldown: 2
   fireCooldown: 3

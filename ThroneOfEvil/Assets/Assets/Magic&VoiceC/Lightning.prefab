@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 54602534786182710}
   - component: {fileID: 135252200932127014}
   - component: {fileID: 114993929338888572}
+  - component: {fileID: 95203400568038684}
   m_Layer: 8
   m_Name: Lightning
   m_TagString: Lightning
@@ -101,6 +102,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.8172493, y: 6.7582245, z: 4.7758245}
   m_Center: {x: -0.07843685, y: 3.3696022, z: -0.7175896}
+--- !u!95 &95203400568038684
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749509020380682}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f3c61cab18d44da4ca75ed531139b2dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114848019422969776
 MonoBehaviour:
   m_ObjectHideFlags: 1

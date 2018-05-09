@@ -20,6 +20,7 @@ public class VoiceCommandController : MonoBehaviour
 	private bool isSpawningFire = false;
 	public GameObject lightning;
 	private bool isSpawningLightning = false;
+	GameObject cooldownImage, cooldownImage2, cooldownImage3;
 	//public GameObject fear;
 	//private bool isSpawningFear = false;
 	//public GameObject MindControl;
@@ -30,6 +31,8 @@ public class VoiceCommandController : MonoBehaviour
 	public float minionCooldown, fireCooldown, lightningCooldown/*, fearCooldown, MindControlCooldow*/, EvilLaughterCoolDown;
 	private float previousMinioncool, previousFirecool, previousLightningcool/*, previousFearcool, previousMindcool*/;
 	Camera cam;
+	Color col1, col2;
+
 	//private static bool created = false;
 	void Start()
 	{
@@ -48,6 +51,12 @@ public class VoiceCommandController : MonoBehaviour
 		hasEvilCooledDown = true;
 		sounds = GameObject.FindWithTag ("SoundManager").GetComponent<SoundsSceneManager> ();
 		cam = Camera.main;
+		//on screen cooldown visuals
+		cooldownImage = GameObject.FindWithTag("Firespell");
+		cooldownImage2 = GameObject.FindWithTag("Lightningspell");
+		cooldownImage3 = GameObject.FindWithTag("MinionSpell");
+		col1 = new Color (105/255.0F, 105/255.0F, 105/255.0F); //cooldown visual
+		col2 = new Color (255/255.0F, 255/255.0F, 255/255.0F); //normal visual
 	}
 	private void FixedUpdate()
 	{
@@ -181,21 +190,27 @@ public class VoiceCommandController : MonoBehaviour
 		{
 		case 1/*"Send in the minions"*/:
 			if (hasCooled == false) {
+				cooldownImage3.GetComponent<Image>().color = col1;
 				yield return new WaitForSeconds (minionCooldown);
 				hasMinionsCooleddown = true;
+				cooldownImage3.GetComponent<Image>().color = col2;
 			}
 			break;
 		case 2/*"Fire"*/:
 			if (hasCooled == false) {
+				cooldownImage.GetComponent<Image>().color = col1;
 				yield return new WaitForSeconds (fireCooldown);
 				hasFireCooledDown = true;
+				cooldownImage.GetComponent<Image>().color = col2;
 				Debug.Log ("fire has cooled");
 			}
 			break;
 		case 3/*"Lightning"*/:
 			if (hasCooled == false) {
+				cooldownImage2.GetComponent<Image>().color = col1;
 				yield return new WaitForSeconds (lightningCooldown);
 				hasLightningCooledDown = true;
+				cooldownImage2.GetComponent<Image>().color = col2;
 			}
 			break;
 		/*case 4/*"Fear":

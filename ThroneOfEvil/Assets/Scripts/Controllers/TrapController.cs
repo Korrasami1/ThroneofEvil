@@ -139,13 +139,15 @@ public class TrapController : MonoBehaviour {
 	//had as public for a different script but its not in use right now
 	public void RecentreTrap(){
 		//lane one
-		if (targetPosition.y >= laneOne - laneDifference) {
-			targetPosition = new Vector3 (targetPosition.x, laneOne, 0f);
+		if (targetPosition.y >= laneOne - laneDifference) { 
+			Debug.Log ("recenteredtrap1");
+			targetPosition = new Vector3 (targetPosition.x, laneTwo, 0f);//was laneOne
 			//lane two
-		} else if (targetPosition.y < laneTwo + laneDifference && targetPosition.y >= laneTwo - laneDifference) {
+		}/*else if (targetPosition.y < laneTwo + laneDifference && targetPosition.y >= laneTwo - laneDifference) {
+			
 			targetPosition = new Vector3 (targetPosition.x, laneTwo, 0f);
 			//lane three
-		} else if (targetPosition.y < laneThree + laneDifference && targetPosition.y >= laneThree - laneDifference) {
+		} /*else if (targetPosition.y < laneThree + laneDifference && targetPosition.y >= laneThree - laneDifference) {
 			targetPosition = new Vector3 (targetPosition.x, laneThree, 0f);
 			//lane four
 		} else if (targetPosition.y < laneFour + laneDifference && targetPosition.y >= laneFour - laneDifference) {
@@ -157,7 +159,8 @@ public class TrapController : MonoBehaviour {
 		} else if (targetPosition.y < laneSix + laneDifference && targetPosition.y >= laneSix - laneDifference) {
 			targetPosition = new Vector3 (targetPosition.x, laneSix, 0f);
 			//lane seven
-		} else if (targetPosition.y <= laneSeven + laneDifference) {
+		} */else if (targetPosition.y <= laneSeven + laneDifference) {
+			Debug.Log ("recenteredtrap2");
 			targetPosition = new Vector3 (targetPosition.x, laneSeven, 0f);
 		}
 	}
@@ -165,23 +168,26 @@ public class TrapController : MonoBehaviour {
 		float boulderAdjustment = laneDifference / 2;
 		//lane one/two
 		if (targetPosition.y >= laneTwo) {
+			Debug.Log ("recenteredboulder1");
 			targetPosition = new Vector3 (targetPosition.x, laneOne - boulderAdjustment, 0f);
 			//lane two/three
-		} else if (targetPosition.y < laneTwo && targetPosition.y >= laneThree) {
+		} /*else if (targetPosition.y < laneTwo && targetPosition.y >= laneThree) {
 			targetPosition = new Vector3 (targetPosition.x, laneTwo - boulderAdjustment, 0f);
 			//lane three/four
-		} else if (targetPosition.y < laneThree && targetPosition.y >= laneFour) {
+		} /*else if (targetPosition.y < laneThree && targetPosition.y >= laneFour) {
 			targetPosition = new Vector3 (targetPosition.x, laneThree - boulderAdjustment, 0f);
 			//lane four/five
 		} else if (targetPosition.y < laneFour && targetPosition.y >= laneFive) {
 			targetPosition = new Vector3 (targetPosition.x, laneFour - boulderAdjustment, 0f);
 			//lane five/six
-		} else if (targetPosition.y < laneFive && targetPosition.y >= laneSix) {
+		} */else if (targetPosition.y < laneFive && targetPosition.y >= laneSix) {
+			Debug.Log ("recenteredboulder2");
 			targetPosition = new Vector3 (targetPosition.x, laneFive - boulderAdjustment, 0f);
 			//lane six/seven
-		} else if (targetPosition.y < laneSix && targetPosition.y >= laneSeven) {
+		}/* else if (targetPosition.y < laneSix && targetPosition.y >= laneSeven) {
+			
 			targetPosition = new Vector3 (targetPosition.x, laneSix - boulderAdjustment, 0f);
-		}
+		}*/
 	}
 	public void backfromPromotion(){
 		BoulderCooldownSpeed = previousBoldercooldowntime;
@@ -247,7 +253,7 @@ public class TrapController : MonoBehaviour {
 			mouse.cursorChangeNum = 4;
 			tempTrapNum = 4;
 			if (hasFreezeTrapCooledDown == true) {
-				//RecentreTrap ();
+				RecentreTrap ();
 				Instantiate (trapClone, targetPosition, Quaternion.identity);
 				hasFreezeTrapCooledDown = false;
 				StartCoroutine (TrapCoolDown (4, hasFreezeTrapCooledDown));
@@ -271,7 +277,7 @@ public class TrapController : MonoBehaviour {
 			mouse.cursorChangeNum = 6;
 			tempTrapNum = 5;
 			if (hasTarTrapCooledDown == true) {
-				//RecentreTrap ();
+				RecentreTrap ();
 				Instantiate (trapClone, targetPosition, Quaternion.identity);
 				hasTarTrapCooledDown = false;
 				StartCoroutine (TrapCoolDown (5, hasTarTrapCooledDown));

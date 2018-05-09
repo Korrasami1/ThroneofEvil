@@ -40,6 +40,10 @@ TagManager:
   - VoiceCommandController
   - Evilness
   - SafeSpot
+  - NotSafe
+  - Firespell
+  - Lightningspell
+  - MinionSpell
   layers:
   - Default
   - TransparentFX

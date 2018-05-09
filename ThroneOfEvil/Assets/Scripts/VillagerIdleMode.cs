@@ -30,9 +30,10 @@ public class VillagerIdleMode : MonoBehaviour {
 		_speed = Random.Range (1, 3); //want them to move first so 0 not called
 		switchstate = false;
 		for(int i = 0; i < fearPositions.Length; i++){
-			Vector3 temp = fearPositions [i].localPosition;
-			Debug.Log (temp);
-			paths.Add(temp);
+			if (fearPositions [i].CompareTag("SafeSpot")) {
+				Vector3 temp = fearPositions [i].localPosition;
+				paths.Add (temp);
+			}
 		}
 	}
 	
@@ -80,7 +81,6 @@ public class VillagerIdleMode : MonoBehaviour {
 			switchstate = true;
 			randomiseFearLocation ();
 			_speed = 3f;
-			Debug.Log ("enemy is feared");
 		} else {
 			Debug.Log ("Enemy CheckForTag() failed!");
 			return;
