@@ -7,7 +7,8 @@ using System;
 public class ScoreManager : MonoBehaviour {
 	public Text ScoreTXT;
 	public Text screenPoints;
-	public int TrapDoorKill, TarKill, BoulderKill, FireKill, LightningKill, MinionKill, ShatterKill, IncinerationKill, Fearkill, MindControlKill, otherKill;
+	public int TrapDoorKill, TarKill, BoulderKill, BurningBoulderKill, FireKill, LightningKill, MinionKill, ShatterKill,BurningShatterKill, IncinerationKill, Fearkill, MindControlKill, otherKill;
+	public int killstreak = 0;
 	public int currentScore { get; set; }
 	public int TotalScores { get; set; }
 	public string killType;
@@ -33,7 +34,9 @@ public class ScoreManager : MonoBehaviour {
 	private int BoulderKillPoints(){
 		return BoulderKill;
 	}
-
+	private int BurningBoulderKillPoints(){
+		return BurningBoulderKill;
+	}
 	private int FireKillPoints(){
 		return TrapDoorKill;
 	}
@@ -47,6 +50,9 @@ public class ScoreManager : MonoBehaviour {
 	}
 	private int ShatterKillPoints(){ //frost trap + boulder/lightning
 		return ShatterKill;
+	}
+	private int BurningShatterKillPoints(){ //frost trap + burning boulder
+		return BurningShatterKill;
 	}
 	private int IncinerationKillPoints(){  //oil pool + fireball
 		return IncinerationKill;
@@ -82,6 +88,9 @@ public class ScoreManager : MonoBehaviour {
 		case "Boulder": 
 			points =  BoulderKillPoints ();
 			break;
+		case "Burning Boulder": 
+			points =  BurningBoulderKillPoints ();
+			break;
 		case "Fire": 
 			points =  FireKillPoints ();
 			break;
@@ -93,6 +102,9 @@ public class ScoreManager : MonoBehaviour {
 			break;
 		case "Shatter": //frost trap + boulder/lightning
 			points =  ShatterKillPoints ();
+			break;
+		case "Burning Shatter": //frost trap + burning boulder
+			points =  BurningShatterKillPoints ();
 			break;
 		case "Incineration": //oil pool + fireball
 			points =  IncinerationKillPoints ();
@@ -107,6 +119,8 @@ public class ScoreManager : MonoBehaviour {
 			points =  otherKillPoints ();
 			break;
 		}
+		Debug.Log (killstreak);
+		points = MultiplyScore(points, killstreak);
 		return points;
 	}
 
@@ -121,7 +135,7 @@ public class ScoreManager : MonoBehaviour {
 			game.transform.position = toCamera;
 		}
 		catch(NullReferenceException e){
-			print ("Points earned off have gone off screen: "+e);
+			print ("healthbars off screen: "+e);
 		}
 
 	}
@@ -142,4 +156,17 @@ public class ScoreManager : MonoBehaviour {
 		PlayerPrefs.SetInt("HighScore", getCurrentScore());
 	}
 
+	int MultiplyScore(int score, int killstreak){
+		if (killstreak <= 3) {
+			return score;
+		} else if (killstreak <= 6) {
+			return score * 2;
+		} else if (killstreak <= 9) {
+			return score * 3;
+		} else if (killstreak <= 12) {
+			return score * 4;
+		} else {
+			return score * 5;
+		}
+	}
 }

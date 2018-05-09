@@ -12,7 +12,9 @@ public class Boulder : MonoBehaviour {
 	private float tiltAngle = 0;
 	private Vector3 currentPosition;
 	private Vector3 targetPosition;
+	public int killstreak = 1;
 	void Start () {
+		killstreak = 1;
 		normalSpeed = speed;
 	}
 	void FixedUpdate () {

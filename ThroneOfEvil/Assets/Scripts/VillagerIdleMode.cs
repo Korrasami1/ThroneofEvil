@@ -6,11 +6,12 @@ using System.Linq;
 public class VillagerIdleMode : MonoBehaviour {
 
 	public float _speed = 5;
+	private float normalSpeed;
 	public Transform target;
 	public Transform[] fearPositions;
 	//private float _angleOffset = -90; //was -90
 	public float timedelay = 2f;
-	public float XMin1 = -16;
+	public float XMin1 = -16;		
 	public float XMax1 = 13;
 	public float YMin1 = -6;
 	public float YMax1 = 4.7f;
@@ -26,8 +27,9 @@ public class VillagerIdleMode : MonoBehaviour {
 		YMin = -6;
 		YMax = 4.7f;*/
 		paths = new List<Vector3> ();
-		timetodelay = Random.Range (0, 5);
-		_speed = Random.Range (1, 3); //want them to move first so 0 not called
+		timetodelay = Random.Range (0, timetodelay +1);
+		_speed = Random.Range (1, _speed + 1); //want them to move first so 0 not called
+		normalSpeed = _speed;
 		switchstate = false;
 		for(int i = 0; i < fearPositions.Length; i++){
 			if (fearPositions [i].CompareTag("SafeSpot")) {
@@ -64,23 +66,23 @@ public class VillagerIdleMode : MonoBehaviour {
 	public void CheckForTag(){
 		if (gameObject.CompareTag("Enemy")) {
 			switchstate = false;
-			_speed = 2f;
+			_speed = normalSpeed;
 		} else if (gameObject.CompareTag("FrozenEnemy")) {
 			switchstate = true;
 			_speed = 0f;
 			//Debug.Log("Enemy is frozen!");
 		} else if (gameObject.CompareTag("TarredEnemy")) {
 			switchstate = true;
-			_speed = 0.5f;
+			_speed = normalSpeed/2;
 			//Debug.Log("Enemy is tarred!");
 		} else if (gameObject.CompareTag("BurningEnemy")) {
 			switchstate = true;
-			_speed = 1f;
+			_speed = normalSpeed;
 			Debug.Log("Enemy is burning!");
 		}else if (gameObject.CompareTag("FearedEnemy")) {
 			switchstate = true;
 			randomiseFearLocation ();
-			_speed = 3f;
+			_speed = normalSpeed*1.5f;
 		} else {
 			Debug.Log ("Enemy CheckForTag() failed!");
 			return;

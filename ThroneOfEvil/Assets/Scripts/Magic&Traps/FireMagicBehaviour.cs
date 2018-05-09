@@ -6,7 +6,9 @@ public class FireMagicBehaviour : MonoBehaviour {
 	Vector3 mousePosition,targetPosition;
 	public float distance = 10f;
 	public float deletionTimer = 5f;
+	public int killstreak = 1;
 	void Start(){
+		killstreak = 1;
 		//To get the current mouse position
 		mousePosition = Input.mousePosition;
 		//Convert the mousePosition according to World position

@@ -14,6 +14,7 @@ public class EnemyHealthController : MonoBehaviour {
 	Transform pointsPlacement;
 	//float health;
 	public Slider healthbar;
+	bool isdeath = false;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +34,9 @@ public class EnemyHealthController : MonoBehaviour {
 		pointsPlacement = gameObject.transform;
 		if (healthbar.enabled == true) {
 			healthBarPlacement ();
+		}
+		if (isdeath) {
+			StartCoroutine (death());
 		}
 	}
 	void healthBarPlacement(){
@@ -73,7 +77,7 @@ public class EnemyHealthController : MonoBehaviour {
 		if (healthbar.enabled == true) {
 			healthbar.value = calculateHealth ();
 		}
-		if(currentHealth <= 0)
+		if(currentHealth <= 0 && isdeath == false)
 		{
 			Die();
 		}
@@ -92,13 +96,21 @@ public class EnemyHealthController : MonoBehaviour {
 	void Die()
 	{
 		currentHealth = 0;
+		isdeath = true;
+		Debug.Log("Villager Killed!");
+		/*if (healthbar.enabled == true) {
+			Destroy (healthbar.gameObject, 1);
+		}*/
+		//Destroy(gameObject, 1);
+	}
+	IEnumerator death(){
+		yield return new WaitForSeconds (0.5f);
 		gameController.villagerDeathCount ();
 		Scoreboard.DealPoints (pointsPlacement);
-		Debug.Log("Villager Killed!");
-		Destroy(gameObject);
+		Destroy (gameObject);
 		if (healthbar.enabled == true) {
 			Destroy (healthbar.gameObject);
 		}
+		isdeath = false;
 	}
-		
 }

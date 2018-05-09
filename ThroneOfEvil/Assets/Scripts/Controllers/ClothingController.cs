@@ -93,24 +93,32 @@ public class ClothingController : MonoBehaviour {
 		{
 		case "TarredEnemy":
 			gameObject.GetComponent<SpriteRenderer> ().sprite = trapclothTar;
+			gameObject.GetComponent<Animator> ().Play("tar");
+			Villager [0].GetComponent<Animator> ().enabled = true;
+			Villager [1].GetComponent<Animator> ().enabled = true;
+			Villager [2].GetComponent<Animator> ().enabled = true;
+			Villager [3].GetComponent<Animator> ().enabled = true;
+			Villager [4].GetComponent<Animator> ().enabled = true;
 			break;
 		case "FrozenEnemy":
 			gameObject.GetComponent<SpriteRenderer> ().sprite = trapcloth;
-			Villager [0].SetActive (false);
-			Villager [1].SetActive (false);
-			Villager [2].SetActive (false);
-			Villager [3].SetActive (false);
-			Villager [4].SetActive (false);
+			gameObject.GetComponent<Animator> ().Play("NormalFrozenstate"); 
+			Villager [0].GetComponent<Animator> ().enabled = false;
+			Villager [1].GetComponent<Animator> ().enabled = false;
+			Villager [2].GetComponent<Animator> ().enabled = false;
+			Villager [3].GetComponent<Animator> ().enabled = false;
+			Villager [4].GetComponent<Animator> ().enabled = false;
 			//clothingFrontView.SetActive(false);
 			//clothingBackView.SetActive(false);
 			break;
 		case "Enemy":
 			gameObject.GetComponent<SpriteRenderer> ().sprite = null;
-			Villager [0].SetActive (true);
-			Villager [1].SetActive (true);
-			Villager [2].SetActive (true);
-			Villager [3].SetActive (true);
-			Villager [4].SetActive (true);
+			gameObject.GetComponent<Animator> ().Play("Blank"); 
+			Villager [0].GetComponent<Animator> ().enabled = true;
+			Villager [1].GetComponent<Animator> ().enabled = true;
+			Villager [2].GetComponent<Animator> ().enabled = true;
+			Villager [3].GetComponent<Animator> ().enabled = true;
+			Villager [4].GetComponent<Animator> ().enabled = true;
 			break;
 		}
 	}

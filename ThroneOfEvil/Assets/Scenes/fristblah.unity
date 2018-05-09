@@ -156,24 +156,6 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 224480102045886230, guid: e6ef239925b435b4697a705fa478bf89,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.287
-      objectReference: {fileID: 0}
-    - target: {fileID: 224480102045886230, guid: e6ef239925b435b4697a705fa478bf89,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1539559234517020, guid: e6ef239925b435b4697a705fa478bf89, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1585589435987006, guid: e6ef239925b435b4697a705fa478bf89, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6ef239925b435b4697a705fa478bf89, type: 2}
   m_IsPrefabParent: 0
@@ -1503,7 +1485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4, y: -27}
+  m_AnchoredPosition: {x: 1, y: -33}
   m_SizeDelta: {x: 29.6, y: -46.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &511157590
@@ -1778,7 +1760,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -40.650024, y: -6}
-  m_SizeDelta: {x: 508.69995, y: 143.70001}
+  m_SizeDelta: {x: 654.1, y: 137.5}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &573066050
 MonoBehaviour:
@@ -1797,14 +1779,17 @@ MonoBehaviour:
   TrapDoorKill: 100
   TarKill: 10
   BoulderKill: 50
+  BurningBoulderKill: 300
   FireKill: 15
   LightningKill: 12
   MinionKill: 200
   ShatterKill: 600
+  BurningShatterKill: 300
   IncinerationKill: 600
   Fearkill: 1000
   MindControlKill: 10000
   otherKill: 0
+  killstreak: 0
   killType: 
 --- !u!114 &573066051
 MonoBehaviour:
@@ -1818,15 +1803,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.773}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b7fbc1ce4472f584d8ac0ec2bbf0e1ed, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3221,7 +3206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: -32.15}
+  m_AnchoredPosition: {x: 14, y: -66.1}
   m_SizeDelta: {x: 105.6, y: 64.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858862377
@@ -3350,6 +3335,7 @@ GameObject:
   - component: {fileID: 886948461}
   - component: {fileID: 886948463}
   - component: {fileID: 886948462}
+  - component: {fileID: 886948464}
   m_Layer: 5
   m_Name: Fire
   m_TagString: Firespell
@@ -3374,7 +3360,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -60.699997, y: -167.9}
+  m_AnchoredPosition: {x: -59.6, y: -135}
   m_SizeDelta: {x: 317.4, y: 227.8}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &886948462
@@ -3397,7 +3383,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a572c11f568286147864b758ca058d8a, type: 3}
+  m_Sprite: {fileID: 21300018, guid: 30fbc004fd5b87042940608db239b6f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3412,6 +3398,23 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 886948460}
+--- !u!95 &886948464
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 886948460}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ce47749bc9a87842bce725795d623ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &907687952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4395,7 +4398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1244120146
 RectTransform:
   m_ObjectHideFlags: 0

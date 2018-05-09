@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 114678727523451236}
   - component: {fileID: 212607760788889976}
   - component: {fileID: 135694371225777642}
-  - component: {fileID: 95996203551783362}
   m_Layer: 8
   m_Name: Tar Pool
   m_TagString: TarPool
@@ -43,23 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95996203551783362
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1672980157558894}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c40e1c235717bd4f858797a5eda8b9a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114678727523451236
 MonoBehaviour:
   m_ObjectHideFlags: 1

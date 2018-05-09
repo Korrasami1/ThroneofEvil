@@ -63,34 +63,46 @@ public class VoiceCommandController : MonoBehaviour
 		switch (word)
 		{
 		case "Send in the minions":
-			spawnMinions ();
-			hasMinionsCooleddown = false;
-			StartCoroutine (MagicCoolDown (1, hasMinionsCooleddown));
+			if (isSpawningMinions == true) { //this stop it from continiously accessing the co-routine every update even after cooldown complete
+				spawnMinions ();
+				hasMinionsCooleddown = false;
+				StartCoroutine (MagicCoolDown (1, hasMinionsCooleddown));
+			}
 			break;
 		case "Fire":
-			SpawnFire ();
-			hasFireCooledDown = false;
-			StartCoroutine (MagicCoolDown (2, hasFireCooledDown));
+			if (isSpawningFire == true) { //this stop it from continiously accessing the co-routine every update even after cooldown complete
+				SpawnFire ();
+				hasFireCooledDown = false;
+				StartCoroutine (MagicCoolDown (2, hasFireCooledDown));
+			}
 			break;
 		case "Burn":
-			SpawnFire ();
-			hasFireCooledDown = false;
-			StartCoroutine (MagicCoolDown (2, hasFireCooledDown));
+			if (isSpawningFire == true) { //this stop it from continiously accessing the co-routine every update even after cooldown complete
+				SpawnFire ();
+				hasFireCooledDown = false;
+				StartCoroutine (MagicCoolDown (2, hasFireCooledDown));
+			}
 			break;
 		case "Burn them Alive":
-			SpawnFire ();
-			hasFireCooledDown = false;
-			StartCoroutine (MagicCoolDown (2, hasFireCooledDown));
+			if (isSpawningFire == true) { //this stop it from continiously accessing the co-routine every update even after cooldown complete
+				SpawnFire ();
+				hasFireCooledDown = false;
+				StartCoroutine (MagicCoolDown (2, hasFireCooledDown));
+			}
 			break;
 		case "Lightning":
-			SpawnLightning ();
-			hasLightningCooledDown = false;
-			StartCoroutine (MagicCoolDown (3, hasLightningCooledDown));
+			if (isSpawningLightning == true) { //this stop it from continiously accessing the co-routine every update even after cooldown complete
+				SpawnLightning ();
+				hasLightningCooledDown = false;
+				StartCoroutine (MagicCoolDown (3, hasLightningCooledDown));
+			}
 			break;
 		case "Thunder":
-			SpawnLightning ();
-			hasLightningCooledDown = false;
-			StartCoroutine (MagicCoolDown (3, hasLightningCooledDown));
+			if (isSpawningLightning == true) { //this stop it from continiously accessing the co-routine every update even after cooldown complete
+				SpawnLightning ();
+				hasLightningCooledDown = false;
+				StartCoroutine (MagicCoolDown (3, hasLightningCooledDown));
+			}
 			break;
 		/*case "Fear":
 			SpawnFear ();
@@ -103,9 +115,11 @@ public class VoiceCommandController : MonoBehaviour
 			StartCoroutine (MagicCoolDown (5, hasMindControlCooledDown));
 			break;*/
 		case "Ha ha ha":
-			SpawnEvilPromotion ();
-			hasEvilCooledDown = false;
-			StartCoroutine (MagicCoolDown (6, hasEvilCooledDown));
+			if (isSpawningEvil == true) { //this stop it from continiously accessing the co-routine every update even after cooldown complete
+				SpawnEvilPromotion ();
+				hasEvilCooledDown = false;
+				StartCoroutine (MagicCoolDown (6, hasEvilCooledDown));
+			}
 			break;
 		case "exit":
 			Application.Quit();
@@ -209,8 +223,8 @@ public class VoiceCommandController : MonoBehaviour
 			if (hasCooled == false) {
 				cooldownImage2.GetComponent<Image>().color = col1;
 				yield return new WaitForSeconds (lightningCooldown);
+				cooldownImage.GetComponent<Image>().color = col2;
 				hasLightningCooledDown = true;
-				cooldownImage2.GetComponent<Image>().color = col2;
 			}
 			break;
 		/*case 4/*"Fear":

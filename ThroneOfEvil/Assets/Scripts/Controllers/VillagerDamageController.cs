@@ -100,6 +100,8 @@ public class VillagerDamageController : MonoBehaviour {
 			DebugDamage (trapDoorDamage, damagerDebug);
 		}
 		if (other.CompareTag("Boulder") || other.CompareTag("TarredBoulder")){
+			//scoreboard.killstreak = other.GetComponent<Boulder> ().killstreak;
+			//other.GetComponent<Boulder> ().killstreak = scoreboard.killstreak + 1;
 			DebugHealth (damagerDebug);
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				scoreboard.killType = "Shatter";
@@ -112,18 +114,22 @@ public class VillagerDamageController : MonoBehaviour {
 			}
 		}
 		if (other.CompareTag("BurningBoulder")){
+			//scoreboard.killstreak = other.GetComponent<Boulder> ().killstreak;
+			//other.GetComponent<Boulder> ().killstreak = scoreboard.killstreak + 1;
 			DebugHealth (damagerDebug);
 			if (gameObject.CompareTag ("FrozenEnemy")) {
-				scoreboard.killType = "Shatter";
+				scoreboard.killType = "Burning Shatter";
 				enemyHealth.DealDamage (boulderFrozenDamage);
 				DebugDamage (boulderFrozenDamage, damagerDebug);
 			} else {
-				scoreboard.killType = "Boulder";
+				scoreboard.killType = "Burning Boulder";
 				enemyHealth.DealDamage (burningBoulderDamage);
 				DebugDamage (burningBoulderDamage, damagerDebug);
 			}
 		}
 		if (other.CompareTag("Lightning")){
+			//scoreboard.killstreak = other.GetComponent<LightningMagicBehaviour> ().killstreak;
+			//other.GetComponent<LightningMagicBehaviour> ().killstreak = scoreboard.killstreak + 1;
 			DebugHealth (damagerDebug);
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				scoreboard.killType = "Shatter";
@@ -133,10 +139,12 @@ public class VillagerDamageController : MonoBehaviour {
 				scoreboard.killType = "Lightning";
 				enemyHealth.DealDamage (lightningDamage);
 				DebugDamage (lightningDamage, damagerDebug);
-				gameObject.GetComponent<Animator> ().enabled = true; //will change to Play("Lightning") later
+				gameObject.GetComponent<Animator> ().Play("Lightning");
 			}
 		}
 		if (other.CompareTag("Fire")){
+			//scoreboard.killstreak = other.GetComponent<FireMagicBehaviour> ().killstreak;
+			//other.GetComponent<FireMagicBehaviour> ().killstreak = scoreboard.killstreak + 1;
 			DebugHealth (damagerDebug);
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				gameObject.tag = "Enemy";
@@ -158,6 +166,8 @@ public class VillagerDamageController : MonoBehaviour {
 			}
 		}
 		if (other.CompareTag("Explosion")){
+			//scoreboard.killstreak = other.GetComponent<Explosion> ().killstreak;
+			//other.GetComponent<Explosion> ().killstreak = scoreboard.killstreak + 1;
 			DebugHealth (damagerDebug);
 			if (gameObject.CompareTag ("FrozenEnemy")) {
 				gameObject.tag = "Enemy";
@@ -173,7 +183,7 @@ public class VillagerDamageController : MonoBehaviour {
 				enemyHealth.DealDamage (explosionDamage);
 				DebugDamage (explosionDamage, damagerDebug);
 			}else {
-				scoreboard.killType = "Fire";
+				scoreboard.killType = "Incineration";
 				enemyHealth.DealDamage (explosionDamage);
 				DebugDamage (explosionDamage, damagerDebug);
 			}
@@ -197,6 +207,8 @@ public class VillagerDamageController : MonoBehaviour {
 			}
 		}
 		if (other.CompareTag ("Minion")) {
+			//scoreboard.killstreak = other.GetComponent<TrackingController> ().killstreak;
+			//other.GetComponent<TrackingController> ().killstreak = scoreboard.killstreak + 1;
 			DebugHealth (damagerDebug); 
 			scoreboard.killType = "Minion";
 			enemyHealth.DealDamage (minionDamage);

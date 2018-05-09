@@ -10,10 +10,12 @@ public class TrackingController : MonoBehaviour {
 	public float damage = 10;
 	public float _speed = 5;
 	public Transform target;
+	public int killstreak = 1;
 //	private float _angleOffset = -90;
 	// Use this for initialization
 	void Start()
 	{
+		killstreak = 1;
 		//getting the enemy health controller from the Enemy prefab
 		getEnemyHealthController();
 		getScoreManager ();
