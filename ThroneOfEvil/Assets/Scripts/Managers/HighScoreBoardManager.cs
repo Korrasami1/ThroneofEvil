@@ -11,30 +11,49 @@ public class HighScoreBoardManager : MonoBehaviour {
 	private int currentPlayerScore;
 	private string currentPlayerName;
 	List<PlayerScores> highscores;
+	public bool isOnMainMenu;
 
 	void Start () {
-		readfromFile ();
-		currentPlayerScore = PlayerPrefs.GetInt ("HighScore");
-		currentPlayerName = PlayerPrefs.GetString ("PlayerName");
-		highscores = new List<PlayerScores> ();
+		if (isOnMainMenu) {
+			readfromFile ();
+			highscores = new List<PlayerScores> ();
 
-		//this adds the names with their scores to an array that so it can be sorted.
-		for (int i = 0; i < scores.Length; i++) {
-			highscores.Add (new PlayerScores () { names = Names [i].text, points = int.Parse (scores [i].text) });
-		}
-		highscores.Add (new PlayerScores () { names = currentPlayerName, points = currentPlayerScore });
+			//this adds the names with their scores to an array that so it can be sorted.
+			for (int i = 0; i < scores.Length; i++) {
+				highscores.Add (new PlayerScores () { names = Names [i].text, points = int.Parse (scores [i].text) });
+			}
+			//sorts and collects just the top 10 players
+			PlayerScores[] top10 = GetHighScores (10);
 
-		//sorts and collects just the top 10 players
-		PlayerScores[] top10 = GetHighScores (10);
+			//places the top 10 names into the scenes's text files
+			for (int i = 0; i < 10; i++) {
+				Names [i].text = top10 [i].names;
+				scores [i].text = top10 [i].points.ToString ();
+			}
+		} else {
+			readfromFile ();
+			currentPlayerScore = PlayerPrefs.GetInt ("HighScore");
+			currentPlayerName = PlayerPrefs.GetString ("PlayerName");
+			highscores = new List<PlayerScores> ();
+
+			//this adds the names with their scores to an array that so it can be sorted.
+			for (int i = 0; i < scores.Length; i++) {
+				highscores.Add (new PlayerScores () { names = Names [i].text, points = int.Parse (scores [i].text) });
+			}
+			highscores.Add (new PlayerScores () { names = currentPlayerName, points = currentPlayerScore });
+
+			//sorts and collects just the top 10 players
+			PlayerScores[] top10 = GetHighScores (10);
 	
-		//places the top 10 names into the scenes's text files
-		for (int i = 0; i < 10; i++) {
-			Names [i].text = top10 [i].names;
-			scores [i].text = top10 [i].points.ToString();
+			//places the top 10 names into the scenes's text files
+			for (int i = 0; i < 10; i++) {
+				Names [i].text = top10 [i].names;
+				scores [i].text = top10 [i].points.ToString ();
+			}
+			clearFiles ();
+			writeTofile ();
+			writeTofile2 ();
 		}
-		clearFiles ();
-		writeTofile ();
-		writeTofile2 ();
 	}
 
 	void writeTofile(){

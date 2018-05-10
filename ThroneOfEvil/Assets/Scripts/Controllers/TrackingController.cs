@@ -52,13 +52,9 @@ public class TrackingController : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		//      if (healthObject != null) {
-		//          if (other.CompareTag ("Enemy")) {
-		//              Scoreboard.killType = "Minion";
-		//              other.GetComponent<EnemyHealthController>().DealDamage (damage);
-		//              Debug.Log ("current enemies health after Minions " + enemyHealth.currentHealth);
-		//          }
-		//      }
+		if (other.CompareTag ("Enemy") || other.CompareTag ("FrozenEnemy") || other.CompareTag ("BurningEnemy") || other.CompareTag ("TarredEnemy") || other.CompareTag ("FearedEnemy")) {
+			killstreak = killstreak + 1;
+		}
 		if (other.CompareTag ("MinionTarget")) {
 			Destroy (gameObject);
 		}

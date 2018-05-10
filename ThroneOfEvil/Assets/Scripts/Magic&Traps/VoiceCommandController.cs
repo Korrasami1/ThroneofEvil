@@ -223,7 +223,7 @@ public class VoiceCommandController : MonoBehaviour
 			if (hasCooled == false) {
 				cooldownImage2.GetComponent<Image>().color = col1;
 				yield return new WaitForSeconds (lightningCooldown);
-				cooldownImage.GetComponent<Image>().color = col2;
+				cooldownImage2.GetComponent<Image>().color = col2;
 				hasLightningCooledDown = true;
 			}
 			break;

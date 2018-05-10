@@ -20,7 +20,7 @@ public class ClothingController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		updateOrientation ();
-		updateClothing ();
+		//updateClothing ();
 	}
 		
 	void updateOrientation(){
@@ -32,6 +32,9 @@ public class ClothingController : MonoBehaviour {
 				Villager [2].GetComponent<SpriteRenderer> ().flipX = false;
 				Villager [3].GetComponent<SpriteRenderer> ().flipX = false;
 				Villager [4].GetComponent<SpriteRenderer> ().flipX = false;
+				if (Villager [0].GetComponent<ClothingGenerator> ().villagerType == 4) {
+					Villager [4].transform.localPosition = new Vector3 (0.37f, 0.09f, 0f);
+				}
 			}
 			trapcloth = trapClothingRight [changeClothing (clothingRightView.GetComponent<ClothingGenerator> ().villagerType, 1)];
 			trapclothTar = trapClothingRight [changeClothing (clothingRightView.GetComponent<ClothingGenerator> ().villagerType, 2)];
@@ -45,6 +48,9 @@ public class ClothingController : MonoBehaviour {
 			Villager [2].GetComponent<SpriteRenderer> ().flipX = true;
 			Villager [3].GetComponent<SpriteRenderer> ().flipX = true;
 			Villager [4].GetComponent<SpriteRenderer> ().flipX = true;
+			if (Villager [0].GetComponent<ClothingGenerator> ().villagerType == 4) {
+				Villager [4].transform.localPosition = new Vector3 (-0.47f, 0.09f, 0f);
+			}
 			clothingRightView.SetActive (true);
 			trapcloth = trapClothingLeft [changeClothing (clothingRightView.GetComponent<ClothingGenerator> ().villagerType, 1)];
 			trapclothTar = trapClothingLeft [changeClothing (clothingRightView.GetComponent<ClothingGenerator> ().villagerType, 2)];
@@ -66,7 +72,7 @@ public class ClothingController : MonoBehaviour {
 			clothingBackView.SetActive (true);
 			previousOrientation = currentOrientation;
 		}
-		if (villagerOrientation == "Pause") {
+		/*if (villagerOrientation == "Pause") {
 			Villager [0].GetComponent<Animator> ().enabled = false;
 			Villager [1].GetComponent<Animator> ().enabled = false;
 			Villager [2].GetComponent<Animator> ().enabled = false;
@@ -85,10 +91,17 @@ public class ClothingController : MonoBehaviour {
 			//clothingFrontView.GetComponent<Animator> ().enabled = true;
 			//clothingBackView.GetComponent<Animator> ().enabled = true;
 			villagerOrientation = previousOrientation;
-		}
+		}*/
 	}
+	public void turnOffClothes(){
+		Villager [0].SetActive(false);
+		Villager [1].SetActive(false);
+		Villager [2].SetActive(false);
+		Villager [3].SetActive(false);
+		Villager [4].SetActive(false);
+	} 
 
-	void updateClothing(){
+	public void updateClothing(){
 		switch (gameObject.tag)
 		{
 		case "TarredEnemy":

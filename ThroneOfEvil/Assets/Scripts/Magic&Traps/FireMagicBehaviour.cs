@@ -26,5 +26,8 @@ public class FireMagicBehaviour : MonoBehaviour {
 		if (other.CompareTag ("FreezeTrapExplosion") || other.CompareTag("TarPool")) {
 			Destroy (gameObject);
 		}
+		if (other.CompareTag ("Enemy") || other.CompareTag ("FrozenEnemy") || other.CompareTag ("BurningEnemy") || other.CompareTag ("TarredEnemy") || other.CompareTag ("FearedEnemy")) {
+			killstreak = killstreak+1;
+		}
 	}
 }

@@ -672,33 +672,33 @@ MonoBehaviour:
   - {fileID: 1940574119323084}
   - {fileID: 1263163866378088}
   trapClothingLeft:
-  - {fileID: 21300002, guid: bc89207d8f0eea243a1e1988d3d2c012, type: 3}
-  - {fileID: 21300000, guid: 6a0dc8c17352179439ccd9b522466a6b, type: 3}
-  - {fileID: 21300006, guid: d695d7ad9f61d2d45b0bed6e05c4efb4, type: 3}
-  - {fileID: 21300002, guid: 86de5df0ede87c34095198aeb2a77188, type: 3}
-  - {fileID: 21300000, guid: a05ce036100294a45b98145e85d9b42e, type: 3}
-  - {fileID: 21300006, guid: be45745e1bd3d2746a012b8b332de151, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   trapClothingRight:
-  - {fileID: 21300006, guid: bc89207d8f0eea243a1e1988d3d2c012, type: 3}
-  - {fileID: 21300004, guid: 6a0dc8c17352179439ccd9b522466a6b, type: 3}
-  - {fileID: 21300002, guid: d695d7ad9f61d2d45b0bed6e05c4efb4, type: 3}
-  - {fileID: 21300006, guid: 86de5df0ede87c34095198aeb2a77188, type: 3}
-  - {fileID: 21300004, guid: a05ce036100294a45b98145e85d9b42e, type: 3}
-  - {fileID: 21300002, guid: be45745e1bd3d2746a012b8b332de151, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   trapClothingFront:
-  - {fileID: 21300004, guid: bc89207d8f0eea243a1e1988d3d2c012, type: 3}
-  - {fileID: 21300002, guid: 6a0dc8c17352179439ccd9b522466a6b, type: 3}
-  - {fileID: 21300000, guid: d695d7ad9f61d2d45b0bed6e05c4efb4, type: 3}
-  - {fileID: 21300004, guid: 86de5df0ede87c34095198aeb2a77188, type: 3}
-  - {fileID: 21300002, guid: a05ce036100294a45b98145e85d9b42e, type: 3}
-  - {fileID: 21300000, guid: be45745e1bd3d2746a012b8b332de151, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   trapClothingBack:
-  - {fileID: 21300000, guid: bc89207d8f0eea243a1e1988d3d2c012, type: 3}
-  - {fileID: 21300006, guid: 6a0dc8c17352179439ccd9b522466a6b, type: 3}
-  - {fileID: 21300004, guid: d695d7ad9f61d2d45b0bed6e05c4efb4, type: 3}
-  - {fileID: 21300000, guid: 86de5df0ede87c34095198aeb2a77188, type: 3}
-  - {fileID: 21300006, guid: a05ce036100294a45b98145e85d9b42e, type: 3}
-  - {fileID: 21300004, guid: be45745e1bd3d2746a012b8b332de151, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   villagerOrientation: right
 --- !u!114 &114503903842594004
 MonoBehaviour:
@@ -711,10 +711,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b663e9c84ca045f4c90efbf4b90260fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBody: {fileID: 0}
   Shirt: {fileID: 1794886630908308}
   Skin: {fileID: 1263163866378088}
   Hair: {fileID: 1713061083621386}
   Accessorie: {fileID: 0}
+  deaths: []
   AnimationHair: []
   AnimationPants: []
   AnimationSkin: []
@@ -770,14 +772,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b663e9c84ca045f4c90efbf4b90260fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBody: {fileID: 1539559234517020}
   Shirt: {fileID: 1794886630908308}
   Skin: {fileID: 1263163866378088}
   Hair: {fileID: 1713061083621386}
   Accessorie: {fileID: 1940574119323084}
+  deaths:
+  - {fileID: 9100000, guid: e71091e42c0818b40abb61e65650a749, type: 2}
+  - {fileID: 9100000, guid: 9875044950b75084ea637db6cbcd85e0, type: 2}
+  - {fileID: 9100000, guid: 1016d1d60b7dae8478da907b87389c5a, type: 2}
+  - {fileID: 9100000, guid: adb5e304bc256a449bdfbfb9e1913015, type: 2}
   AnimationHair:
   - {fileID: 9100000, guid: f8b1f60539a1343469ccf37b0f0e7839, type: 2}
   - {fileID: 9100000, guid: 5cd63b8806bb87848b077bc4e52c667d, type: 2}
   - {fileID: 9100000, guid: b8fee5087eb76174a8a38935c3637ffe, type: 2}
+  - {fileID: 9100000, guid: 1a251fb7215e52d47b5c78879c223d0a, type: 2}
   AnimationPants:
   - {fileID: 9100000, guid: 4d644ebce501977439e3124ad5031b0c, type: 2}
   - {fileID: 9100000, guid: b32ecd76d31821342836670c697707d6, type: 2}
@@ -786,14 +795,17 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 7464cc637f66461478599a98b93f82b6, type: 2}
   - {fileID: 9100000, guid: 66aa09bee321f7d458ac85cde5ff206f, type: 2}
   - {fileID: 9100000, guid: cfe0229c4a5c0144db4051f8519f7f0a, type: 2}
+  - {fileID: 9100000, guid: 9784e66f1532e3d4caa49b362ee6d5e9, type: 2}
   AnimationShirt:
   - {fileID: 9100000, guid: 30576a38d792acc4792cad292c1a2335, type: 2}
   - {fileID: 9100000, guid: 108623b1131aa0c4dbf7b39b74b18731, type: 2}
   - {fileID: 9100000, guid: 6e89877311294654582d328d524e162d, type: 2}
+  - {fileID: 9100000, guid: e2922104c7d895f49b4fee3cba82637c, type: 2}
   AnimationCapeorScarf:
   - {fileID: 9100000, guid: 6a746bb42c8c47442805be8c932a07b5, type: 2}
   - {fileID: 9100000, guid: 0b022683d9933ca46b9a4d87b65d38a7, type: 2}
   - {fileID: 9100000, guid: 9b8a5a08f72f4e84e8c5461d50722544, type: 2}
+  - {fileID: 9100000, guid: 77aaea635323c764694a022081f48303, type: 2}
   villagerType: 0
 --- !u!114 &114583684375257704
 MonoBehaviour:
@@ -941,10 +953,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b663e9c84ca045f4c90efbf4b90260fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBody: {fileID: 0}
   Shirt: {fileID: 1794886630908308}
   Skin: {fileID: 1263163866378088}
   Hair: {fileID: 1713061083621386}
   Accessorie: {fileID: 0}
+  deaths: []
   AnimationHair: []
   AnimationPants: []
   AnimationSkin: []

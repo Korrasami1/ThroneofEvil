@@ -65,13 +65,16 @@ public class VillagerIdleMode : MonoBehaviour {
 	}
 	public void CheckForTag(){
 		if (gameObject.CompareTag("Enemy")) {
+			gameObject.GetComponent<ClothingController> ().updateClothing ();
 			switchstate = false;
 			_speed = normalSpeed;
 		} else if (gameObject.CompareTag("FrozenEnemy")) {
+			gameObject.GetComponent<ClothingController> ().updateClothing ();
 			switchstate = true;
 			_speed = 0f;
 			//Debug.Log("Enemy is frozen!");
 		} else if (gameObject.CompareTag("TarredEnemy")) {
+			gameObject.GetComponent<ClothingController> ().updateClothing ();
 			switchstate = true;
 			_speed = normalSpeed/2;
 			//Debug.Log("Enemy is tarred!");

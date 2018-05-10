@@ -25,4 +25,10 @@ public class LightningMagicBehaviour : MonoBehaviour {
 		//Convert the mousePosition according to World position
 		//transform.position = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,distance));
 	}
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag ("Enemy") || other.CompareTag ("FrozenEnemy") || other.CompareTag ("BurningEnemy") || other.CompareTag ("TarredEnemy") || other.CompareTag ("FearedEnemy")) {
+			killstreak = killstreak + 1;
+		}
+	}
 }
